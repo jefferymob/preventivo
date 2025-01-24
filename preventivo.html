@@ -115,14 +115,6 @@
             transform: translateY(-2px);
         }
 
-        .option img {
-            width: 40px;
-            height: 40px;
-            margin-right: 10px;
-            border-radius: 10px;
-            object-fit: cover;
-        }
-
         .option label {
             display: flex;
             align-items: center;
@@ -173,11 +165,6 @@
                 padding: 15px 20px;
             }
 
-            .option img {
-                width: 35px;
-                height: 35px;
-            }
-
             .price-bar {
                 font-size: 1rem;
                 padding: 8px 15px;
@@ -208,32 +195,29 @@
         <h1>Pacchetto Wellness</h1>
         <p>Scegli le opzioni per il tuo relax presso il Trilussa Palace Hotel:</p>
 
-        <form id="wellnessForm">
-            <!-- Step 1: Scegli la Fascia Oraria -->
+        <form id="wellnessForm" action="https://formspree.io/f/mjvajnzv" method="POST">
+            <!-- Step 1: Scegli la Spa -->
             <div class="step active" id="step-1">
                 <div class="step-header">
-                    <h2>1. Scegli la Fascia Oraria</h2>
+                    <h2>1. Scegli la Spa</h2>
                 </div>
                 <div class="options">
                     <div class="option">
-                        <img src="https://via.placeholder.com/40" alt="Mattina">
                         <label>
-                            <input type="radio" name="time" class="option-radio" data-price="0" value="Mattina (08:00-16:00)">
-                            Mattina (08:00-16:00)
+                            <input type="radio" name="spa" class="option-radio" data-price="0" value="SPA MAYA">
+                            SPA MAYA
                         </label>
                     </div>
                     <div class="option">
-                        <img src="https://via.placeholder.com/40" alt="Pomeriggio">
                         <label>
-                            <input type="radio" name="time" class="option-radio" data-price="0" value="Pomeriggio (16:00-23:00)">
-                            Pomeriggio (16:00-23:00)
+                            <input type="radio" name="spa" class="option-radio" data-price="0" value="SPA MOON">
+                            SPA MOON
                         </label>
                     </div>
                     <div class="option">
-                        <img src="https://via.placeholder.com/40" alt="Notte">
                         <label>
-                            <input type="radio" name="time" class="option-radio" data-price="0" value="Notte (23:00-08:00)">
-                            Notte (23:00-08:00)
+                            <input type="radio" name="spa" class="option-radio" data-price="0" value="SPA DOMUS">
+                            SPA DOMUS
                         </label>
                     </div>
                 </div>
@@ -242,177 +226,28 @@
                 </div>
             </div>
 
-            <!-- Step 2: Scegli la Spa -->
+            <!-- Step 2: Scegli la Fascia Oraria -->
             <div class="step" id="step-2">
                 <div class="step-header">
-                    <h2>2. Scegli la Spa</h2>
+                    <h2>2. Scegli la Fascia Oraria</h2>
                 </div>
                 <div class="options">
-                    <!-- Spa Domus - 1 Ora -->
                     <div class="option">
-                        <img src="https://via.placeholder.com/40" alt="Spa Domus 1 Ora">
                         <label>
-                            <input type="radio" name="spa" class="option-radio" data-price="75" value="Spa Domus 1 Ora">
-                            Spa Domus (Antica Roma) - 1 Ora
-                            <span class="duration">€75</span>
+                            <input type="radio" name="time" class="option-radio" data-price="0" value="MATTINA (08:00-16:00)">
+                            MATTINA (08:00-16:00)
                         </label>
                     </div>
-                    <!-- Spa Moon - 1 Ora -->
                     <div class="option">
-                        <img src="https://via.placeholder.com/40" alt="Spa Moon 1 Ora">
                         <label>
-                            <input type="radio" name="spa" class="option-radio" data-price="90" value="Spa Moon 1 Ora">
-                            Spa Moon (Futuristico) - 1 Ora
-                            <span class="duration">€90</span>
+                            <input type="radio" name="time" class="option-radio" data-price="0" value="POMERIGGIO (16:00-23:00)">
+                            POMERIGGIO (16:00-23:00)
                         </label>
                     </div>
-                    <!-- Spa Maya - 1 Ora -->
                     <div class="option">
-                        <img src="https://via.placeholder.com/40" alt="Spa Maya 1 Ora">
                         <label>
-                            <input type="radio" name="spa" class="option-radio" data-price="110" value="Spa Maya 1 Ora">
-                            Spa Maya (Tropicale) - 1 Ora
-                            <span class="duration">€110</span>
-                        </label>
-                    </div>
-
-                    <!-- Spa Domus - 1'30 Ore -->
-                    <div class="option">
-                        <img src="https://via.placeholder.com/40" alt="Spa Domus 1'30 Ore">
-                        <label>
-                            <input type="radio" name="spa" class="option-radio" data-price="110" value="Spa Domus 1'30 Ore">
-                            Spa Domus (Antica Roma) - 1'30 Ore
-                            <span class="duration">€110</span>
-                        </label>
-                    </div>
-                    <!-- Spa Moon - 1'30 Ore -->
-                    <div class="option">
-                        <img src="https://via.placeholder.com/40" alt="Spa Moon 1'30 Ore">
-                        <label>
-                            <input type="radio" name="spa" class="option-radio" data-price="130" value="Spa Moon 1'30 Ore">
-                            Spa Moon (Futuristico) - 1'30 Ore
-                            <span class="duration">€130</span>
-                        </label>
-                    </div>
-                    <!-- Spa Maya - 1'30 Ore -->
-                    <div class="option">
-                        <img src="https://via.placeholder.com/40" alt="Spa Maya 1'30 Ore">
-                        <label>
-                            <input type="radio" name="spa" class="option-radio" data-price="160" value="Spa Maya 1'30 Ore">
-                            Spa Maya (Tropicale) - 1'30 Ore
-                            <span class="duration">€160</span>
-                        </label>
-                    </div>
-
-                    <!-- Spa Domus Pomeriggio - 1 Ora -->
-                    <div class="option">
-                        <img src="https://via.placeholder.com/40" alt="Spa Domus Pomeriggio 1 Ora">
-                        <label>
-                            <input type="radio" name="spa" class="option-radio" data-price="110" value="Spa Domus Pomeriggio 1 Ora">
-                            Spa Domus (Antica Roma) - Pomeriggio 1 Ora
-                            <span class="duration">€110</span>
-                        </label>
-                    </div>
-                    <!-- Spa Moon Pomeriggio - 1 Ora -->
-                    <div class="option">
-                        <img src="https://via.placeholder.com/40" alt="Spa Moon Pomeriggio 1 Ora">
-                        <label>
-                            <input type="radio" name="spa" class="option-radio" data-price="140" value="Spa Moon Pomeriggio 1 Ora">
-                            Spa Moon (Futuristico) - Pomeriggio 1 Ora
-                            <span class="duration">€140</span>
-                        </label>
-                    </div>
-                    <!-- Spa Maya Pomeriggio - 1 Ora -->
-                    <div class="option">
-                        <img src="https://via.placeholder.com/40" alt="Spa Maya Pomeriggio 1 Ora">
-                        <label>
-                            <input type="radio" name="spa" class="option-radio" data-price="170" value="Spa Maya Pomeriggio 1 Ora">
-                            Spa Maya (Tropicale) - Pomeriggio 1 Ora
-                            <span class="duration">€170</span>
-                        </label>
-                    </div>
-
-                    <!-- Spa Domus Pomeriggio - 1'30 Ore -->
-                    <div class="option">
-                        <img src="https://via.placeholder.com/40" alt="Spa Domus Pomeriggio 1'30 Ore">
-                        <label>
-                            <input type="radio" name="spa" class="option-radio" data-price="220" value="Spa Domus Pomeriggio 1'30 Ore">
-                            Spa Domus (Antica Roma) - Pomeriggio 1'30 Ore
-                            <span class="duration">€220</span>
-                        </label>
-                    </div>
-                    <!-- Spa Moon Pomeriggio - 1'30 Ore -->
-                    <div class="option">
-                        <img src="https://via.placeholder.com/40" alt="Spa Moon Pomeriggio 1'30 Ore">
-                        <label>
-                            <input type="radio" name="spa" class="option-radio" data-price="290" value="Spa Moon Pomeriggio 1'30 Ore">
-                            Spa Moon (Futuristico) - Pomeriggio 1'30 Ore
-                            <span class="duration">€290</span>
-                        </label>
-                    </div>
-                    <!-- Spa Maya Pomeriggio - 1'30 Ore -->
-                    <div class="option">
-                        <img src="https://via.placeholder.com/40" alt="Spa Maya Pomeriggio 1'30 Ore">
-                        <label>
-                            <input type="radio" name="spa" class="option-radio" data-price="360" value="Spa Maya Pomeriggio 1'30 Ore">
-                            Spa Maya (Tropicale) - Pomeriggio 1'30 Ore
-                            <span class="duration">€360</span>
-                        </label>
-                    </div>
-
-                    <!-- Spa Domus Notte - 1 Ora -->
-                    <div class="option">
-                        <img src="https://via.placeholder.com/40" alt="Spa Domus Notte 1 Ora">
-                        <label>
-                            <input type="radio" name="spa" class="option-radio" data-price="160" value="Spa Domus Notte 1 Ora">
-                            Spa Domus (Antica Roma) - Notte 1 Ora
-                            <span class="duration">€160</span>
-                        </label>
-                    </div>
-                    <!-- Spa Moon Notte - 1 Ora -->
-                    <div class="option">
-                        <img src="https://via.placeholder.com/40" alt="Spa Moon Notte 1 Ora">
-                        <label>
-                            <input type="radio" name="spa" class="option-radio" data-price="200" value="Spa Moon Notte 1 Ora">
-                            Spa Moon (Futuristico) - Notte 1 Ora
-                            <span class="duration">€200</span>
-                        </label>
-                    </div>
-                    <!-- Spa Maya Notte - 1 Ora -->
-                    <div class="option">
-                        <img src="https://via.placeholder.com/40" alt="Spa Maya Notte 1 Ora">
-                        <label>
-                            <input type="radio" name="spa" class="option-radio" data-price="250" value="Spa Maya Notte 1 Ora">
-                            Spa Maya (Tropicale) - Notte 1 Ora
-                            <span class="duration">€250</span>
-                        </label>
-                    </div>
-
-                    <!-- Spa Domus Notte - 1'30 Ore -->
-                    <div class="option">
-                        <img src="https://via.placeholder.com/40" alt="Spa Domus Notte 1'30 Ore">
-                        <label>
-                            <input type="radio" name="spa" class="option-radio" data-price="220" value="Spa Domus Notte 1'30 Ore">
-                            Spa Domus (Antica Roma) - Notte 1'30 Ore
-                            <span class="duration">€220</span>
-                        </label>
-                    </div>
-                    <!-- Spa Moon Notte - 1'30 Ore -->
-                    <div class="option">
-                        <img src="https://via.placeholder.com/40" alt="Spa Moon Notte 1'30 Ore">
-                        <label>
-                            <input type="radio" name="spa" class="option-radio" data-price="290" value="Spa Moon Notte 1'30 Ore">
-                            Spa Moon (Futuristico) - Notte 1'30 Ore
-                            <span class="duration">€290</span>
-                        </label>
-                    </div>
-                    <!-- Spa Maya Notte - 1'30 Ore -->
-                    <div class="option">
-                        <img src="https://via.placeholder.com/40" alt="Spa Maya Notte 1'30 Ore">
-                        <label>
-                            <input type="radio" name="spa" class="option-radio" data-price="360" value="Spa Maya Notte 1'30 Ore">
-                            Spa Maya (Tropicale) - Notte 1'30 Ore
-                            <span class="duration">€360</span>
+                            <input type="radio" name="time" class="option-radio" data-price="0" value="NOTTE (23:00-08:00)">
+                            NOTTE (23:00-08:00)
                         </label>
                     </div>
                 </div>
@@ -422,45 +257,22 @@
                 </div>
             </div>
 
-            <!-- Step 3: Scegli gli Extra -->
+            <!-- Step 3: Scegli la Durata -->
             <div class="step" id="step-3">
                 <div class="step-header">
-                    <h2>3. Scegli gli Extra</h2>
+                    <h2>3. Scegli la Durata</h2>
                 </div>
-                <div class="extras">
+                <div class="options">
                     <div class="option">
-                        <img src="https://via.placeholder.com/40" alt="Persona Aggiunta">
                         <label>
-                            <input type="checkbox" class="option-checkbox" data-price="30" value="Persona Aggiunta">
-                            Persona aggiunta (fino a 4) - €30
+                            <input type="radio" name="duration" class="option-radio" data-price="0" value="1h">
+                            1 Ora
                         </label>
                     </div>
                     <div class="option">
-                        <img src="https://via.placeholder.com/40" alt="Cena Ramo Bistrot">
                         <label>
-                            <input type="checkbox" class="option-checkbox" data-price="90" value="Cena Ramo Bistrot">
-                            Cena ALL INCLUSIVE presso Ramo Bistrot - €90
-                        </label>
-                    </div>
-                    <div class="option">
-                        <img src="https://via.placeholder.com/40" alt="Sushi Misto">
-                        <label>
-                            <input type="checkbox" class="option-checkbox" data-price="35" value="Sushi Misto">
-                            Sushi misto 18 pz - €35
-                        </label>
-                    </div>
-                    <div class="option">
-                        <img src="https://via.placeholder.com/40" alt="Pinsa Romana">
-                        <label>
-                            <input type="checkbox" class="option-checkbox" data-price="20" value="Pinsa Romana">
-                            Pinsa Romana a scelta - €20
-                        </label>
-                    </div>
-                    <div class="option">
-                        <img src="https://via.placeholder.com/40" alt="Bottiglia di Prosecco">
-                        <label>
-                            <input type="checkbox" class="option-checkbox" data-price="40" value="Bottiglia di Prosecco">
-                            Bottiglia di Prosecco - €40
+                            <input type="radio" name="duration" class="option-radio" data-price="0" value="1.30h">
+                            1.30 Ore
                         </label>
                     </div>
                 </div>
@@ -470,20 +282,55 @@
                 </div>
             </div>
 
-            <!-- Step 4: Riepilogo e Conferma -->
+            <!-- Step 4: Scegli gli Extra -->
             <div class="step" id="step-4">
                 <div class="step-header">
-                    <h2>4. Riepilogo e Conferma</h2>
+                    <h2>4. Scegli gli Extra</h2>
                 </div>
-                <div class="section">
-                    <h3>Riepilogo delle Scelte:</h3>
-                    <div id="summary">
-                        <!-- Sommario verrà generato tramite JavaScript -->
+                <div class="extras">
+                    <div class="option">
+                        <label>
+                            <input type="checkbox" class="option-checkbox" data-price="90" name="extras" value="Cena RAMO Bistrot">
+                            Cena RAMO Bistrot - €90
+                        </label>
+                    </div>
+                    <div class="option">
+                        <label>
+                            <input type="checkbox" class="option-checkbox" data-price="35" name="extras" value="Sushi Misto">
+                            Sushi Misto - €35
+                        </label>
+                    </div>
+                    <div class="option">
+                        <label>
+                            <input type="checkbox" class="option-checkbox" data-price="20" name="extras" value="Pinsa">
+                            Pinsa - €20
+                        </label>
+                    </div>
+                    <div class="option">
+                        <label>
+                            <input type="checkbox" class="option-checkbox" data-price="40" name="extras" value="Bottiglia di Prosecco">
+                            Bottiglia di Prosecco - €40
+                        </label>
                     </div>
                 </div>
                 <div class="navigation-buttons">
                     <button type="button" onclick="prevStep(4)">Indietro</button>
-                    <button type="button" onclick="submitForm()">Conferma</button>
+                    <button type="button" onclick="nextStep(4)">Avanti</button>
+                </div>
+            </div>
+
+            <!-- Step 5: Conferma e Richiesta Preventivo -->
+            <div class="step" id="step-5">
+                <div class="step-header">
+                    <h2>5. Conferma e Richiesta Preventivo</h2>
+                </div>
+                <div class="section">
+                    <h3>Inserisci la tua Email per confermare la richiesta:</h3>
+                    <input type="email" name="email" placeholder="La tua Email" required style="width: 100%; padding: 10px; border-radius: 5px; border: 1px solid var(--secondary-color); margin-bottom: 20px;">
+                </div>
+                <div class="navigation-buttons">
+                    <button type="button" onclick="prevStep(5)">Indietro</button>
+                    <button type="submit">Richiedi Conferma</button>
                 </div>
             </div>
         </form>
@@ -497,7 +344,7 @@
 
     <script>
         let currentStep = 1;
-        const totalSteps = 4;
+        const totalSteps = 5;
 
         function showStep(step) {
             for (let i = 1; i <= totalSteps; i++) {
@@ -507,10 +354,12 @@
         }
 
         function nextStep(step) {
+            // Validazione step corrente prima di avanzare
+            if (!validateStep(step)) return;
             if (step < totalSteps) {
                 currentStep = step + 1;
                 showStep(currentStep);
-                generateSummary();
+                updateSummary();
             }
         }
 
@@ -521,30 +370,53 @@
             }
         }
 
-        function generateSummary() {
-            const summary = document.getElementById('summary');
-            const spaSelected = document.querySelector('input[name="spa"]:checked');
-            const timeSelected = document.querySelector('input[name="time"]:checked');
-            const durationSelected = document.querySelector('input[name="duration"]:checked');
-            const extrasSelected = Array.from(document.querySelectorAll('.option-checkbox:checked')).map(cb => cb.value);
-            const totalPrice = document.getElementById('totalPrice').textContent;
+        function validateStep(step) {
+            let valid = true;
+            const stepElement = document.getElementById(`step-${step}`);
+            const inputs = stepElement.querySelectorAll('input');
 
-            summary.innerHTML = `
-                <p><strong>Spa:</strong> ${spaSelected ? spaSelected.value : 'Nessuna selezione'}</p>
-                <p><strong>Fascia Oraria:</strong> ${timeSelected ? timeSelected.value : 'Nessuna selezione'}</p>
-                <p><strong>Durata:</strong> ${durationSelected ? durationSelected.value : 'Nessuna selezione'}</p>
-                <p><strong>Extra:</strong> ${extrasSelected.length > 0 ? extrasSelected.join(', ') : 'Nessuno'}</p>
-                <p><strong>Totale:</strong> €${totalPrice}</p>
-            `;
+            if (step === 1 || step === 2 || step === 3) {
+                const required = stepElement.querySelectorAll('input[type="radio"]:checked');
+                if (required.length === 0) {
+                    alert("Per favore, completa tutte le scelte obbligatorie.");
+                    valid = false;
+                }
+            }
+
+            return valid;
         }
 
         function updateTotal() {
             let totalPrice = 0;
 
-            // Calcola il prezzo della spa selezionata
+            // Calcola il prezzo della Spa selezionata
             const spaSelected = document.querySelector('input[name="spa"]:checked');
             if (spaSelected) {
-                totalPrice += parseFloat(spaSelected.dataset.price);
+                const spaPrices = {
+                    "SPA MAYA": {
+                        "MATTINA (08:00-16:00)": { "1h": 110, "1.30h": 160 },
+                        "POMERIGGIO (16:00-23:00)": { "1h": 170, "1.30h": 360 },
+                        "NOTTE (23:00-08:00)": { "1h": 250, "1.30h": 360 }
+                    },
+                    "SPA MOON": {
+                        "MATTINA (08:00-16:00)": { "1h": 90, "1.30h": 130 },
+                        "POMERIGGIO (16:00-23:00)": { "1h": 140, "1.30h": 290 },
+                        "NOTTE (23:00-08:00)": { "1h": 200, "1.30h": 290 }
+                    },
+                    "SPA DOMUS": {
+                        "MATTINA (08:00-16:00)": { "1h": 75, "1.30h": 110 },
+                        "POMERIGGIO (16:00-23:00)": { "1h": 110, "1.30h": 220 },
+                        "NOTTE (23:00-08:00)": { "1h": 160, "1.30h": 220 }
+                    }
+                };
+
+                const timeSelected = document.querySelector('input[name="time"]:checked');
+                const durationSelected = document.querySelector('input[name="duration"]:checked');
+
+                if (timeSelected && durationSelected) {
+                    const spaPrice = spaPrices[spaSelected.value][timeSelected.value][durationSelected.value];
+                    totalPrice += spaPrice;
+                }
             }
 
             // Calcola il prezzo degli extra
@@ -557,46 +429,9 @@
             document.getElementById('totalPrice').textContent = totalPrice.toFixed(2);
         }
 
-        function submitForm() {
-            // Verifica che tutte le scelte obbligatorie siano state fatte
-            const spaSelected = document.querySelector('input[name="spa"]:checked');
-            const timeSelected = document.querySelector('input[name="time"]:checked');
-            const durationSelected = document.querySelector('input[name="duration"]:checked');
-
-            if (!spaSelected || !timeSelected || !durationSelected) {
-                alert("Per favore, completa tutte le scelte obbligatorie (Spa, Fascia Oraria, Durata).");
-                return;
-            }
-
-            // Ottieni le opzioni selezionate
-            const selectedExtras = Array.from(document.querySelectorAll('.option-checkbox:checked')).map(cb => cb.value);
-            const totalPrice = document.getElementById('totalPrice').textContent;
-
-            // Crea il messaggio di conferma
-            let message = `Hai selezionato le seguenti opzioni:\n\n`;
-            message += `Spa: ${spaSelected.value}\n`;
-            message += `Fascia Oraria: ${timeSelected.value}\n`;
-            message += `Durata: ${durationSelected.value}\n`;
-
-            if (selectedExtras.length > 0) {
-                message += `\nExtra:\n`;
-                selectedExtras.forEach(extra => {
-                    message += `- ${extra}\n`;
-                });
-            }
-
-            message += `\nIl totale del tuo pacchetto wellness è di ${totalPrice}€.\n\nVuoi confermare la richiesta?`;
-
-            if (confirm(message)) {
-                // Invia i dati del form o esegui altre azioni
-                // Ad esempio, inviare una richiesta AJAX o reindirizzare a una pagina di conferma
-                alert("Grazie! La tua richiesta è stata inviata.");
-                // Reset del form
-                document.getElementById("wellnessForm").reset();
-                document.getElementById('totalPrice').textContent = "0";
-                currentStep = 1;
-                showStep(currentStep);
-            }
+        function updateSummary() {
+            // Non necessario in questa versione, mantenuto per eventuali estensioni future
+            updateTotal();
         }
 
         // Event listeners per aggiornare il prezzo dinamicamente
@@ -610,6 +445,52 @@
         checkboxes.forEach(checkbox => {
             checkbox.addEventListener("change", updateTotal);
         });
+
+        // Funzione per confermare e inviare il form
+        document.getElementById('wellnessForm').addEventListener('submit', function(e) {
+            // Validazione finale
+            const spaSelected = document.querySelector('input[name="spa"]:checked');
+            const timeSelected = document.querySelector('input[name="time"]:checked');
+            const durationSelected = document.querySelector('input[name="duration"]:checked');
+            const email = document.querySelector('input[name="email"]').value;
+
+            if (!spaSelected || !timeSelected || !durationSelected || !validateEmail(email)) {
+                alert("Per favore, completa tutte le scelte obbligatorie e inserisci un'email valida.");
+                e.preventDefault();
+                return;
+            }
+
+            // Conferma richiesta
+            if (!confirm("Vuoi confermare la tua richiesta di preventivo?")) {
+                e.preventDefault();
+                return;
+            }
+
+            // Invia il form tramite Formspree
+            // Aggiungi campi nascosti per inviare anche all'hotel
+            const form = e.target;
+            const hiddenInput = document.createElement('input');
+            hiddenInput.type = 'hidden';
+            hiddenInput.name = '_replyto';
+            hiddenInput.value = email;
+            form.appendChild(hiddenInput);
+
+            // Informazioni all'hotel
+            const hotelEmail = "marcoferretti909@gmail.com";
+            const hiddenHotelInput = document.createElement('input');
+            hiddenHotelInput.type = 'hidden';
+            hiddenHotelInput.name = '_cc';
+            hiddenHotelInput.value = hotelEmail;
+            form.appendChild(hiddenHotelInput);
+
+            // Imposta Formspree per inviare email a due destinatari
+            // Assicurati di sostituire l'URL action del form con il tuo endpoint di Formspree
+        });
+
+        function validateEmail(email) {
+            const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@(([^<>()[\]\.,;:\s@"]+\.)+[^<>()[\]\.,;:\s@"]{2,})$/i;
+            return re.test(String(email).toLowerCase());
+        }
     </script>
 </body>
 </html>
