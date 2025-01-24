@@ -7,38 +7,35 @@
     <meta name="description" content="Richiedi un preventivo personalizzato per il tuo pacchetto wellness presso il Trilussa Palace Hotel. Scegli tra diverse opzioni Spa e Extra per un'esperienza di relax unica.">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --primary-color: #cac4b0;
-            --secondary-color: #708090;
-            --accent-color: #2f4f4f;
-            --background-color: #e1d6ca;
-            --text-color: #333;
-            --hover-color: #c0c0c0;
-            --button-color: #d2b48c;
-            --button-hover: #2d89e5;
+        /* Impostazioni di base per eliminare (o ridurre al minimo) lo scroll */
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden; /* Nasconde lo scroll */
+            font-family: 'Roboto', sans-serif;
+            background: #e1d6ca;
         }
 
         body {
-            font-family: 'Roboto', sans-serif;
-            background: var(--background-color);
-            margin: 0;
-            padding: 0;
             display: flex;
             justify-content: center;
-            align-items: flex-start;
-            min-height: 100vh;
+            align-items: flex-start; 
         }
 
         .container {
-            background: var(--background-color);
+            /* Riempie quasi tutto lo schermo, lasciando un margine per sicurezza */
+            width: 100%;
+            max-width: 600px;
+            height: 100vh; 
+            overflow: hidden; /* Evita scroll all'interno del container */
+            box-sizing: border-box;
+            position: relative;
+            background: #e1d6ca;
             border-radius: 20px;
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
             padding: 20px 30px;
-            width: 100%;
-            max-width: 600px;
-            margin: 20px;
-            text-align: center;
-            position: relative;
         }
 
         .price-bar {
@@ -46,7 +43,7 @@
             top: 0;
             left: 50%;
             transform: translateX(-50%);
-            background-color: var(--primary-color);
+            background-color: #cac4b0;
             color: white;
             padding: 10px 20px;
             border-radius: 0 0 10px 10px;
@@ -56,17 +53,19 @@
         }
 
         .container h1 {
-            color: var(--primary-color);
+            color: #cac4b0;
             font-size: 1.8rem;
             margin-top: 60px;
             margin-bottom: 10px;
             font-weight: 700;
+            text-align: center;
         }
 
         .container p {
-            color: var(--secondary-color);
+            color: #708090;
             font-size: 1rem;
             margin-bottom: 20px;
+            text-align: center;
         }
 
         .step {
@@ -85,7 +84,7 @@
 
         .step-header h2 {
             font-size: 1.1rem;
-            color: var(--primary-color);
+            color: #cac4b0;
             margin-bottom: 5px;
             font-weight: 700;
         }
@@ -100,14 +99,14 @@
             display: flex;
             align-items: center;
             padding: 10px;
-            border: 1px solid var(--secondary-color);
+            border: 1px solid #708090;
             border-radius: 10px;
             background: #f9f9f9;
             transition: background 0.3s ease, transform 0.3s ease;
         }
 
         .option:hover {
-            background: var(--accent-color);
+            background: #2f4f4f;
             transform: translateY(-2px);
         }
 
@@ -116,7 +115,7 @@
             align-items: center;
             flex: 1;
             font-size: 0.9rem;
-            color: var(--text-color);
+            color: #333;
             cursor: pointer;
         }
 
@@ -133,7 +132,7 @@
         }
 
         .navigation-buttons button {
-            background-color: var(--button-color);
+            background-color: #d2b48c;
             color: white;
             padding: 10px 20px;
             font-size: 0.9rem;
@@ -144,19 +143,21 @@
         }
 
         .navigation-buttons button:hover {
-            background-color: var(--button-hover);
+            background-color: #2d89e5;
             transform: scale(1.05);
         }
 
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to   { opacity: 1; }
+        }
+
+        /* Adattamenti responsive */
         @media (max-width: 600px) {
             .container {
                 padding: 15px 20px;
-                width: 100%;
-                height: 100vh;
-                overflow: hidden;
-                position: fixed;
-                top: 0;
-                left: 0;
+                border-radius: 0;
+                box-shadow: none;
             }
 
             .price-bar {
@@ -181,22 +182,38 @@
         #confirmationMessage {
             text-align: center;
             padding: 20px;
-            background-color: var(--primary-color);
+            background-color: #cac4b0;
             color: white;
             border-radius: 10px;
+            margin-top: 20px;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 20px;
+            color: #333;
+            font-size: 0.8rem;
+        }
+
+        footer p {
+            margin: 5px 0;
         }
     </style>
 </head>
 <body>
+    <!-- Barra con il totale -->
     <div class="price-bar">
         Totale: <span id="totalPrice">0</span>€
     </div>
 
+    <!-- Contenitore principale -->
     <div class="container">
         <h1>Pacchetto Wellness</h1>
         <p>Scegli le opzioni per il tuo relax presso il Trilussa Palace Hotel:</p>
 
+        <!-- Form multi-step -->
         <form id="wellnessForm" action="https://script.google.com/macros/s/AKfycbxytaalqXiGvZr2ZneImOD1Os6llLJ-K4hssNHpVw4X_p15xD_rf7bogK2o5GVQcpYYkg/exec" method="POST" target="hiddenFrame">
+            <!-- STEP 1: Scegli la Spa -->
             <div class="step active" id="step-1">
                 <div class="step-header">
                     <h2>1. Scegli la Spa</h2>
@@ -226,6 +243,7 @@
                 </div>
             </div>
 
+            <!-- STEP 2: Scegli la Fascia Oraria -->
             <div class="step" id="step-2">
                 <div class="step-header">
                     <h2>2. Scegli la Fascia Oraria</h2>
@@ -256,9 +274,10 @@
                 </div>
             </div>
 
+            <!-- STEP 3: Scegli la Durata e Numero di Persone -->
             <div class="step" id="step-3">
                 <div class="step-header">
-                    <h2>3. Scegli la Durata</h2>
+                    <h2>3. Scegli la Durata e il Numero di Persone</h2>
                 </div>
                 <div class="options">
                     <div class="option">
@@ -274,12 +293,18 @@
                         </label>
                     </div>
                 </div>
+                <!-- Nuovo inserimento: Numero di Persone -->
+                <div style="margin-top: 20px;">
+                    <label for="persons" style="font-weight: bold;">Numero di Persone (2 di default, +30€ per persona extra):</label>
+                    <input type="number" name="persons" id="persons" value="2" min="2" style="width: 100%; padding: 10px; margin-top: 5px; border-radius: 5px; border: 1px solid #708090;">
+                </div>
                 <div class="navigation-buttons">
                     <button type="button" onclick="prevStep(3)">Indietro</button>
                     <button type="button" onclick="nextStep(3)">Avanti</button>
                 </div>
             </div>
 
+            <!-- STEP 4: Scegli gli Extra -->
             <div class="step" id="step-4">
                 <div class="step-header">
                     <h2>4. Scegli gli Extra</h2>
@@ -316,13 +341,16 @@
                 </div>
             </div>
 
+            <!-- STEP 5: Conferma e invio -->
             <div class="step" id="step-5">
                 <div class="step-header">
                     <h2>5. Conferma e Richiesta Preventivo</h2>
                 </div>
                 <div class="section">
                     <h3>Inserisci la tua Email per confermare la richiesta:</h3>
-                    <input type="email" name="email" id="email" placeholder="La tua Email" required style="width: 100%; padding: 10px; border-radius: 5px; border: 1px solid var(--secondary-color); margin-bottom: 20px;">
+                    <input type="email" name="email" id="email" placeholder="La tua Email" required 
+                           style="width: 100%; padding: 10px; border-radius: 5px; 
+                                  border: 1px solid #708090; margin-bottom: 20px;">
                     <input type="hidden" name="total" id="total">
                 </div>
                 <div class="navigation-buttons">
@@ -371,12 +399,13 @@
             }
         }
 
+        // Convalida campi richiesti
         function validateStep(step) {
             let valid = true;
             const stepElement = document.getElementById(`step-${step}`);
-            const inputs = stepElement.querySelectorAll('input');
 
             if (step === 1 || step === 2 || step === 3) {
+                // Controlla che ci sia un radio selezionato
                 const required = stepElement.querySelectorAll('input[type="radio"]:checked');
                 if (required.length === 0) {
                     alert("Per favore, completa tutte le scelte obbligatorie.");
@@ -387,13 +416,21 @@
             return valid;
         }
 
+        // Calcolo totale
         function updateTotal() {
             let totalPrice = 0;
 
+            // Leggi le scelte attuali
             const spaSelected = document.querySelector('input[name="spa"]:checked');
             const timeSelected = document.querySelector('input[name="time"]:checked');
             const durationSelected = document.querySelector('input[name="duration"]:checked');
+            const personsInput = document.getElementById('persons');
+            let persons = 2; // default
+            if (personsInput) {
+                persons = parseInt(personsInput.value) || 2;
+            }
 
+            // Struttura prezzi base
             if (spaSelected && timeSelected && durationSelected) {
                 const spaPrices = {
                     "SPA MAYA": {
@@ -402,12 +439,12 @@
                         "NOTTE (23:00-08:00)": { "1h": 250, "1.30h": 360 }
                     },
                     "SPA MOON": {
-                        "MATTINA (08:00-16:00)": { "1h": 90, "1.30h": 130 },
+                        "MATTINA (08:00-16:00)": { "1h": 90,  "1.30h": 130 },
                         "POMERIGGIO (16:00-23:00)": { "1h": 140, "1.30h": 290 },
                         "NOTTE (23:00-08:00)": { "1h": 200, "1.30h": 290 }
                     },
                     "SPA DOMUS": {
-                        "MATTINA (08:00-16:00)": { "1h": 75, "1.30h": 110 },
+                        "MATTINA (08:00-16:00)": { "1h": 75,  "1.30h": 110 },
                         "POMERIGGIO (16:00-23:00)": { "1h": 110, "1.30h": 220 },
                         "NOTTE (23:00-08:00)": { "1h": 160, "1.30h": 220 }
                     }
@@ -417,26 +454,38 @@
                 totalPrice += spaPrice;
             }
 
+            // Supplemento per persone extra
+            if (persons > 2) {
+                totalPrice += (persons - 2) * 30;
+            }
+
+            // Extra
             const checkboxes = document.querySelectorAll('.option-checkbox:checked');
             checkboxes.forEach(checkbox => {
                 totalPrice += parseFloat(checkbox.dataset.price);
             });
 
+            // Aggiorna UI
             document.getElementById('totalPrice').textContent = totalPrice.toFixed(2);
             document.getElementById('total').value = totalPrice.toFixed(2);
         }
 
+        // Ricalcola totale al cambiare delle opzioni
         const radioButtons = document.querySelectorAll(".option-radio");
         const checkboxes = document.querySelectorAll(".option-checkbox");
+        const personsInput = document.getElementById('persons');
 
         radioButtons.forEach(radio => {
             radio.addEventListener("change", updateTotal);
         });
-
         checkboxes.forEach(checkbox => {
             checkbox.addEventListener("change", updateTotal);
         });
+        if (personsInput) {
+            personsInput.addEventListener("change", updateTotal);
+        }
 
+        // Ricezione messaggio dalla finestra figlia (iframe) per conferma di invio
         window.addEventListener('message', function(event) {
             if (event.data === 'formSubmitted') {
                 document.getElementById('wellnessForm').style.display = 'none';
@@ -446,4 +495,3 @@
     </script>
 </body>
 </html>
-
