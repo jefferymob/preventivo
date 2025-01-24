@@ -24,7 +24,7 @@
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
             padding: 40px 50px;
             width: 90%;
-            max-width: 600px;
+            max-width: 800px;
             text-align: center;
             animation: fadeIn 1s ease-in-out;
         }
@@ -47,11 +47,22 @@
             margin-bottom: 30px;
         }
 
+        .section {
+            text-align: left;
+            margin-bottom: 25px;
+        }
+
+        .section h2 {
+            font-size: 1.2rem;
+            color: #2d89e5;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
         .options {
             display: flex;
             flex-direction: column;
             gap: 15px;
-            margin-bottom: 30px;
         }
 
         .option {
@@ -73,7 +84,7 @@
             width: 50px;
             height: 50px;
             margin-right: 15px;
-            border-radius: 50%;
+            border-radius: 10px;
             object-fit: cover;
         }
 
@@ -98,7 +109,17 @@
             color: #666;
         }
 
-        h2 {
+        .extras {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .extras .option {
+            background: #fffbe6;
+        }
+
+        h2.total {
             font-size: 1.5rem;
             color: #2d89e5;
             margin: 20px 0;
@@ -143,7 +164,11 @@
                 font-size: 1.5rem;
             }
 
-            h2 {
+            .section h2 {
+                font-size: 1rem;
+            }
+
+            h2.total {
                 font-size: 1.3rem;
             }
 
@@ -159,80 +184,117 @@
         <h1>Pacchetto Wellness</h1>
         <p>Scegli le opzioni per il tuo relax presso il Trilussa Palace Hotel:</p>
         <form id="wellnessForm">
-            <div class="options">
-                <!-- Opzioni migliorate con immagini e durata -->
-                <div class="option">
-                    <img src="https://via.placeholder.com/50" alt="Massaggio Relax">
-                    <label>
-                        <input type="checkbox" class="option-checkbox" data-price="70">
-                        Massaggio Relax
-                        <span class="duration">(60 min)</span>
-                    </label>
+            <!-- Sezione Scelta Spa -->
+            <div class="section">
+                <h2>1. Scegli la Spa</h2>
+                <div class="options">
+                    <div class="option">
+                        <img src="https://via.placeholder.com/50" alt="Maya Moon Spa">
+                        <label>
+                            <input type="radio" name="spa" class="option-radio" data-price="100" value="Maya Moon Spa">
+                            Maya Moon Spa
+                        </label>
+                    </div>
+                    <div class="option">
+                        <img src="https://via.placeholder.com/50" alt="Domus Spa">
+                        <label>
+                            <input type="radio" name="spa" class="option-radio" data-price="120" value="Domus Spa">
+                            Domus Spa
+                        </label>
+                    </div>
                 </div>
-                <div class="option">
-                    <img src="https://via.placeholder.com/50" alt="Accesso SPA">
-                    <label>
-                        <input type="checkbox" class="option-checkbox" data-price="50">
-                        Accesso SPA e Sauna
-                        <span class="duration">(2 ore)</span>
-                    </label>
+            </div>
+
+            <!-- Sezione Fascia Oraria -->
+            <div class="section">
+                <h2>2. Scegli la Fascia Oraria</h2>
+                <div class="options">
+                    <div class="option">
+                        <img src="https://via.placeholder.com/50" alt="Mattina">
+                        <label>
+                            <input type="radio" name="time" class="option-radio" data-price="0" value="Mattina">
+                            Mattina
+                        </label>
+                    </div>
+                    <div class="option">
+                        <img src="https://via.placeholder.com/50" alt="Pomeriggio">
+                        <label>
+                            <input type="radio" name="time" class="option-radio" data-price="10" value="Pomeriggio">
+                            Pomeriggio (+10€)
+                        </label>
+                    </div>
+                    <div class="option">
+                        <img src="https://via.placeholder.com/50" alt="Notte">
+                        <label>
+                            <input type="radio" name="time" class="option-radio" data-price="20" value="Notte">
+                            Notte (+20€)
+                        </label>
+                    </div>
                 </div>
-                <div class="option">
-                    <img src="https://via.placeholder.com/50" alt="Trattamento Viso">
-                    <label>
-                        <input type="checkbox" class="option-checkbox" data-price="90">
-                        Trattamento Viso Luxury
-                        <span class="duration">(90 min)</span>
-                    </label>
+            </div>
+
+            <!-- Sezione Durata -->
+            <div class="section">
+                <h2>3. Scegli la Durata</h2>
+                <div class="options">
+                    <div class="option">
+                        <img src="https://via.placeholder.com/50" alt="1 Ora">
+                        <label>
+                            <input type="radio" name="duration" class="option-radio" data-price="0" value="1 Ora">
+                            1 Ora
+                        </label>
+                    </div>
+                    <div class="option">
+                        <img src="https://via.placeholder.com/50" alt="1'30 Ore">
+                        <label>
+                            <input type="radio" name="duration" class="option-radio" data-price="20" value="1'30 Ore">
+                            1'30 Ore (+20€)
+                        </label>
+                    </div>
                 </div>
-                <div class="option">
-                    <img src="https://via.placeholder.com/50" alt="Piscina Termale">
-                    <label>
-                        <input type="checkbox" class="option-checkbox" data-price="30">
-                        Accesso alla Piscina Termale
-                        <span class="duration">(Illimitato)</span>
-                    </label>
-                </div>
-                <div class="option">
-                    <img src="https://via.placeholder.com/50" alt="Cena Gourmet">
-                    <label>
-                        <input type="checkbox" class="option-checkbox" data-price="40">
-                        Cena Gourmet per Due
-                        <span class="duration">(Menu Speciale)</span>
-                    </label>
-                </div>
-                <!-- Nuove opzioni -->
-                <div class="option">
-                    <img src="https://via.placeholder.com/50" alt="Sessione Yoga">
-                    <label>
-                        <input type="checkbox" class="option-checkbox" data-price="25">
-                        Sessione di Yoga
-                        <span class="duration">(60 min)</span>
-                    </label>
-                </div>
-                <div class="option">
-                    <img src="https://via.placeholder.com/50" alt="Aromaterapia">
-                    <label>
-                        <input type="checkbox" class="option-checkbox" data-price="35">
-                        Aromaterapia
-                        <span class="duration">(45 min)</span>
-                    </label>
-                </div>
-                <div class="option">
-                    <img src="https://via.placeholder.com/50" alt="Pacchetto Detox">
-                    <label>
-                        <input type="checkbox" class="option-checkbox" data-price="120">
-                        Pacchetto Detox Completo
-                        <span class="duration">(3 giorni)</span>
-                    </label>
+            </div>
+
+            <!-- Sezione Extra -->
+            <div class="section">
+                <h2>4. Scegli gli Extra</h2>
+                <div class="extras">
+                    <div class="option">
+                        <img src="https://via.placeholder.com/50" alt="Cena Ramo Bistrot">
+                        <label>
+                            <input type="checkbox" class="option-checkbox" data-price="50" value="Cena Ramo Bistrot con Vino">
+                            Cena Ramo Bistrot (con vino) (+50€)
+                        </label>
+                    </div>
+                    <div class="option">
+                        <img src="https://via.placeholder.com/50" alt="Sushi">
+                        <label>
+                            <input type="checkbox" class="option-checkbox" data-price="40" value="Sushi">
+                            Sushi (+40€)
+                        </label>
+                    </div>
+                    <div class="option">
+                        <img src="https://via.placeholder.com/50" alt="Pinsa">
+                        <label>
+                            <input type="checkbox" class="option-checkbox" data-price="30" value="Pinsa">
+                            Pinsa (+30€)
+                        </label>
+                    </div>
+                    <div class="option">
+                        <img src="https://via.placeholder.com/50" alt="Tagliata di Frutta">
+                        <label>
+                            <input type="checkbox" class="option-checkbox" data-price="20" value="Tagliata di Frutta">
+                            Tagliata di Frutta (+20€)
+                        </label>
+                    </div>
                 </div>
             </div>
         </form>
-        <h2>Totale: <span id="totalPrice">0</span>€</h2>
+        <h2 class="total">Totale: <span id="totalPrice">0</span>€</h2>
         <button id="submitButton">Richiedi Preventivo</button>
     </div>
     <script>
         document.addEventListener("DOMContentLoaded", () => {
+            const radioButtons = document.querySelectorAll(".option-radio");
             const checkboxes = document.querySelectorAll(".option-checkbox");
             const totalPriceElement = document.getElementById("totalPrice");
             const submitButton = document.getElementById("submitButton");
@@ -241,33 +303,85 @@
 
             // Funzione per aggiornare il totale
             const updateTotal = () => {
-                totalPrice = Array.from(checkboxes).reduce((sum, checkbox) => {
-                    return checkbox.checked ? sum + parseFloat(checkbox.dataset.price) : sum;
-                }, 0);
+                let spaPrice = 0;
+                let timePrice = 0;
+                let durationPrice = 0;
+                let extrasPrice = 0;
+
+                // Calcola il prezzo della spa
+                radioButtons.forEach(radio => {
+                    if (radio.checked) {
+                        spaPrice += parseFloat(radio.dataset.price);
+                    }
+                });
+
+                // Calcola il prezzo della fascia oraria
+                radioButtons.forEach(radio => {
+                    if (radio.checked && radio.name === "time") {
+                        timePrice += parseFloat(radio.dataset.price);
+                    }
+                });
+
+                // Calcola il prezzo della durata
+                radioButtons.forEach(radio => {
+                    if (radio.checked && radio.name === "duration") {
+                        durationPrice += parseFloat(radio.dataset.price);
+                    }
+                });
+
+                // Calcola il prezzo degli extra
+                checkboxes.forEach(checkbox => {
+                    if (checkbox.checked) {
+                        extrasPrice += parseFloat(checkbox.dataset.price);
+                    }
+                });
+
+                // Somma totale
+                totalPrice = spaPrice + timePrice + durationPrice + extrasPrice;
                 totalPriceElement.textContent = totalPrice.toFixed(2);
             };
 
-            // Event listener per ogni checkbox
+            // Event listener per radio buttons
+            radioButtons.forEach(radio => {
+                radio.addEventListener("change", updateTotal);
+            });
+
+            // Event listener per checkboxes
             checkboxes.forEach(checkbox => {
                 checkbox.addEventListener("change", updateTotal);
             });
 
-            // Mostra un riepilogo dettagliato
+            // Event listener per il pulsante di submit
             submitButton.addEventListener("click", (e) => {
                 e.preventDefault(); // Evita il comportamento predefinito del pulsante
-                const selectedOptions = Array.from(checkboxes)
-                    .filter(checkbox => checkbox.checked)
-                    .map(checkbox => checkbox.parentElement.textContent.trim());
 
-                if (selectedOptions.length === 0) {
-                    alert("Per favore, seleziona almeno un'opzione per il tuo pacchetto wellness.");
+                // Verifica che tutte le scelte obbligatorie siano state fatte
+                const spaSelected = document.querySelector('input[name="spa"]:checked');
+                const timeSelected = document.querySelector('input[name="time"]:checked');
+                const durationSelected = document.querySelector('input[name="duration"]:checked');
+
+                if (!spaSelected || !timeSelected || !durationSelected) {
+                    alert("Per favore, completa tutte le scelte obbligatorie (Spa, Fascia Oraria, Durata).");
                     return;
                 }
 
+                // Ottieni le opzioni selezionate
+                const selectedExtras = Array.from(checkboxes)
+                    .filter(checkbox => checkbox.checked)
+                    .map(checkbox => checkbox.value);
+
                 let message = `Hai selezionato le seguenti opzioni:\n\n`;
-                selectedOptions.forEach(option => {
-                    message += `- ${option}\n`;
-                });
+                message += `Spa: ${spaSelected.value}\n`;
+                message += `Fascia Oraria: ${timeSelected.value}\n`;
+                message += `Durata: ${durationSelected.value}\n`;
+
+                if (selectedExtras.length > 0) {
+                    message += `\nExtra:\n`;
+                    selectedExtras.forEach(extra => {
+                        message += `- ${extra}\n`;
+                    });
+                }
+
                 message += `\nIl totale del tuo pacchetto wellness è di ${totalPrice.toFixed(2)}€.\n\nVuoi confermare la richiesta?`;
 
                 if (confirm(message)) {
@@ -283,3 +397,4 @@
     </script>
 </body>
 </html>
+
