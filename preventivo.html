@@ -432,6 +432,34 @@
         checkboxes.forEach(checkbox => {
             checkbox.addEventListener("change", updateTotal);
         });
+
+        // Gestione della sottomissione del form
+        document.getElementById('wellnessForm').addEventListener('submit', function(e) {
+            // Validazione finale
+            const spaSelected = document.querySelector('input[name="spa"]:checked');
+            const timeSelected = document.querySelector('input[name="time"]:checked');
+            const durationSelected = document.querySelector('input[name="duration"]:checked');
+            const email = document.getElementById('email').value;
+
+            if (!spaSelected || !timeSelected || !durationSelected || !validateEmail(email)) {
+                alert("Per favore, completa tutte le scelte obbligatorie e inserisci un'email valida.");
+                e.preventDefault();
+                return;
+            }
+
+            // Conferma richiesta
+            if (!confirm("Vuoi confermare la tua richiesta di preventivo?")) {
+                e.preventDefault();
+                return;
+            }
+
+            // La sottomissione del form avverrà normalmente
+        });
+
+        function validateEmail(email) {
+            const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@(([^<>()[\]\.,;:\s@"]+\.)+[^<>()[\]\.,;:\s@"]{2,})$/i;
+            return re.test(String(email).toLowerCase());
+        }
     </script>
 </body>
 </html>
