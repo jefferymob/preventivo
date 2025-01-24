@@ -11,12 +11,12 @@
         :root {
             --primary-color: #cac4b0;
             --secondary-color: #708090; /* Grigio anatra */
-            --accent-color: #2f4f4f; /* Verde petrolio */
+            --accent-color: #2f4f4f; /* Verde petrolio scuro */
             --background-color: #e1d6ca; /* Sfondo integrato */
             --text-color: #333;
             --hover-color: #c0c0c0;
-            --button-color: #d2b48c;
-            --button-hover: #2d89e5;
+            --button-color: #d2b48c; /* Tan */
+            --button-hover: #2d89e5; /* Blu */
         }
 
         /* Stile generale */
@@ -32,7 +32,7 @@
         }
 
         .container {
-            background: #e1d6ca;
+            background: var(--background-color);
             border-radius: 20px;
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
             padding: 20px 30px;
@@ -130,12 +130,6 @@
             cursor: pointer;
         }
 
-        .duration {
-            margin-left: 5px;
-            font-size: 0.8rem;
-            color: var(--secondary-color);
-        }
-
         /* Navigazione Step */
         .navigation-buttons {
             display: flex;
@@ -195,7 +189,7 @@
         <h1>Pacchetto Wellness</h1>
         <p>Scegli le opzioni per il tuo relax presso il Trilussa Palace Hotel:</p>
 
-        <form id="wellnessForm" action="https://formspree.io/f/mjvajnzv" method="POST">
+        <form id="wellnessForm">
             <!-- Step 1: Scegli la Spa -->
             <div class="step active" id="step-1">
                 <div class="step-header">
@@ -204,19 +198,19 @@
                 <div class="options">
                     <div class="option">
                         <label>
-                            <input type="radio" name="spa" class="option-radio" data-price="0" value="SPA MAYA">
+                            <input type="radio" name="spa" class="option-radio" data-price="0" value="SPA MAYA" required>
                             SPA MAYA
                         </label>
                     </div>
                     <div class="option">
                         <label>
-                            <input type="radio" name="spa" class="option-radio" data-price="0" value="SPA MOON">
+                            <input type="radio" name="spa" class="option-radio" data-price="0" value="SPA MOON" required>
                             SPA MOON
                         </label>
                     </div>
                     <div class="option">
                         <label>
-                            <input type="radio" name="spa" class="option-radio" data-price="0" value="SPA DOMUS">
+                            <input type="radio" name="spa" class="option-radio" data-price="0" value="SPA DOMUS" required>
                             SPA DOMUS
                         </label>
                     </div>
@@ -234,19 +228,19 @@
                 <div class="options">
                     <div class="option">
                         <label>
-                            <input type="radio" name="time" class="option-radio" data-price="0" value="MATTINA (08:00-16:00)">
+                            <input type="radio" name="time" class="option-radio" data-price="0" value="MATTINA (08:00-16:00)" required>
                             MATTINA (08:00-16:00)
                         </label>
                     </div>
                     <div class="option">
                         <label>
-                            <input type="radio" name="time" class="option-radio" data-price="0" value="POMERIGGIO (16:00-23:00)">
+                            <input type="radio" name="time" class="option-radio" data-price="0" value="POMERIGGIO (16:00-23:00)" required>
                             POMERIGGIO (16:00-23:00)
                         </label>
                     </div>
                     <div class="option">
                         <label>
-                            <input type="radio" name="time" class="option-radio" data-price="0" value="NOTTE (23:00-08:00)">
+                            <input type="radio" name="time" class="option-radio" data-price="0" value="NOTTE (23:00-08:00)" required>
                             NOTTE (23:00-08:00)
                         </label>
                     </div>
@@ -265,13 +259,13 @@
                 <div class="options">
                     <div class="option">
                         <label>
-                            <input type="radio" name="duration" class="option-radio" data-price="0" value="1h">
+                            <input type="radio" name="duration" class="option-radio" data-price="0" value="1h" required>
                             1 Ora
                         </label>
                     </div>
                     <div class="option">
                         <label>
-                            <input type="radio" name="duration" class="option-radio" data-price="0" value="1.30h">
+                            <input type="radio" name="duration" class="option-radio" data-price="0" value="1.30h" required>
                             1.30 Ore
                         </label>
                     </div>
@@ -326,11 +320,11 @@
                 </div>
                 <div class="section">
                     <h3>Inserisci la tua Email per confermare la richiesta:</h3>
-                    <input type="email" name="email" placeholder="La tua Email" required style="width: 100%; padding: 10px; border-radius: 5px; border: 1px solid var(--secondary-color); margin-bottom: 20px;">
+                    <input type="email" name="email" id="email" placeholder="La tua Email" required style="width: 100%; padding: 10px; border-radius: 5px; border: 1px solid var(--secondary-color); margin-bottom: 20px;">
                 </div>
                 <div class="navigation-buttons">
                     <button type="button" onclick="prevStep(5)">Indietro</button>
-                    <button type="submit">Richiedi Conferma</button>
+                    <button type="button" onclick="submitForm()">Richiedi Conferma</button>
                 </div>
             </div>
         </form>
@@ -359,7 +353,7 @@
             if (step < totalSteps) {
                 currentStep = step + 1;
                 showStep(currentStep);
-                updateSummary();
+                updateTotal();
             }
         }
 
@@ -391,7 +385,10 @@
 
             // Calcola il prezzo della Spa selezionata
             const spaSelected = document.querySelector('input[name="spa"]:checked');
-            if (spaSelected) {
+            const timeSelected = document.querySelector('input[name="time"]:checked');
+            const durationSelected = document.querySelector('input[name="duration"]:checked');
+
+            if (spaSelected && timeSelected && durationSelected) {
                 const spaPrices = {
                     "SPA MAYA": {
                         "MATTINA (08:00-16:00)": { "1h": 110, "1.30h": 160 },
@@ -410,13 +407,8 @@
                     }
                 };
 
-                const timeSelected = document.querySelector('input[name="time"]:checked');
-                const durationSelected = document.querySelector('input[name="duration"]:checked');
-
-                if (timeSelected && durationSelected) {
-                    const spaPrice = spaPrices[spaSelected.value][timeSelected.value][durationSelected.value];
-                    totalPrice += spaPrice;
-                }
+                const spaPrice = spaPrices[spaSelected.value][timeSelected.value][durationSelected.value];
+                totalPrice += spaPrice;
             }
 
             // Calcola il prezzo degli extra
@@ -429,9 +421,65 @@
             document.getElementById('totalPrice').textContent = totalPrice.toFixed(2);
         }
 
-        function updateSummary() {
-            // Non necessario in questa versione, mantenuto per eventuali estensioni future
-            updateTotal();
+        function submitForm() {
+            // Validazione finale
+            const spaSelected = document.querySelector('input[name="spa"]:checked');
+            const timeSelected = document.querySelector('input[name="time"]:checked');
+            const durationSelected = document.querySelector('input[name="duration"]:checked');
+            const email = document.getElementById('email').value;
+
+            if (!spaSelected || !timeSelected || !durationSelected || !validateEmail(email)) {
+                alert("Per favore, completa tutte le scelte obbligatorie e inserisci un'email valida.");
+                return;
+            }
+
+            // Conferma richiesta
+            if (!confirm("Vuoi confermare la tua richiesta di preventivo?")) {
+                return;
+            }
+
+            // Raccogli i dati
+            const extrasSelected = Array.from(document.querySelectorAll('.option-checkbox:checked')).map(cb => cb.value);
+            const totalPrice = document.getElementById('totalPrice').textContent;
+
+            const data = {
+                spa: spaSelected.value,
+                time: timeSelected.value,
+                duration: durationSelected.value,
+                extras: extrasSelected,
+                email: email,
+                total: totalPrice
+            };
+
+            // Invia i dati al Google Apps Script Web App
+            fetch('https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec', { // Sostituisci YOUR_SCRIPT_ID con il tuo ID
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => response.json())
+            .then(result => {
+                if (result.status === 'success') {
+                    alert("Grazie! La tua richiesta è stata inviata.");
+                    document.getElementById("wellnessForm").reset();
+                    document.getElementById('totalPrice').textContent = "0";
+                    currentStep = 1;
+                    showStep(currentStep);
+                } else {
+                    alert("C'è stato un errore nell'invio della tua richiesta: " + result.message);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert("C'è stato un errore nell'invio della tua richiesta. Per favore riprova.");
+            });
+        }
+
+        function validateEmail(email) {
+            const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@(([^<>()[\]\.,;:\s@"]+\.)+[^<>()[\]\.,;:\s@"]{2,})$/i;
+            return re.test(String(email).toLowerCase());
         }
 
         // Event listeners per aggiornare il prezzo dinamicamente
@@ -445,52 +493,6 @@
         checkboxes.forEach(checkbox => {
             checkbox.addEventListener("change", updateTotal);
         });
-
-        // Funzione per confermare e inviare il form
-        document.getElementById('wellnessForm').addEventListener('submit', function(e) {
-            // Validazione finale
-            const spaSelected = document.querySelector('input[name="spa"]:checked');
-            const timeSelected = document.querySelector('input[name="time"]:checked');
-            const durationSelected = document.querySelector('input[name="duration"]:checked');
-            const email = document.querySelector('input[name="email"]').value;
-
-            if (!spaSelected || !timeSelected || !durationSelected || !validateEmail(email)) {
-                alert("Per favore, completa tutte le scelte obbligatorie e inserisci un'email valida.");
-                e.preventDefault();
-                return;
-            }
-
-            // Conferma richiesta
-            if (!confirm("Vuoi confermare la tua richiesta di preventivo?")) {
-                e.preventDefault();
-                return;
-            }
-
-            // Invia il form tramite Formspree
-            // Aggiungi campi nascosti per inviare anche all'hotel
-            const form = e.target;
-            const hiddenInput = document.createElement('input');
-            hiddenInput.type = 'hidden';
-            hiddenInput.name = '_replyto';
-            hiddenInput.value = email;
-            form.appendChild(hiddenInput);
-
-            // Informazioni all'hotel
-            const hotelEmail = "marcoferretti909@gmail.com";
-            const hiddenHotelInput = document.createElement('input');
-            hiddenHotelInput.type = 'hidden';
-            hiddenHotelInput.name = '_cc';
-            hiddenHotelInput.value = hotelEmail;
-            form.appendChild(hiddenHotelInput);
-
-            // Imposta Formspree per inviare email a due destinatari
-            // Assicurati di sostituire l'URL action del form con il tuo endpoint di Formspree
-        });
-
-        function validateEmail(email) {
-            const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@(([^<>()[\]\.,;:\s@"]+\.)+[^<>()[\]\.,;:\s@"]{2,})$/i;
-            return re.test(String(email).toLowerCase());
-        }
     </script>
 </body>
 </html>
