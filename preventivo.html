@@ -189,7 +189,7 @@
         <h1>Pacchetto Wellness</h1>
         <p>Scegli le opzioni per il tuo relax presso il Trilussa Palace Hotel:</p>
 
-        <form id="wellnessForm" action="https://script.google.com/macros/s/AKfycbwmZkpeb1djI_yi06cQnssew6qvlZjTCM--l2dBv-gD52KKN4LH4Qn8_6sSoP-wgFWe5A/exec" method="POST">
+        <form id="wellnessForm" action="https://script.google.com/macros/s/AKfycbxytaalqXiGvZr2ZneImOD1Os6llLJ-K4hssNHpVw4X_p15xD_rf7bogK2o5GVQcpYYkg/exec" method="POST">
             <!-- Step 1: Scegli la Spa -->
             <div class="step active" id="step-1">
                 <div class="step-header">
@@ -321,6 +321,8 @@
                 <div class="section">
                     <h3>Inserisci la tua Email per confermare la richiesta:</h3>
                     <input type="email" name="email" id="email" placeholder="La tua Email" required style="width: 100%; padding: 10px; border-radius: 5px; border: 1px solid var(--secondary-color); margin-bottom: 20px;">
+                    <!-- Campo Nascosto per il Totale -->
+                    <input type="hidden" name="total" id="total">
                 </div>
                 <div class="navigation-buttons">
                     <button type="button" onclick="prevStep(5)">Indietro</button>
@@ -417,8 +419,9 @@
                 totalPrice += parseFloat(checkbox.dataset.price);
             });
 
-            // Aggiorna il totale nel DOM
+            // Aggiorna il totale nel DOM e nel campo nascosto
             document.getElementById('totalPrice').textContent = totalPrice.toFixed(2);
+            document.getElementById('total').value = totalPrice.toFixed(2);
         }
 
         // Event listeners per aggiornare il prezzo dinamicamente
