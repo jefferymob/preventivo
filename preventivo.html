@@ -189,7 +189,7 @@
         <h1>Pacchetto Wellness</h1>
         <p>Scegli le opzioni per il tuo relax presso il Trilussa Palace Hotel:</p>
 
-        <form id="wellnessForm">
+        <form id="wellnessForm" action="https://script.google.com/macros/s/AKfycbwmZkpeb1djI_yi06cQnssew6qvlZjTCM--l2dBv-gD52KKN4LH4Qn8_6sSoP-wgFWe5A/exec" method="POST">
             <!-- Step 1: Scegli la Spa -->
             <div class="step active" id="step-1">
                 <div class="step-header">
@@ -324,7 +324,7 @@
                 </div>
                 <div class="navigation-buttons">
                     <button type="button" onclick="prevStep(5)">Indietro</button>
-                    <button type="button" onclick="submitForm()">Richiedi Conferma</button>
+                    <button type="submit">Richiedi Conferma</button>
                 </div>
             </div>
         </form>
@@ -419,67 +419,6 @@
 
             // Aggiorna il totale nel DOM
             document.getElementById('totalPrice').textContent = totalPrice.toFixed(2);
-        }
-
-        function submitForm() {
-            // Validazione finale
-            const spaSelected = document.querySelector('input[name="spa"]:checked');
-            const timeSelected = document.querySelector('input[name="time"]:checked');
-            const durationSelected = document.querySelector('input[name="duration"]:checked');
-            const email = document.getElementById('email').value;
-
-            if (!spaSelected || !timeSelected || !durationSelected || !validateEmail(email)) {
-                alert("Per favore, completa tutte le scelte obbligatorie e inserisci un'email valida.");
-                return;
-            }
-
-            // Conferma richiesta
-            if (!confirm("Vuoi confermare la tua richiesta di preventivo?")) {
-                return;
-            }
-
-            // Raccogli i dati
-            const extrasSelected = Array.from(document.querySelectorAll('.option-checkbox:checked')).map(cb => cb.value);
-            const totalPrice = document.getElementById('totalPrice').textContent;
-
-            const data = {
-                spa: spaSelected.value,
-                time: timeSelected.value,
-                duration: durationSelected.value,
-                extras: extrasSelected,
-                email: email,
-                total: totalPrice
-            };
-
-            // Invia i dati al Google Apps Script Web App
-            fetch('https://script.google.com/macros/s/AKfycbwmZkpeb1djI_yi06cQnssew6qvlZjTCM--l2dBv-gD52KKN4LH4Qn8_6sSoP-wgFWe5A/exec', { // Sostituisci YOUR_SCRIPT_ID con il tuo ID
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(data)
-            })
-            .then(response => response.json())
-            .then(result => {
-                if (result.status === 'success') {
-                    alert("Grazie! La tua richiesta è stata inviata.");
-                    document.getElementById("wellnessForm").reset();
-                    document.getElementById('totalPrice').textContent = "0";
-                    currentStep = 1;
-                    showStep(currentStep);
-                } else {
-                    alert("C'è stato un errore nell'invio della tua richiesta: " + result.message);
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                alert("C'è stato un errore nell'invio della tua richiesta. Per favore riprova.");
-            });
-        }
-
-        function validateEmail(email) {
-            const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@(([^<>()[\]\.,;:\s@"]+\.)+[^<>()[\]\.,;:\s@"]{2,})$/i;
-            return re.test(String(email).toLowerCase());
         }
 
         // Event listeners per aggiornare il prezzo dinamicamente
