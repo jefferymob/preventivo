@@ -13,18 +13,21 @@
     rel="stylesheet"
   />
   <style>
-    html,
-    body {
+    /* Impostazioni base per rimuovere scroll e sfruttare tutto lo spazio */
+    html, body {
       margin: 0;
       padding: 0;
+      width: 100%;
+      height: 100%;
       font-family: 'Roboto', sans-serif;
       background: #e1d6ca;
-      width: 100%;
-      min-height: 100%;
+      /* Nessun overflow, così da non mostrare barre di scroll */
+      overflow: hidden; 
     }
 
+    /* Barra fissa con il totale */
     .price-bar {
-      position: fixed;
+      position: absolute;
       top: 0;
       left: 50%;
       transform: translateX(-50%);
@@ -37,15 +40,19 @@
       z-index: 1000;
     }
 
+    /* Contenitore a piena altezza (meno lo spazio della barra) */
     .container {
-      /* Usiamo max-width più ampio per sfruttare meglio lo spazio su smartphone */
-      max-width: 900px;
-      margin: 60px auto 30px auto;
-      background: #e1d6ca;
-      border-radius: 20px;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-      padding: 20px 30px;
+      position: absolute;
+      top: 50px; /* Altezza della .price-bar ~ 40px, lasciamo 50px di offset */
+      left: 0;
+      right: 0;
+      bottom: 0;
+      padding: 10px 20px;
       box-sizing: border-box;
+      background: #e1d6ca;
+
+      /* Nascondiamo tutto ciò che va oltre (niente scrollbar) */
+      overflow: hidden;
     }
 
     .container h1 {
@@ -60,33 +67,29 @@
     .container p {
       color: #708090;
       font-size: 1rem;
-      margin-bottom: 20px;
+      margin-bottom: 15px;
       text-align: center;
     }
 
+    /* Sistemiamo i passaggi/step */
     .step {
       display: none;
-      animation: fadeIn 0.5s ease-in-out;
     }
-
     .step.active {
       display: block;
     }
-
     .step-header {
-      text-align: left;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
     }
-
     .step-header h2 {
       font-size: 1.1rem;
       color: #cac4b0;
-      margin-bottom: 5px;
+      margin: 0 0 5px 0;
       font-weight: 700;
     }
 
-    .options,
-    .extras {
+    /* Opzioni */
+    .options, .extras {
       display: flex;
       flex-direction: column;
       gap: 10px;
@@ -101,12 +104,10 @@
       background: #f9f9f9;
       transition: background 0.3s ease, transform 0.3s ease;
     }
-
     .option:hover {
       background: #2f4f4f;
       transform: translateY(-2px);
     }
-
     .option label {
       display: flex;
       align-items: center;
@@ -115,72 +116,64 @@
       color: #333;
       cursor: pointer;
     }
-
     .option input {
       transform: scale(1.3);
       margin-right: 10px;
       cursor: pointer;
     }
 
+    /* Pulsanti navigazione */
     .navigation-buttons {
       display: flex;
       justify-content: space-between;
-      margin-top: 20px;
+      margin-top: 12px;
     }
-
     .navigation-buttons button {
       background-color: #d2b48c;
       color: white;
-      padding: 10px 20px;
-      font-size: 0.9rem;
+      padding: 8px 15px;
+      font-size: 0.85rem;
       border: none;
       border-radius: 30px;
       cursor: pointer;
       transition: background-color 0.3s ease, transform 0.2s ease;
     }
-
     .navigation-buttons button:hover {
       background-color: #2d89e5;
       transform: scale(1.05);
     }
 
+    /* Piccola animazione di fadeIn */
     @keyframes fadeIn {
-      from {
-        opacity: 0;
-      }
-      to {
-        opacity: 1;
-      }
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+    .step.active {
+      animation: fadeIn 0.4s ease-in-out;
     }
 
+    /* Riduciamo i margini su schermi piccoli */
     @media (max-width: 600px) {
-      .container {
-        margin: 60px 10px 30px 10px;
-        padding: 15px 20px;
-        border-radius: 10px;
-        box-shadow: none;
-      }
-
       .price-bar {
         font-size: 1rem;
         padding: 8px 15px;
       }
-
+      .container {
+        padding: 10px 15px;
+      }
       .container h1 {
         font-size: 1.5rem;
       }
-
       .step-header h2 {
         font-size: 1rem;
       }
-
       .navigation-buttons button {
-        padding: 8px 15px;
-        font-size: 0.8rem;
+        padding: 6px 12px;
+        font-size: 0.75rem;
       }
     }
 
-    /* Nascondiamo il vecchio messaggio di conferma */
+    /* Nascondiamo eventuale vecchio messaggio di conferma */
     #confirmationMessage {
       display: none;
     }
@@ -188,6 +181,7 @@
 </head>
 
 <body>
+  <!-- Barra con il totale -->
   <div class="price-bar">
     Totale: <span id="totalPrice">0</span>€
   </div>
@@ -198,7 +192,7 @@
 
     <form
       id="wellnessForm"
-      action="https://script.google.com/macros/s/AKfycbxytaalqXiGvZr2ZneImOD1Os6llLJ-K4hssNHpVw4X_p15xD_rf7bogK2o5GVQcpYYkg/exec"
+      action="TUO_URL_WEBSERVICE" 
       method="POST"
       target="hiddenFrame"
     >
@@ -338,10 +332,10 @@
             </label>
           </div>
         </div>
-        <!-- Nuovo inserimento: Numero di Persone -->
-        <div style="margin-top: 20px;">
+        <!-- Numero di Persone -->
+        <div style="margin-top: 8px;">
           <label for="persons" style="font-weight: bold;"
-            >Numero di Persone (2 di default, +30€ per persona extra):</label
+            >Persone (2 di default, +30€ ognuna in più):</label
           >
           <input
             type="number"
@@ -349,7 +343,7 @@
             id="persons"
             value="2"
             min="2"
-            style="width: 100%; padding: 10px; margin-top: 5px; border-radius: 5px; border: 1px solid #708090;"
+            style="width: 100%; padding: 6px; margin-top: 5px; border-radius: 5px; border: 1px solid #708090;"
           />
         </div>
         <div class="navigation-buttons">
@@ -425,43 +419,41 @@
           <h2>5. Conferma e Richiesta Preventivo</h2>
         </div>
         <div class="section">
-          <h3>Inserisci la tua Email per confermare la richiesta:</h3>
+          <label style="font-weight:bold;">Email *</label>
           <input
             type="email"
             name="email"
             id="email"
             placeholder="La tua Email"
             required
-            style="width: 100%; padding: 10px; border-radius: 5px; border: 1px solid #708090; margin-bottom: 20px;"
+            style="width: 100%; padding: 8px; border-radius: 5px; border: 1px solid #708090; margin-bottom: 10px;"
           />
 
-          <!-- Campo opzionale Telefono -->
-          <h3 style="margin-top: 10px;">Numero di Telefono (opzionale):</h3>
+          <label style="font-weight:bold;">Telefono (opzionale)</label>
           <input
             type="tel"
             name="phone"
             id="phone"
             placeholder="Il tuo Telefono"
-            style="width: 100%; padding: 10px; border-radius: 5px; border: 1px solid #708090; margin-bottom: 20px;"
+            style="width: 100%; padding: 8px; border-radius: 5px; border: 1px solid #708090; margin-bottom: 10px;"
           />
 
           <input type="hidden" name="total" id="total" />
         </div>
         <div class="navigation-buttons">
           <button type="button" onclick="prevStep(5)">Indietro</button>
-          <!-- Al click su "Richiedi Conferma", si sottomette il form -->
           <button type="submit">Richiedi Conferma</button>
         </div>
       </div>
     </form>
 
-    <!-- Non lo usiamo più per mostrare la conferma in-page. Lo teniamo nascosto. -->
+    <!-- Iframe nascosto per l'invio del form -->
+    <iframe name="hiddenFrame" style="display:none;"></iframe>
+
+    <!-- Messaggio di conferma non usato (popup) -->
     <div id="confirmationMessage">
       <p>Grazie! La tua richiesta è stata inviata con successo.</p>
     </div>
-
-    <!-- Iframe nascosto per l'invio del form -->
-    <iframe name="hiddenFrame" style="display:none;"></iframe>
   </div>
 
   <script>
@@ -497,9 +489,7 @@
       const stepElement = document.getElementById(`step-${step}`);
 
       if (step === 1 || step === 2 || step === 3) {
-        const required = stepElement.querySelectorAll(
-          'input[type="radio"]:checked'
-        );
+        const required = stepElement.querySelectorAll('input[type="radio"]:checked');
         if (required.length === 0) {
           alert("Per favore, completa tutte le scelte obbligatorie.");
           valid = false;
@@ -512,19 +502,15 @@
     function updateTotal() {
       let totalPrice = 0;
 
-      // Leggi le scelte attuali
       const spaSelected = document.querySelector('input[name="spa"]:checked');
       const timeSelected = document.querySelector('input[name="time"]:checked');
-      const durationSelected = document.querySelector(
-        'input[name="duration"]:checked'
-      );
+      const durationSelected = document.querySelector('input[name="duration"]:checked');
       const personsInput = document.getElementById("persons");
-      let persons = 2; // default
+      let persons = 2;
       if (personsInput) {
         persons = parseInt(personsInput.value) || 2;
       }
 
-      // Struttura prezzi base
       if (spaSelected && timeSelected && durationSelected) {
         const spaPrices = {
           "SPA MAYA": {
@@ -544,31 +530,23 @@
           },
         };
 
-        const spaPrice =
-          spaPrices[spaSelected.value][timeSelected.value][
-            durationSelected.value
-          ];
+        const spaPrice = spaPrices[spaSelected.value][timeSelected.value][durationSelected.value];
         totalPrice += spaPrice;
       }
 
-      // Supplemento per persone extra
       if (persons > 2) {
         totalPrice += (persons - 2) * 30;
       }
 
-      // Extra
       const checkboxes = document.querySelectorAll(".option-checkbox:checked");
       checkboxes.forEach((checkbox) => {
         totalPrice += parseFloat(checkbox.dataset.price);
       });
 
-      // Aggiorna UI
-      document.getElementById("totalPrice").textContent =
-        totalPrice.toFixed(2);
+      document.getElementById("totalPrice").textContent = totalPrice.toFixed(2);
       document.getElementById("total").value = totalPrice.toFixed(2);
     }
 
-    // Ricalcola totale al cambiare delle opzioni
     const radioButtons = document.querySelectorAll(".option-radio");
     const checkboxes = document.querySelectorAll(".option-checkbox");
     const personsInput = document.getElementById("persons");
@@ -583,22 +561,14 @@
       personsInput.addEventListener("change", updateTotal);
     }
 
-    // Una volta completato l'invio, mostrare un pop-up di conferma
-    window.addEventListener(
-      "message",
-      function (event) {
-        if (event.data === "formSubmitted") {
-          // Popup di conferma
-          alert(
-            "Grazie! La tua richiesta è stata inviata con successo. Ti contatteremo a breve."
-          );
-          // Se vuoi nascondere il form dopo l'invio (non obbligatorio), puoi fare:
-          document.getElementById("wellnessForm").style.display = "none";
-        }
-      },
-      false
-    );
+    // Popup di conferma al termine dell'invio
+    window.addEventListener("message", function (event) {
+      if (event.data === "formSubmitted") {
+        alert("Grazie! La tua richiesta è stata inviata con successo.");
+        // Nascondi il form, se vuoi
+        document.getElementById("wellnessForm").style.display = "none";
+      }
+    });
   </script>
 </body>
 </html>
-
