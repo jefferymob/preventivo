@@ -7,19 +7,17 @@
     <meta name="description" content="Richiedi un preventivo personalizzato per il tuo pacchetto wellness presso il Trilussa Palace Hotel. Scegli tra diverse opzioni Spa e Extra per un'esperienza di relax unica.">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        /* Variabili CSS per i colori */
         :root {
             --primary-color: #cac4b0;
-            --secondary-color: #708090; /* Grigio anatra */
-            --accent-color: #2f4f4f; /* Verde petrolio scuro */
-            --background-color: #e1d6ca; /* Sfondo integrato */
+            --secondary-color: #708090;
+            --accent-color: #2f4f4f;
+            --background-color: #e1d6ca;
             --text-color: #333;
             --hover-color: #c0c0c0;
-            --button-color: #d2b48c; /* Tan */
-            --button-hover: #2d89e5; /* Blu */
+            --button-color: #d2b48c;
+            --button-hover: #2d89e5;
         }
 
-        /* Stile generale */
         body {
             font-family: 'Roboto', sans-serif;
             background: var(--background-color);
@@ -43,7 +41,6 @@
             position: relative;
         }
 
-        /* Barra Prezzo Dinamico */
         .price-bar {
             position: fixed;
             top: 0;
@@ -61,7 +58,7 @@
         .container h1 {
             color: var(--primary-color);
             font-size: 1.8rem;
-            margin-top: 60px; /* Spazio per la price-bar */
+            margin-top: 60px;
             margin-bottom: 10px;
             font-weight: 700;
         }
@@ -72,7 +69,6 @@
             margin-bottom: 20px;
         }
 
-        /* Step Wizard */
         .step {
             display: none;
             animation: fadeIn 0.5s ease-in-out;
@@ -130,7 +126,6 @@
             cursor: pointer;
         }
 
-        /* Navigazione Step */
         .navigation-buttons {
             display: flex;
             justify-content: space-between;
@@ -153,10 +148,15 @@
             transform: scale(1.05);
         }
 
-        /* Responsive Design */
         @media (max-width: 600px) {
             .container {
                 padding: 15px 20px;
+                width: 100%;
+                height: 100vh;
+                overflow: hidden;
+                position: fixed;
+                top: 0;
+                left: 0;
             }
 
             .price-bar {
@@ -177,10 +177,17 @@
                 font-size: 0.8rem;
             }
         }
+
+        #confirmationMessage {
+            text-align: center;
+            padding: 20px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 10px;
+        }
     </style>
 </head>
 <body>
-    <!-- Barra Prezzo Dinamico -->
     <div class="price-bar">
         Totale: <span id="totalPrice">0</span>€
     </div>
@@ -189,8 +196,7 @@
         <h1>Pacchetto Wellness</h1>
         <p>Scegli le opzioni per il tuo relax presso il Trilussa Palace Hotel:</p>
 
-        <form id="wellnessForm" action="https://script.google.com/macros/s/AKfycbxytaalqXiGvZr2ZneImOD1Os6llLJ-K4hssNHpVw4X_p15xD_rf7bogK2o5GVQcpYYkg/exec" method="POST">
-            <!-- Step 1: Scegli la Spa -->
+        <form id="wellnessForm" action="https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec" method="POST" target="hiddenFrame">
             <div class="step active" id="step-1">
                 <div class="step-header">
                     <h2>1. Scegli la Spa</h2>
@@ -220,7 +226,6 @@
                 </div>
             </div>
 
-            <!-- Step 2: Scegli la Fascia Oraria -->
             <div class="step" id="step-2">
                 <div class="step-header">
                     <h2>2. Scegli la Fascia Oraria</h2>
@@ -251,7 +256,6 @@
                 </div>
             </div>
 
-            <!-- Step 3: Scegli la Durata -->
             <div class="step" id="step-3">
                 <div class="step-header">
                     <h2>3. Scegli la Durata</h2>
@@ -276,7 +280,6 @@
                 </div>
             </div>
 
-            <!-- Step 4: Scegli gli Extra -->
             <div class="step" id="step-4">
                 <div class="step-header">
                     <h2>4. Scegli gli Extra</h2>
@@ -313,7 +316,6 @@
                 </div>
             </div>
 
-            <!-- Step 5: Conferma e Richiesta Preventivo -->
             <div class="step" id="step-5">
                 <div class="step-header">
                     <h2>5. Conferma e Richiesta Preventivo</h2>
@@ -321,7 +323,6 @@
                 <div class="section">
                     <h3>Inserisci la tua Email per confermare la richiesta:</h3>
                     <input type="email" name="email" id="email" placeholder="La tua Email" required style="width: 100%; padding: 10px; border-radius: 5px; border: 1px solid var(--secondary-color); margin-bottom: 20px;">
-                    <!-- Campo Nascosto per il Totale -->
                     <input type="hidden" name="total" id="total">
                 </div>
                 <div class="navigation-buttons">
@@ -331,12 +332,17 @@
             </div>
         </form>
 
-        <!-- Footer Uniforme -->
-        <footer>
-            <p>&copy; 2025 Trilussa Palace Hotel. Tutti i diritti riservati.</p>
-            <p>Contatti: email@example.com | +39 123 456 789</p>
-        </footer>
+        <div id="confirmationMessage" style="display:none;">
+            <p>Grazie! La tua richiesta è stata inviata con successo.</p>
+        </div>
+
+        <iframe name="hiddenFrame" style="display:none;"></iframe>
     </div>
+
+    <footer>
+        <p>&copy; 2025 Trilussa Palace Hotel. Tutti i diritti riservati.</p>
+        <p>Contatti: email@example.com | +39 123 456 789</p>
+    </footer>
 
     <script>
         let currentStep = 1;
@@ -350,7 +356,6 @@
         }
 
         function nextStep(step) {
-            // Validazione step corrente prima di avanzare
             if (!validateStep(step)) return;
             if (step < totalSteps) {
                 currentStep = step + 1;
@@ -385,7 +390,6 @@
         function updateTotal() {
             let totalPrice = 0;
 
-            // Calcola il prezzo della Spa selezionata
             const spaSelected = document.querySelector('input[name="spa"]:checked');
             const timeSelected = document.querySelector('input[name="time"]:checked');
             const durationSelected = document.querySelector('input[name="duration"]:checked');
@@ -413,18 +417,15 @@
                 totalPrice += spaPrice;
             }
 
-            // Calcola il prezzo degli extra
             const checkboxes = document.querySelectorAll('.option-checkbox:checked');
             checkboxes.forEach(checkbox => {
                 totalPrice += parseFloat(checkbox.dataset.price);
             });
 
-            // Aggiorna il totale nel DOM e nel campo nascosto
             document.getElementById('totalPrice').textContent = totalPrice.toFixed(2);
             document.getElementById('total').value = totalPrice.toFixed(2);
         }
 
-        // Event listeners per aggiornare il prezzo dinamicamente
         const radioButtons = document.querySelectorAll(".option-radio");
         const checkboxes = document.querySelectorAll(".option-checkbox");
 
@@ -436,33 +437,13 @@
             checkbox.addEventListener("change", updateTotal);
         });
 
-        // Gestione della sottomissione del form
-        document.getElementById('wellnessForm').addEventListener('submit', function(e) {
-            // Validazione finale
-            const spaSelected = document.querySelector('input[name="spa"]:checked');
-            const timeSelected = document.querySelector('input[name="time"]:checked');
-            const durationSelected = document.querySelector('input[name="duration"]:checked');
-            const email = document.getElementById('email').value;
-
-            if (!spaSelected || !timeSelected || !durationSelected || !validateEmail(email)) {
-                alert("Per favore, completa tutte le scelte obbligatorie e inserisci un'email valida.");
-                e.preventDefault();
-                return;
+        window.addEventListener('message', function(event) {
+            if (event.data === 'formSubmitted') {
+                document.getElementById('wellnessForm').style.display = 'none';
+                document.getElementById('confirmationMessage').style.display = 'block';
             }
-
-            // Conferma richiesta
-            if (!confirm("Vuoi confermare la tua richiesta di preventivo?")) {
-                e.preventDefault();
-                return;
-            }
-
-            // La sottomissione del form avverrà normalmente
-        });
-
-        function validateEmail(email) {
-            const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@(([^<>()[\]\.,;:\s@"]+\.)+[^<>()[\]\.,;:\s@"]{2,})$/i;
-            return re.test(String(email).toLowerCase());
-        }
+        }, false);
     </script>
 </body>
 </html>
+
