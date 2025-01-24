@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pacchetto Wellness - Trilussa Palace Hotel</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Stile generale */
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            background: #ffffff;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            padding: 40px 50px;
+            width: 90%;
+            max-width: 600px;
+            text-align: center;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .container h1 {
+            color: #2d89e5;
+            font-size: 2rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .container p {
+            color: #555;
+            font-size: 1rem;
+            margin-bottom: 30px;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .option {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            background: #f9f9f9;
+            transition: background 0.3s ease, transform 0.3s ease;
+        }
+
+        .option:hover {
+            background: #eef6ff;
+            transform: translateY(-2px);
+        }
+
+        .option img {
+            width: 50px;
+            height: 50px;
+            margin-right: 15px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .option label {
+            display: flex;
+            align-items: center;
+            flex: 1;
+            font-size: 1rem;
+            color: #333;
+            cursor: pointer;
+        }
+
+        .option input {
+            transform: scale(1.3);
+            margin-right: 10px;
+            cursor: pointer;
+        }
+
+        .duration {
+            margin-left: 10px;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            color: #2d89e5;
+            margin: 20px 0;
+            font-weight: 700;
+        }
+
+        #submitButton {
+            background-color: #2d89e5;
+            color: white;
+            padding: 12px 25px;
+            font-size: 1.1rem;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            width: 100%;
+            font-weight: 700;
+        }
+
+        #submitButton:hover {
+            background-color: #1b5dab;
+            transform: scale(1.02);
+        }
+
+        #totalPrice {
+            font-weight: bold;
+            color: #333;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 600px) {
+            .container {
+                padding: 30px 20px;
+            }
+
+            .option img {
+                width: 40px;
+                height: 40px;
+            }
+
+            .container h1 {
+                font-size: 1.5rem;
+            }
+
+            h2 {
+                font-size: 1.3rem;
+            }
+
+            #submitButton {
+                padding: 10px 20px;
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Pacchetto Wellness</h1>
+        <p>Scegli le opzioni per il tuo relax presso il Trilussa Palace Hotel:</p>
+        <form id="wellnessForm">
+            <div class="options">
+                <!-- Opzioni migliorate con immagini e durata -->
+                <div class="option">
+                    <img src="https://via.placeholder.com/50" alt="Massaggio Relax">
+                    <label>
+                        <input type="checkbox" class="option-checkbox" data-price="70">
+                        Massaggio Relax
+                        <span class="duration">(60 min)</span>
+                    </label>
+                </div>
+                <div class="option">
+                    <img src="https://via.placeholder.com/50" alt="Accesso SPA">
+                    <label>
+                        <input type="checkbox" class="option-checkbox" data-price="50">
+                        Accesso SPA e Sauna
+                        <span class="duration">(2 ore)</span>
+                    </label>
+                </div>
+                <div class="option">
+                    <img src="https://via.placeholder.com/50" alt="Trattamento Viso">
+                    <label>
+                        <input type="checkbox" class="option-checkbox" data-price="90">
+                        Trattamento Viso Luxury
+                        <span class="duration">(90 min)</span>
+                    </label>
+                </div>
+                <div class="option">
+                    <img src="https://via.placeholder.com/50" alt="Piscina Termale">
+                    <label>
+                        <input type="checkbox" class="option-checkbox" data-price="30">
+                        Accesso alla Piscina Termale
+                        <span class="duration">(Illimitato)</span>
+                    </label>
+                </div>
+                <div class="option">
+                    <img src="https://via.placeholder.com/50" alt="Cena Gourmet">
+                    <label>
+                        <input type="checkbox" class="option-checkbox" data-price="40">
+                        Cena Gourmet per Due
+                        <span class="duration">(Menu Speciale)</span>
+                    </label>
+                </div>
+                <!-- Nuove opzioni -->
+                <div class="option">
+                    <img src="https://via.placeholder.com/50" alt="Sessione Yoga">
+                    <label>
+                        <input type="checkbox" class="option-checkbox" data-price="25">
+                        Sessione di Yoga
+                        <span class="duration">(60 min)</span>
+                    </label>
+                </div>
+                <div class="option">
+                    <img src="https://via.placeholder.com/50" alt="Aromaterapia">
+                    <label>
+                        <input type="checkbox" class="option-checkbox" data-price="35">
+                        Aromaterapia
+                        <span class="duration">(45 min)</span>
+                    </label>
+                </div>
+                <div class="option">
+                    <img src="https://via.placeholder.com/50" alt="Pacchetto Detox">
+                    <label>
+                        <input type="checkbox" class="option-checkbox" data-price="120">
+                        Pacchetto Detox Completo
+                        <span class="duration">(3 giorni)</span>
+                    </label>
+                </div>
+            </div>
+        </form>
+        <h2>Totale: <span id="totalPrice">0</span>€</h2>
+        <button id="submitButton">Richiedi Preventivo</button>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const checkboxes = document.querySelectorAll(".option-checkbox");
+            const totalPriceElement = document.getElementById("totalPrice");
+            const submitButton = document.getElementById("submitButton");
+
+            let totalPrice = 0;
+
+            // Funzione per aggiornare il totale
+            const updateTotal = () => {
+                totalPrice = Array.from(checkboxes).reduce((sum, checkbox) => {
+                    return checkbox.checked ? sum + parseFloat(checkbox.dataset.price) : sum;
+                }, 0);
+                totalPriceElement.textContent = totalPrice.toFixed(2);
+            };
+
+            // Event listener per ogni checkbox
+            checkboxes.forEach(checkbox => {
+                checkbox.addEventListener("change", updateTotal);
+            });
+
+            // Mostra un riepilogo dettagliato
+            submitButton.addEventListener("click", (e) => {
+                e.preventDefault(); // Evita il comportamento predefinito del pulsante
+                const selectedOptions = Array.from(checkboxes)
+                    .filter(checkbox => checkbox.checked)
+                    .map(checkbox => checkbox.parentElement.textContent.trim());
+
+                if (selectedOptions.length === 0) {
+                    alert("Per favore, seleziona almeno un'opzione per il tuo pacchetto wellness.");
+                    return;
+                }
+
+                let message = `Hai selezionato le seguenti opzioni:\n\n`;
+                selectedOptions.forEach(option => {
+                    message += `- ${option}\n`;
+                });
+                message += `\nIl totale del tuo pacchetto wellness è di ${totalPrice.toFixed(2)}€.\n\nVuoi confermare la richiesta?`;
+
+                if (confirm(message)) {
+                    // Invia i dati del form o esegui altre azioni
+                    // Ad esempio, inviare una richiesta AJAX o reindirizzare a una pagina di conferma
+                    alert("Grazie! La tua richiesta è stata inviata.");
+                    // Reset del form
+                    document.getElementById("wellnessForm").reset();
+                    updateTotal();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
