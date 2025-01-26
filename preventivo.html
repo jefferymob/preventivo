@@ -315,7 +315,7 @@
       width: 100%;
       height: 100%;
       background-color: rgba(255,255,255,0.8);
-      display: flex; /* Solo quando viene mostrato */
+      /* Rimosso il display: flex; qui */
       justify-content: center;
       align-items: center;
     }
@@ -362,9 +362,10 @@
           <div class="options">
             <div class="option">
               <img src="https://www.trilussapalacehotel.it/data/2560/Hotel-Trilussa-Palace-spa-maya-5456-HDR.jpg" alt="SPA MAYA" class="spa-image-small" />
-              <label>
+              <label for="spa-maya">
                 <input
                   type="radio"
+                  id="spa-maya"
                   name="spa"
                   class="option-radio"
                   data-price="0"
@@ -376,9 +377,10 @@
             </div>
             <div class="option">
               <img src="https://www.trilussapalacehotel.it/data/2560/Hotel-Trilussa-Palace-spa-moon-3559.jpg" alt="SPA MOON" class="spa-image-small" />
-              <label>
+              <label for="spa-moon">
                 <input
                   type="radio"
+                  id="spa-moon"
                   name="spa"
                   class="option-radio"
                   data-price="0"
@@ -390,9 +392,10 @@
             </div>
             <div class="option">
               <img src="https://www.trilussapalacehotel.it/data/2560/Hotel-Trilussa-Palace-spa-domus-63.jpg" alt="SPA DOMUS" class="spa-image-small" />
-              <label>
+              <label for="spa-domus">
                 <input
                   type="radio"
+                  id="spa-domus"
                   name="spa"
                   class="option-radio"
                   data-price="0"
@@ -418,9 +421,10 @@
           </div>
           <div class="options">
             <div class="option">
-              <label>
+              <label for="time-mattina">
                 <input
                   type="radio"
+                  id="time-mattina"
                   name="time"
                   class="option-radio"
                   data-price="0"
@@ -431,9 +435,10 @@
               </label>
             </div>
             <div class="option">
-              <label>
+              <label for="time-pomeriggio">
                 <input
                   type="radio"
+                  id="time-pomeriggio"
                   name="time"
                   class="option-radio"
                   data-price="0"
@@ -444,9 +449,10 @@
               </label>
             </div>
             <div class="option">
-              <label>
+              <label for="time-notte">
                 <input
                   type="radio"
+                  id="time-notte"
                   name="time"
                   class="option-radio"
                   data-price="0"
@@ -470,9 +476,10 @@
           </div>
           <div class="options">
             <div class="option">
-              <label>
+              <label for="duration-1h">
                 <input
                   type="radio"
+                  id="duration-1h"
                   name="duration"
                   class="option-radio"
                   data-price="0"
@@ -483,9 +490,10 @@
               </label>
             </div>
             <div class="option">
-              <label>
+              <label for="duration-1.30h">
                 <input
                   type="radio"
+                  id="duration-1.30h"
                   name="duration"
                   class="option-radio"
                   data-price="0"
@@ -521,9 +529,10 @@
           </div>
           <div class="extras">
             <div class="option">
-              <label>
+              <label for="extra-cena">
                 <input
                   type="checkbox"
+                  id="extra-cena"
                   class="option-checkbox"
                   data-price="90"
                   name="extras"
@@ -533,9 +542,10 @@
               </label>
             </div>
             <div class="option">
-              <label>
+              <label for="extra-sushi">
                 <input
                   type="checkbox"
+                  id="extra-sushi"
                   class="option-checkbox"
                   data-price="35"
                   name="extras"
@@ -545,9 +555,10 @@
               </label>
             </div>
             <div class="option">
-              <label>
+              <label for="extra-pinsa">
                 <input
                   type="checkbox"
+                  id="extra-pinsa"
                   class="option-checkbox"
                   data-price="20"
                   name="extras"
@@ -557,9 +568,10 @@
               </label>
             </div>
             <div class="option">
-              <label>
+              <label for="extra-prosecco">
                 <input
                   type="checkbox"
+                  id="extra-prosecco"
                   class="option-checkbox"
                   data-price="40"
                   name="extras"
@@ -581,7 +593,7 @@
             <h2>5. Conferma e Richiesta Preventivo</h2>
           </div>
           <div class="section">
-            <label style="font-weight:bold;">Email *</label>
+            <label for="email" style="font-weight:bold;">Email *</label>
             <input
               type="email"
               name="email"
@@ -591,7 +603,7 @@
               style="width: 100%; padding: 12px; border-radius: 5px; border: 1px solid var(--input-border-color); margin-bottom: 20px;"
             />
 
-            <label style="font-weight:bold;">Telefono (opzionale)</label>
+            <label for="phone" style="font-weight:bold;">Telefono (opzionale)</label>
             <input
               type="tel"
               name="phone"
