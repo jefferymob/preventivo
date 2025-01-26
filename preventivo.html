@@ -13,7 +13,7 @@
     rel="stylesheet"
   />
   <style>
-    /* Impostazioni base per rimuovere scroll e sfruttare tutto lo spazio */
+    /* Impostazioni base per rimuovere margini e sfruttare tutto lo spazio */
     html, body {
       margin: 0;
       padding: 0;
@@ -21,13 +21,13 @@
       height: 100%;
       font-family: 'Roboto', sans-serif;
       background: #e1d6ca;
-      /* Nessun overflow, così da non mostrare barre di scroll */
+      /* Permetti lo scrolling verticale */
       overflow: hidden; 
     }
 
     /* Barra fissa con il totale */
     .price-bar {
-      position: absolute;
+      position: fixed;
       top: 0;
       left: 50%;
       transform: translateX(-50%);
@@ -38,12 +38,16 @@
       box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
       font-size: 1.2rem;
       z-index: 1000;
+      width: 100%;
+      max-width: 600px; /* Limita la larghezza su schermi grandi */
+      box-sizing: border-box;
+      text-align: center;
     }
 
     /* Contenitore a piena altezza (meno lo spazio della barra) */
     .container {
       position: absolute;
-      top: 50px; /* Altezza della .price-bar ~ 40px, lasciamo 50px di offset */
+      top: 60px; /* Altezza della .price-bar + un piccolo margine */
       left: 0;
       right: 0;
       bottom: 0;
@@ -51,8 +55,13 @@
       box-sizing: border-box;
       background: #e1d6ca;
 
-      /* Nascondiamo tutto ciò che va oltre (niente scrollbar) */
-      overflow: hidden;
+      /* Permetti lo scrolling verticale */
+      overflow-y: auto;
+      overflow-x: hidden;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
 
     .container h1 {
@@ -69,11 +78,14 @@
       font-size: 1rem;
       margin-bottom: 15px;
       text-align: center;
+      max-width: 600px;
     }
 
     /* Sistemiamo i passaggi/step */
     .step {
       display: none;
+      width: 100%;
+      max-width: 600px;
     }
     .step.active {
       display: block;
@@ -159,7 +171,7 @@
         padding: 8px 15px;
       }
       .container {
-        padding: 10px 15px;
+        padding: 10px 10px;
       }
       .container h1 {
         font-size: 1.5rem;
@@ -171,6 +183,18 @@
         padding: 6px 12px;
         font-size: 0.75rem;
       }
+    }
+
+    /* Stili per i campi di input */
+    input[type="number"],
+    input[type="email"],
+    input[type="tel"] {
+      width: 100%;
+      padding: 8px;
+      border-radius: 5px;
+      border: 1px solid #708090;
+      margin-bottom: 10px;
+      box-sizing: border-box;
     }
 
     /* Nascondiamo eventuale vecchio messaggio di conferma */
@@ -243,6 +267,7 @@
           </div>
         </div>
         <div class="navigation-buttons">
+          <div></div> <!-- Spazio vuoto per allineamento -->
           <button type="button" onclick="nextStep(1)">Avanti</button>
         </div>
       </div>
@@ -333,10 +358,10 @@
           </div>
         </div>
         <!-- Numero di Persone -->
-        <div style="margin-top: 8px;">
-          <label for="persons" style="font-weight: bold;"
-            >Persone (2 di default, +30€ ognuna in più):</label
-          >
+        <div style="margin-top: 8px; width: 100%; max-width: 600px;">
+          <label for="persons" style="font-weight: bold;">
+            Persone (2 di default, +30€ ognuna in più):
+          </label>
           <input
             type="number"
             name="persons"
@@ -426,7 +451,6 @@
             id="email"
             placeholder="La tua Email"
             required
-            style="width: 100%; padding: 8px; border-radius: 5px; border: 1px solid #708090; margin-bottom: 10px;"
           />
 
           <label style="font-weight:bold;">Telefono (opzionale)</label>
@@ -435,7 +459,6 @@
             name="phone"
             id="phone"
             placeholder="Il tuo Telefono"
-            style="width: 100%; padding: 8px; border-radius: 5px; border: 1px solid #708090; margin-bottom: 10px;"
           />
 
           <input type="hidden" name="total" id="total" />
@@ -572,3 +595,4 @@
   </script>
 </body>
 </html>
+
