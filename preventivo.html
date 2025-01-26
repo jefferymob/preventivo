@@ -69,7 +69,7 @@
       flex-direction: column;
       align-items: stretch; /* Allinea gli elementi per estensione */
       height: calc(100vh - 80px); /* Adatta l'altezza per riempire lo schermo meno la price-bar */
-      overflow-y: auto; /* Permette lo scorrimento verticale se necessario */
+      overflow: hidden; /* Previene lo scorrimento interno */
     }
 
     .container h1 {
@@ -97,14 +97,26 @@
       border-radius: 12px; /* Ridotto per mobile */
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
       margin-bottom: 15px; /* Ridotto per mobile */
-      position: relative;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
       display: none; /* Nascondi tutti gli step inizialmente */
       flex-direction: column;
-      transition: max-height 0.3s ease, padding 0.3s ease;
+      overflow-y: auto; /* Permette lo scorrimento interno se necessario */
+      transition: opacity 0.3s ease, transform 0.3s ease;
+      opacity: 0;
+      transform: translateX(100%);
     }
     .step.active {
       display: flex;
-      animation: fadeIn 0.3s ease-in-out; /* Ridotta la durata dell'animazione */
+      opacity: 1;
+      transform: translateX(0);
+      z-index: 1;
+    }
+    .step.previous {
+      display: none;
     }
     .step-header {
       margin-bottom: 10px; /* Ridotto per mobile */
@@ -123,7 +135,6 @@
       flex-direction: column;
       gap: 10px; /* Ridotto per mobile */
       flex: 1; /* Permette di riempire lo spazio disponibile */
-      overflow-y: auto; /* Abilita lo scorrimento interno se necessario */
     }
 
     .option {
@@ -684,8 +695,6 @@
           const stepElement = document.getElementById(`step-${i}`);
           if (i === step) {
             stepElement.classList.add("active");
-          } else if (i < step) {
-            stepElement.classList.add("active"); // Mantieni visibili i passaggi precedenti
           } else {
             stepElement.classList.remove("active");
           }
@@ -851,4 +860,5 @@
     </script>
 </body>
 </html>
+
 
