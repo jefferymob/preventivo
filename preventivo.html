@@ -67,29 +67,32 @@
       margin: 100px auto 40px auto; /* Aggiustato per lasciare spazio per la price-bar */
       width: 90%;
       max-width: 600px;
-      padding: 20px;
+      padding: 10px; /* Ridotto per adattarsi meglio su mobile */
       box-sizing: border-box;
       background: var(--background-color);
       display: flex;
       flex-direction: column;
       align-items: stretch; /* Modificato da center a stretch */
+      overflow: hidden; /* Impedisce scorrimento interno */
+      height: calc(100vh - 100px); /* Adattato per riempire lo schermo meno la price-bar */
     }
 
     .container h1 {
       color: var(--primary-color);
-      font-size: 2rem;
+      font-size: 1.8rem; /* Ridotto leggermente */
       margin-top: 0;
-      margin-bottom: 20px;
+      margin-bottom: 15px; /* Ridotto */
       font-weight: 700;
       text-align: center;
     }
 
     .container p {
       color: var(--text-color);
-      font-size: 1.2rem;
-      margin-bottom: 25px;
+      font-size: 1rem; /* Ridotto per adattarsi meglio */
+      margin-bottom: 20px; /* Ridotto */
       text-align: center;
-      max-width: 600px;
+      max-width: 100%;
+      word-wrap: break-word;
     }
 
     /* Sistemiamo i passaggi/step */
@@ -97,23 +100,26 @@
       display: none;
       width: 100%;
       background: white;
-      padding: 25px;
-      border-radius: 20px;
-      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
-      margin-bottom: 25px;
+      padding: 15px; /* Ridotto per adattarsi meglio */
+      border-radius: 15px; /* Ridotto */
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      margin-bottom: 15px; /* Ridotto */
       position: relative;
+      flex: 1; /* Permette di riempire lo spazio disponibile */
+      display: flex;
+      flex-direction: column;
     }
     .step.active {
-      display: block;
+      display: flex;
       animation: fadeIn 0.4s ease-in-out;
     }
     .step-header {
-      margin-bottom: 20px;
+      margin-bottom: 15px; /* Ridotto */
     }
     .step-header h2 {
-      font-size: 1.4rem;
+      font-size: 1.2rem; /* Ridotto */
       color: var(--primary-color);
-      margin: 0 0 15px 0;
+      margin: 0 0 10px 0; /* Ridotto */
       font-weight: 700;
       text-align: center;
     }
@@ -122,45 +128,48 @@
     .options, .extras {
       display: flex;
       flex-direction: column;
-      gap: 15px;
+      gap: 10px; /* Ridotto */
+      flex: 1; /* Permette di riempire lo spazio disponibile */
+      overflow-y: auto; /* Abilita lo scorrimento interno se necessario */
     }
 
     .option {
       display: flex;
       align-items: center;
-      padding: 14px;
+      padding: 10px; /* Ridotto */
       border: 1px solid var(--input-border-color);
-      border-radius: 12px;
+      border-radius: 10px; /* Ridotto */
       background: white;
       transition: background 0.3s ease, transform 0.3s ease;
-      font-size: 1rem;
+      font-size: 0.9rem; /* Ridotto */
       cursor: pointer;
     }
     .option:hover {
       background: var(--option-hover-bg);
-      transform: translateY(-3px);
+      transform: translateY(-2px); /* Ridotto */
     }
     .option label {
       display: flex;
       align-items: center;
       flex: 1;
-      font-size: 1rem;
+      font-size: 0.9rem; /* Ridotto */
       color: var(--text-color);
       cursor: pointer;
+      word-wrap: break-word;
     }
     .option input {
-      transform: scale(1.5);
-      margin-right: 20px;
+      transform: scale(1.2); /* Ridotto */
+      margin-right: 15px; /* Ridotto */
       cursor: pointer;
     }
 
     /* Immagini delle Spa in Cerchio */
     .spa-image-small {
-      width: 40px;
-      height: 40px;
+      width: 30px; /* Ridotto per adattarsi meglio */
+      height: 30px; /* Ridotto per adattarsi meglio */
       border-radius: 50%;
       object-fit: cover;
-      margin-right: 15px;
+      margin-right: 10px; /* Ridotto */
       box-shadow: 0 2px 6px rgba(0,0,0,0.2);
     }
 
@@ -168,22 +177,30 @@
     .navigation-buttons {
       display: flex;
       justify-content: space-between;
-      margin-top: 30px;
+      margin-top: 15px; /* Ridotto */
       width: 100%;
     }
     .navigation-buttons button {
       background-color: var(--button-color);
       color: white;
-      padding: 12px 25px;
-      font-size: 1rem;
+      padding: 10px 20px; /* Ridotto */
+      font-size: 0.9rem; /* Ridotto */
       border: none;
-      border-radius: 30px;
+      border-radius: 25px; /* Ridotto */
       cursor: pointer;
       transition: background-color 0.3s ease, transform 0.2s ease;
+      flex: 1; /* Permette ai pulsanti di espandersi uniformemente */
+      margin: 0 5px; /* Aggiunto spazio tra i pulsanti */
+    }
+    .navigation-buttons button:first-child {
+      margin-left: 0;
+    }
+    .navigation-buttons button:last-child {
+      margin-right: 0;
     }
     .navigation-buttons button:hover {
       background-color: var(--button-hover-color);
-      transform: scale(1.05);
+      transform: scale(1.02); /* Ridotto */
     }
 
     /* Piccola animazione di fadeIn */
@@ -196,42 +213,68 @@
     @media (max-width: 600px) {
       .price-bar {
         font-size: 1.4rem;
-        padding: 12px 24px;
+        padding: 12px 16px; /* Ridotto */
       }
       .container {
-        padding: 20px;
+        padding: 10px;
+        margin: 80px auto 20px auto; /* Ridotto per adattarsi meglio */
+        height: calc(100vh - 80px); /* Adattato per riempire lo schermo meno la price-bar */
       }
       .container h1 {
-        font-size: 2rem;
-      }
-      .step-header h2 {
-        font-size: 1.3rem;
-      }
-      .navigation-buttons button {
-        padding: 10px 20px;
-        font-size: 0.9rem;
-      }
-      .step {
-        max-width: 500px;
+        font-size: 1.6rem; /* Ridotto */
       }
       .container p {
-        font-size: 1.1rem;
+        font-size: 0.9rem; /* Ridotto */
+      }
+      .step-header h2 {
+        font-size: 1.1rem; /* Ridotto */
+      }
+      .navigation-buttons button {
+        padding: 8px 16px; /* Ridotto */
+        font-size: 0.8rem; /* Ridotto */
+      }
+      .step {
+        padding: 10px; /* Ridotto */
+        border-radius: 10px; /* Ridotto */
+        margin-bottom: 10px; /* Ridotto */
+      }
+      .options, .extras {
+        gap: 8px; /* Ridotto */
+      }
+      .option {
+        padding: 8px; /* Ridotto */
+        border-radius: 8px; /* Ridotto */
+        font-size: 0.8rem; /* Ridotto */
+      }
+      .option input {
+        transform: scale(1); /* Ripristinato */
+        margin-right: 8px; /* Ridotto */
       }
       .spa-image-small {
-        width: 30px;
-        height: 30px;
-        margin-right: 10px;
+        width: 25px; /* Ridotto */
+        height: 25px; /* Ridotto */
+        margin-right: 8px; /* Ridotto */
+      }
+      .loading-overlay .spinner {
+        width: 40px; /* Ridotto */
+        height: 40px; /* Ridotto */
+        border-width: 6px; /* Ridotto */
+      }
+      .modal-content {
+        margin: 20% auto; /* Ridotto */
+        padding: 20px; /* Ridotto */
+        width: 90%; /* Aumentato per adattarsi meglio */
       }
     }
 
     /* Stili per il logo */
     .logo-container {
-      margin-top: 30px;
+      margin-top: 20px; /* Ridotto */
       text-align: center;
     }
 
     .logo {
-      max-width: 150px;
+      max-width: 120px; /* Ridotto */
       height: auto;
     }
 
@@ -256,22 +299,22 @@
     .modal-content {
       background-color: #fefefe;
       margin: 10% auto; /* 10% from the top and centered */
-      padding: 30px;
+      padding: 20px; /* Ridotto */
       border: 1px solid #888;
       width: 80%;
-      max-width: 500px;
-      border-radius: 15px;
+      max-width: 400px; /* Ridotto */
+      border-radius: 10px; /* Ridotto */
       text-align: center;
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
       position: relative;
     }
 
     .close-modal {
       color: #aaa;
       position: absolute;
-      top: 15px;
-      right: 20px;
-      font-size: 2rem;
+      top: 10px; /* Ridotto */
+      right: 15px; /* Ridotto */
+      font-size: 1.5rem; /* Ridotto */
       font-weight: bold;
       cursor: pointer;
     }
@@ -285,17 +328,17 @@
 
     /* Stili per le immagini delle spa */
     .spa-image-container {
-      margin-top: 25px;
+      margin-top: 15px; /* Ridotto */
       text-align: center;
     }
 
     .spa-image {
       max-width: 100%;
       height: auto;
-      border-radius: 10px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      border-radius: 8px; /* Ridotto */
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
       display: none; /* Initially hidden */
-      margin-top: 15px;
+      margin-top: 10px; /* Ridotto */
     }
 
     /* Stili per l'overlay di caricamento */
@@ -307,18 +350,19 @@
       width: 100%;
       height: 100%;
       background-color: rgba(255,255,255,0.8);
+      display: flex; /* Mostrato quando necessario */
       justify-content: center;
       align-items: center;
-      border-radius: 20px;
+      border-radius: 10px; /* Ridotto */
       z-index: 4000; /* Above the step content */
     }
 
     .spinner {
-      border: 8px solid #f3f3f3; /* Light grey */
-      border-top: 8px solid var(--spinner-color); /* Marrone scuro */
+      border: 6px solid #f3f3f3; /* Light grey */
+      border-top: 6px solid var(--spinner-color); /* Marrone scuro */
       border-radius: 50%;
-      width: 60px;
-      height: 60px;
+      width: 40px; /* Ridotto */
+      height: 40px; /* Ridotto */
       animation: spin 1s linear infinite;
     }
 
@@ -498,7 +542,7 @@
             </div>
           </div>
           <!-- Numero di Persone -->
-          <div style="margin-top: 20px;">
+          <div style="margin-top: 15px;">
             <label for="persons" style="font-weight: bold;">Ospiti (Ospite aggiunto +30€):</label>
             <input
               type="number"
@@ -593,7 +637,7 @@
               id="email"
               placeholder="La tua Email"
               required
-              style="width: 100%; padding: 12px; border-radius: 5px; border: 1px solid var(--input-border-color); margin-bottom: 20px;"
+              style="width: 100%; padding: 10px; border-radius: 5px; border: 1px solid var(--input-border-color); margin-bottom: 15px;"
             />
 
             <label for="phone" style="font-weight:bold;">Telefono (opzionale)</label>
@@ -602,7 +646,7 @@
               name="phone"
               id="phone"
               placeholder="Il tuo Telefono"
-              style="width: 100%; padding: 12px; border-radius: 5px; border: 1px solid var(--input-border-color); margin-bottom: 20px;"
+              style="width: 100%; padding: 10px; border-radius: 5px; border: 1px solid var(--input-border-color); margin-bottom: 15px;"
             />
 
             <input type="hidden" name="total" id="total" />
@@ -766,11 +810,6 @@
 
       // Popup di conferma al termine dell'invio
       function onFormLoad() {
-        // Verifica se l'iframe contiene una risposta di successo
-        // Questo dipende dalla risposta del server; assicurati che la Google Apps Script invii una risposta corretta
-        // Ad esempio, potrebbe inviare un semplice HTML con uno script per postMessage
-        // In alternativa, se non hai controllo sulla risposta, puoi semplicemente aprire il popup
-
         // Nascondi l'overlay e mostra il popup
         hideLoading();
         openModal();
@@ -813,5 +852,4 @@
     </script>
 </body>
 </html>
-
 
