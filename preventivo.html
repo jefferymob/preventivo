@@ -72,7 +72,7 @@
       background: var(--background-color);
       display: flex;
       flex-direction: column;
-      align-items: center;
+      align-items: stretch; /* Modificato da center a stretch */
     }
 
     .container h1 {
@@ -766,9 +766,10 @@
 
       // Popup di conferma al termine dell'invio
       function onFormLoad() {
-        // Controlla se il form è stato inviato e la risposta è stata ricevuta
+        // Verifica se l'iframe contiene una risposta di successo
         // Questo dipende dalla risposta del server; assicurati che la Google Apps Script invii una risposta corretta
         // Ad esempio, potrebbe inviare un semplice HTML con uno script per postMessage
+        // In alternativa, se non hai controllo sulla risposta, puoi semplicemente aprire il popup
 
         // Nascondi l'overlay e mostra il popup
         hideLoading();
