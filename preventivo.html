@@ -348,7 +348,6 @@
       width: 100%;
       height: 100%;
       background-color: rgba(255,255,255,0.8);
-      display: flex; /* Mostrato quando necessario */
       justify-content: center;
       align-items: center;
       border-radius: 10px; /* Ridotto */
@@ -648,13 +647,13 @@
 
             <input type="hidden" name="total" id="total" />
           </div>
-          <!-- Overlay di caricamento posizionato all'interno del step-5 -->
+          <!-- Overlay di caricamento posizionato sopra l'intera pagina -->
           <div id="loadingOverlay" class="loading-overlay">
             <div class="spinner"></div>
           </div>
           <div class="navigation-buttons">
             <button type="button" onclick="showPreviousStep(5)">Indietro</button>
-            <button type="submit" onclick="showLoading()">Richiedi Conferma</button>
+            <button type="submit">Richiedi Conferma</button>
           </div>
         </div>
       </form>
@@ -841,6 +840,11 @@
       function hideLoading() {
         document.getElementById("loadingOverlay").style.display = "none";
       }
+
+      // Aggiungi un listener per l'evento submit del modulo
+      document.getElementById('wellnessForm').addEventListener('submit', function(event) {
+        showLoading();
+      });
 
       // Impedisce lo zoom quando si interagisce con gli input
       document.addEventListener('touchmove', function(event) {
