@@ -69,7 +69,7 @@
       flex-direction: column;
       align-items: stretch; /* Allinea gli elementi per estensione */
       height: calc(100vh - 80px); /* Adatta l'altezza per riempire lo schermo meno la price-bar */
-      overflow: hidden; /* Previene lo scorrimento interno */
+      overflow-y: auto; /* Permette lo scorrimento verticale se necessario */
     }
 
     .container h1 {
@@ -91,7 +91,6 @@
 
     /* Sistemiamo i passaggi/step */
     .step {
-      display: none;
       width: 100%;
       background: white;
       padding: 15px; /* Ridotto per mobile */
@@ -99,10 +98,9 @@
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
       margin-bottom: 15px; /* Ridotto per mobile */
       position: relative;
-      flex: 1; /* Permette di riempire lo spazio disponibile */
-      display: flex;
+      display: none; /* Nascondi tutti gli step inizialmente */
       flex-direction: column;
-      overflow: hidden; /* Previene lo scorrimento interno */
+      transition: max-height 0.3s ease, padding 0.3s ease;
     }
     .step.active {
       display: flex;
@@ -442,7 +440,7 @@
           <!-- Pulsanti di navigazione -->
           <div class="navigation-buttons">
             <div></div> <!-- Spazio vuoto per allineamento -->
-            <button type="button" onclick="nextStep(1)">Avanti</button>
+            <button type="button" onclick="showNextStep(1)">Avanti</button>
           </div>
         </div>
 
@@ -496,8 +494,8 @@
             </div>
           </div>
           <div class="navigation-buttons">
-            <button type="button" onclick="prevStep(2)">Indietro</button>
-            <button type="button" onclick="nextStep(2)">Avanti</button>
+            <button type="button" onclick="showPreviousStep(2)">Indietro</button>
+            <button type="button" onclick="showNextStep(2)">Avanti</button>
           </div>
         </div>
 
@@ -549,8 +547,8 @@
             />
           </div>
           <div class="navigation-buttons">
-            <button type="button" onclick="prevStep(3)">Indietro</button>
-            <button type="button" onclick="nextStep(3)">Avanti</button>
+            <button type="button" onclick="showPreviousStep(3)">Indietro</button>
+            <button type="button" onclick="showNextStep(3)">Avanti</button>
           </div>
         </div>
 
@@ -614,8 +612,8 @@
             </div>
           </div>
           <div class="navigation-buttons">
-            <button type="button" onclick="prevStep(4)">Indietro</button>
-            <button type="button" onclick="nextStep(4)">Avanti</button>
+            <button type="button" onclick="showPreviousStep(4)">Indietro</button>
+            <button type="button" onclick="showNextStep(4)">Avanti</button>
           </div>
         </div>
 
@@ -651,7 +649,7 @@
             <div class="spinner"></div>
           </div>
           <div class="navigation-buttons">
-            <button type="button" onclick="prevStep(5)">Indietro</button>
+            <button type="button" onclick="showPreviousStep(5)">Indietro</button>
             <button type="submit" onclick="showLoading()">Richiedi Conferma</button>
           </div>
         </div>
@@ -683,12 +681,18 @@
 
       function showStep(step) {
         for (let i = 1; i <= totalSteps; i++) {
-          document.getElementById(`step-${i}`).classList.remove("active");
+          const stepElement = document.getElementById(`step-${i}`);
+          if (i === step) {
+            stepElement.classList.add("active");
+          } else if (i < step) {
+            stepElement.classList.add("active"); // Mantieni visibili i passaggi precedenti
+          } else {
+            stepElement.classList.remove("active");
+          }
         }
-        document.getElementById(`step-${step}`).classList.add("active");
       }
 
-      function nextStep(step) {
+      function showNextStep(step) {
         if (!validateStep(step)) return;
         if (step < totalSteps) {
           currentStep = step + 1;
@@ -697,7 +701,7 @@
         }
       }
 
-      function prevStep(step) {
+      function showPreviousStep(step) {
         if (step > 1) {
           currentStep = step - 1;
           showStep(currentStep);
@@ -847,3 +851,4 @@
     </script>
 </body>
 </html>
+
