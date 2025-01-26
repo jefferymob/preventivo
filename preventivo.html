@@ -160,6 +160,16 @@
       cursor: pointer;
     }
 
+    /* Immagini delle Spa in Cerchio */
+    .spa-image-small {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-right: 15px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    }
+
     /* Pulsanti navigazione */
     .navigation-buttons {
       display: flex;
@@ -189,7 +199,7 @@
       to   { opacity: 1; }
     }
 
-    /* Riduciamo i margini su schermi piccoli */
+    /* Responsive Design */
     @media (max-width: 600px) {
       .price-bar {
         font-size: 1.4rem; /* Aumentato */
@@ -213,6 +223,11 @@
       }
       .container p {
         font-size: 1.1rem;
+      }
+      .spa-image-small {
+        width: 30px;
+        height: 30px;
+        margin-right: 10px;
       }
     }
 
@@ -291,7 +306,34 @@
     }
 
     /* Stili per l'overlay di caricamento */
-   
+    .loading-overlay {
+      display: none; /* Hidden by default */
+      position: fixed;
+      z-index: 4000; /* Above modal */
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(255,255,255,0.8);
+      display: flex; /* Solo quando viene mostrato */
+      justify-content: center;
+      align-items: center;
+    }
+
+    .spinner {
+      border: 8px solid #f3f3f3; /* Light grey */
+      border-top: 8px solid var(--spinner-color); /* Marrone scuro */
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
   </style>
 </head>
 
@@ -319,6 +361,7 @@
           </div>
           <div class="options">
             <div class="option">
+              <img src="https://www.trilussapalacehotel.it/data/2560/Hotel-Trilussa-Palace-spa-maya-5456-HDR.jpg" alt="SPA MAYA" class="spa-image-small" />
               <label>
                 <input
                   type="radio"
@@ -332,6 +375,7 @@
               </label>
             </div>
             <div class="option">
+              <img src="https://www.trilussapalacehotel.it/data/2560/Hotel-Trilussa-Palace-spa-moon-3559.jpg" alt="SPA MOON" class="spa-image-small" />
               <label>
                 <input
                   type="radio"
@@ -345,6 +389,7 @@
               </label>
             </div>
             <div class="option">
+              <img src="https://www.trilussapalacehotel.it/data/2560/Hotel-Trilussa-Palace-spa-domus-63.jpg" alt="SPA DOMUS" class="spa-image-small" />
               <label>
                 <input
                   type="radio"
@@ -358,12 +403,8 @@
               </label>
             </div>
           </div>
-          <!-- Container per le immagini delle spa -->
-          <div class="spa-image-container">
-            <img src="https://via.placeholder.com/600x400?text=SPA+MAYA" alt="SPA MAYA" class="spa-image" id="spa-image-spa-maya" />
-            <img src="https://via.placeholder.com/600x400?text=SPA+MOON" alt="SPA MOON" class="spa-image" id="spa-image-spa-moon" />
-            <img src="https://via.placeholder.com/600x400?text=SPA+DOMUS" alt="SPA DOMUS" class="spa-image" id="spa-image-spa-domus" />
-          </div>
+          <!-- Container per le immagini delle spa (rimossa) -->
+          <!-- Le immagini sono ora accanto alle opzioni -->
           <div class="navigation-buttons">
             <div></div> <!-- Spazio vuoto per allineamento -->
             <button type="button" onclick="nextStep(1)">Avanti</button>
@@ -563,7 +604,7 @@
           </div>
           <div class="navigation-buttons">
             <button type="button" onclick="prevStep(5)">Indietro</button>
-            <button type="submit">Richiedi Conferma</button>
+            <button type="submit" onclick="showLoading()">Richiedi Conferma</button>
           </div>
         </div>
       </form>
@@ -747,7 +788,19 @@
       }
 
       // Funzioni per l'overlay di caricamento
-     
+      function showLoading() {
+        document.getElementById("loadingOverlay").style.display = "flex";
+      }
+
+      function hideLoading() {
+        document.getElementById("loadingOverlay").style.display = "none";
+      }
+
+      // Mostra l'overlay di caricamento quando il form viene inviato
+      document.getElementById("wellnessForm").addEventListener("submit", function(event) {
+        showLoading();
+      });
+
       // Impedisce lo zoom quando si interagisce con gli input
       document.addEventListener('touchmove', function(event) {
         // Solo se non si sta interagendo con un input
@@ -759,4 +812,5 @@
     </script>
 </body>
 </html>
+
 
