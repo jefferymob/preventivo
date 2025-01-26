@@ -30,96 +30,90 @@
       --spinner-color: #6D4C41;
     }
 
-    /* Impostazioni base per rimuovere scroll e sfruttare tutto lo spazio */
+    /* Impostazioni base */
     html, body {
       margin: 0;
       padding: 0;
       width: 100%;
       height: 100%;
       font-family: 'Roboto', sans-serif;
-      background: var(--background-color); /* Aggiornato */
-      /* Nessun overflow, così da non mostrare barre di scroll */
-      overflow: hidden; 
+      background: var(--background-color);
+      /* Rimosso overflow: hidden per permettere lo scorrimento */
+      /* overflow: hidden; */
     }
 
     /* Barra fissa con il totale */
     .price-bar {
-      position: absolute;
+      position: fixed; /* Cambiato in fixed per mantenere sempre visibile */
       top: 0;
       left: 50%;
       transform: translateX(-50%);
       background-color: var(--price-bar-color);
       color: white;
-      padding: 16px 32px; /* Aumentato il padding */
-      border-radius: 0 0 20px 20px; /* Aumentato il border-radius */
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Aumentata l'ombra */
-      font-size: 1.6rem; /* Aumentata la dimensione del font */
+      padding: 16px 32px;
+      border-radius: 0 0 20px 20px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      font-size: 1.6rem;
       z-index: 1000;
       font-weight: 700;
+      width: 100%;
+      max-width: 600px;
+      box-sizing: border-box;
+      text-align: center;
     }
 
-    /* Contenitore a piena altezza (meno lo spazio della barra) */
+    /* Contenitore principale */
     .container {
-      position: absolute;
-      top: 80px; /* Altezza della .price-bar + padding */
-      left: 50%;
-      transform: translateX(-50%);
-      width: 90%; /* Allargato */
-      max-width: 600px; /* Ridotto il max-width per una dimensione più contenuta */
-      bottom: 20px; /* Aggiunto un po' di spazio in basso */
+      margin: 100px auto 40px auto; /* Aggiustato per lasciare spazio per la price-bar */
+      width: 90%;
+      max-width: 600px;
       padding: 20px;
       box-sizing: border-box;
       background: var(--background-color);
-
-      /* Utilizzo di Flexbox per distribuire lo spazio */
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
       align-items: center;
-
-      /* Rimuovere l'overflow */
-      overflow: hidden;
     }
 
     .container h1 {
       color: var(--primary-color);
-      font-size: 2rem; /* Ridotto leggermente */
+      font-size: 2rem;
       margin-top: 0;
-      margin-bottom: 20px; /* Aumentato */
+      margin-bottom: 20px;
       font-weight: 700;
       text-align: center;
     }
 
     .container p {
       color: var(--text-color);
-      font-size: 1.2rem; /* Aumentato */
-      margin-bottom: 25px; /* Aumentato */
+      font-size: 1.2rem;
+      margin-bottom: 25px;
       text-align: center;
-      max-width: 600px; /* Aumentato */
+      max-width: 600px;
     }
 
     /* Sistemiamo i passaggi/step */
     .step {
       display: none;
       width: 100%;
-      max-width: 600px; /* Aumentata la larghezza per ospitare meglio il contenuto */
       background: white;
-      padding: 25px; /* Aumentato il padding */
-      border-radius: 20px; /* Aumentato il border-radius */
-      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1); /* Aumentata l'ombra */
-      margin-bottom: 25px; /* Aumentato il margine */
+      padding: 25px;
+      border-radius: 20px;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+      margin-bottom: 25px;
+      position: relative;
     }
     .step.active {
       display: block;
       animation: fadeIn 0.4s ease-in-out;
     }
     .step-header {
-      margin-bottom: 20px; /* Aumentato */
+      margin-bottom: 20px;
     }
     .step-header h2 {
-      font-size: 1.4rem; /* Aumentato */
+      font-size: 1.4rem;
       color: var(--primary-color);
-      margin: 0 0 15px 0; /* Aumentato */
+      margin: 0 0 15px 0;
       font-weight: 700;
       text-align: center;
     }
@@ -128,15 +122,15 @@
     .options, .extras {
       display: flex;
       flex-direction: column;
-      gap: 15px; /* Aumentato */
+      gap: 15px;
     }
 
     .option {
       display: flex;
       align-items: center;
-      padding: 14px; /* Aumentato */
+      padding: 14px;
       border: 1px solid var(--input-border-color);
-      border-radius: 12px; /* Aumentato */
+      border-radius: 12px;
       background: white;
       transition: background 0.3s ease, transform 0.3s ease;
       font-size: 1rem;
@@ -144,7 +138,7 @@
     }
     .option:hover {
       background: var(--option-hover-bg);
-      transform: translateY(-3px); /* Aumentato l'effetto */
+      transform: translateY(-3px);
     }
     .option label {
       display: flex;
@@ -155,8 +149,8 @@
       cursor: pointer;
     }
     .option input {
-      transform: scale(1.5); /* Aumentata la dimensione */
-      margin-right: 20px; /* Aumentato */
+      transform: scale(1.5);
+      margin-right: 20px;
       cursor: pointer;
     }
 
@@ -174,17 +168,16 @@
     .navigation-buttons {
       display: flex;
       justify-content: space-between;
-      margin-top: 30px; /* Aumentato */
+      margin-top: 30px;
       width: 100%;
-      max-width: 600px;
     }
     .navigation-buttons button {
       background-color: var(--button-color);
       color: white;
-      padding: 12px 25px; /* Aumentato */
+      padding: 12px 25px;
       font-size: 1rem;
       border: none;
-      border-radius: 30px; /* Mantenuto */
+      border-radius: 30px;
       cursor: pointer;
       transition: background-color 0.3s ease, transform 0.2s ease;
     }
@@ -202,24 +195,24 @@
     /* Responsive Design */
     @media (max-width: 600px) {
       .price-bar {
-        font-size: 1.4rem; /* Aumentato */
-        padding: 12px 24px; /* Aumentato */
+        font-size: 1.4rem;
+        padding: 12px 24px;
       }
       .container {
         padding: 20px;
       }
       .container h1 {
-        font-size: 2rem; /* Aumentato */
+        font-size: 2rem;
       }
       .step-header h2 {
-        font-size: 1.3rem; /* Aumentato */
+        font-size: 1.3rem;
       }
       .navigation-buttons button {
-        padding: 10px 20px; /* Aumentato */
+        padding: 10px 20px;
         font-size: 0.9rem;
       }
       .step {
-        max-width: 500px; /* Aumentato */
+        max-width: 500px;
       }
       .container p {
         font-size: 1.1rem;
@@ -233,25 +226,25 @@
 
     /* Stili per il logo */
     .logo-container {
-      margin-top: 30px; /* Aumentato */
+      margin-top: 30px;
       text-align: center;
     }
 
     .logo {
-      max-width: 150px; /* Ridotto da 200px per evitare tagli */
+      max-width: 150px;
       height: auto;
     }
 
     /* Prevenzione dello zoom quando si interagisce con gli input */
     input, textarea, select, button {
-      font-size: 16px; /* Imposta almeno 16px per prevenire lo zoom su mobile */
+      font-size: 16px;
     }
 
     /* Stili per il popup */
     .modal {
       display: none; /* Hidden by default */
       position: fixed;
-      z-index: 3000; /* Sit on top */
+      z-index: 5000; /* Above loading overlay */
       left: 0;
       top: 0;
       width: 100%;
@@ -292,7 +285,7 @@
 
     /* Stili per le immagini delle spa */
     .spa-image-container {
-      margin-top: 25px; /* Aumentato */
+      margin-top: 25px;
       text-align: center;
     }
 
@@ -308,16 +301,16 @@
     /* Stili per l'overlay di caricamento */
     .loading-overlay {
       display: none; /* Hidden by default */
-      position: fixed;
-      z-index: 4000; /* Above modal */
-      left: 0;
+      position: absolute; /* Posizionato all'interno del step-5 */
       top: 0;
+      left: 0;
       width: 100%;
       height: 100%;
       background-color: rgba(255,255,255,0.8);
-      /* Rimosso il display: flex; qui */
       justify-content: center;
       align-items: center;
+      border-radius: 20px;
+      z-index: 4000; /* Above the step content */
     }
 
     .spinner {
@@ -614,6 +607,10 @@
 
             <input type="hidden" name="total" id="total" />
           </div>
+          <!-- Overlay di caricamento posizionato all'interno del step-5 -->
+          <div id="loadingOverlay" class="loading-overlay">
+            <div class="spinner"></div>
+          </div>
           <div class="navigation-buttons">
             <button type="button" onclick="prevStep(5)">Indietro</button>
             <button type="submit" onclick="showLoading()">Richiedi Conferma</button>
@@ -626,8 +623,8 @@
         <img src="https://www.trilussasparoma.com/data/png/logo_global.png" alt="Trilussa Palace Hotel Logo" class="logo" />
       </div>
 
-      <!-- Iframe nascosto per l'invio del form -->
-      <iframe name="hiddenFrame" style="display:none;"></iframe>
+      <!-- Iframe nascosto per l'invio del form con onload -->
+      <iframe name="hiddenFrame" style="display:none;" onload="onFormLoad()"></iframe>
 
       <!-- Popup di conferma -->
       <div id="confirmationModal" class="modal">
@@ -637,11 +634,6 @@
           <p>Grazie! La tua richiesta è stata inviata con successo.</p>
           <button onclick="closeModal()">Chiudi</button>
         </div>
-      </div>
-
-      <!-- Overlay di caricamento -->
-      <div id="loadingOverlay" class="loading-overlay">
-        <div class="spinner"></div>
       </div>
 
     </div>
@@ -773,14 +765,15 @@
       }
 
       // Popup di conferma al termine dell'invio
-      window.addEventListener("message", function (event) {
-        if (event.data === "formSubmitted") {
-          openModal();
-          hideLoading();
-          // Optionally hide the form
-          // document.getElementById("wellnessForm").style.display = "none";
-        }
-      });
+      function onFormLoad() {
+        // Controlla se il form è stato inviato e la risposta è stata ricevuta
+        // Questo dipende dalla risposta del server; assicurati che la Google Apps Script invii una risposta corretta
+        // Ad esempio, potrebbe inviare un semplice HTML con uno script per postMessage
+
+        // Nascondi l'overlay e mostra il popup
+        hideLoading();
+        openModal();
+      }
 
       // Funzioni per aprire e chiudere il popup
       function openModal() {
@@ -807,11 +800,6 @@
       function hideLoading() {
         document.getElementById("loadingOverlay").style.display = "none";
       }
-
-      // Mostra l'overlay di caricamento quando il form viene inviato
-      document.getElementById("wellnessForm").addEventListener("submit", function(event) {
-        showLoading();
-      });
 
       // Impedisce lo zoom quando si interagisce con gli input
       document.addEventListener('touchmove', function(event) {
