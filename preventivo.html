@@ -65,7 +65,7 @@
       left: 50%;
       transform: translateX(-50%);
       width: 90%; /* Allargato */
-      max-width: 800px; /* Aumentato il max-width */
+      max-width: 600px; /* Ridotto il max-width per una dimensione più contenuta */
       bottom: 20px; /* Aggiunto un po' di spazio in basso */
       padding: 20px;
       box-sizing: border-box;
@@ -83,7 +83,7 @@
 
     .container h1 {
       color: var(--primary-color);
-      font-size: 2.5rem; /* Aumentato */
+      font-size: 2rem; /* Ridotto leggermente */
       margin-top: 0;
       margin-bottom: 20px; /* Aumentato */
       font-weight: 700;
@@ -223,7 +223,7 @@
     }
 
     .logo {
-      max-width: 200px; /* Aumentato da 150px */
+      max-width: 150px; /* Ridotto da 200px per evitare tagli */
       height: auto;
     }
 
@@ -300,14 +300,14 @@
       width: 100%;
       height: 100%;
       background-color: rgba(255,255,255,0.8);
-      display: flex;
+      display: flex; /* Move display: flex; here, not duplicated */
       justify-content: center;
       align-items: center;
     }
 
     .spinner {
       border: 8px solid #f3f3f3; /* Light grey */
-      border-top: 8px solid var(--spinner-color); /* Blue */
+      border-top: 8px solid var(--spinner-color); /* Marrone scuro */
       border-radius: 50%;
       width: 60px;
       height: 60px;
@@ -387,9 +387,9 @@
           </div>
           <!-- Container per le immagini delle spa -->
           <div class="spa-image-container">
-            <img src="https://www.trilussapalacehotel.it/data/2560/Hotel-Trilussa-Palace-spa-maya-5456-HDR.jpg" alt="SPA MAYA" class="spa-image" id="spa-image-spa-maya" />
-            <img src="https://www.trilussapalacehotel.it/data/2560/Hotel-Trilussa-Palace-spa-moon-15.jpg" alt="SPA MOON" class="spa-image" id="spa-image-spa-moon" />
-            <img src="https://www.trilussapalacehotel.it/data/2560/Hotel-Trilussa-Palace-spa-domus-67.jpg" alt="SPA DOMUS" class="spa-image" id="spa-image-spa-domus" />
+            <img src="https://via.placeholder.com/600x400?text=SPA+MAYA" alt="SPA MAYA" class="spa-image" id="spa-image-spa-maya" />
+            <img src="https://via.placeholder.com/600x400?text=SPA+MOON" alt="SPA MOON" class="spa-image" id="spa-image-spa-moon" />
+            <img src="https://via.placeholder.com/600x400?text=SPA+DOMUS" alt="SPA DOMUS" class="spa-image" id="spa-image-spa-domus" />
           </div>
           <div class="navigation-buttons">
             <div></div> <!-- Spazio vuoto per allineamento -->
@@ -798,3 +798,4 @@
     </script>
 </body>
 </html>
+
