@@ -19,13 +19,15 @@
       --primary-color: #6D4C41; /* Marrone scuro */
       --secondary-color: #8D6E63; /* Marrone chiaro */
       --accent-color: #FFA726; /* Arancione */
-      --background-color: #f5f5f5; /* Grigio chiaro */
+      --background-color: #f2efed; /* Aggiornato */
       --text-color: #333333; /* Grigio scuro */
       --price-bar-color: #8D6E63; /* Marrone chiaro */
       --button-color: #6D4C41; /* Marrone scuro */
       --button-hover-color: #8D6E63; /* Marrone chiaro */
       --input-border-color: #cccccc;
       --option-hover-bg: #e0e0e0;
+      --modal-bg: rgba(0, 0, 0, 0.5);
+      --spinner-color: #6D4C41;
     }
 
     /* Impostazioni base per rimuovere scroll e sfruttare tutto lo spazio */
@@ -35,7 +37,7 @@
       width: 100%;
       height: 100%;
       font-family: 'Roboto', sans-serif;
-      background: var(--background-color);
+      background: var(--background-color); /* Aggiornato */
       /* Nessun overflow, così da non mostrare barre di scroll */
       overflow: hidden; 
     }
@@ -48,10 +50,10 @@
       transform: translateX(-50%);
       background-color: var(--price-bar-color);
       color: white;
-      padding: 12px 24px;
-      border-radius: 0 0 15px 15px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-      font-size: 1.4rem;
+      padding: 16px 32px; /* Aumentato il padding */
+      border-radius: 0 0 20px 20px; /* Aumentato il border-radius */
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Aumentata l'ombra */
+      font-size: 1.6rem; /* Aumentata la dimensione del font */
       z-index: 1000;
       font-weight: 700;
     }
@@ -59,10 +61,12 @@
     /* Contenitore a piena altezza (meno lo spazio della barra) */
     .container {
       position: absolute;
-      top: 70px; /* Altezza della .price-bar + padding */
-      left: 0;
-      right: 0;
-      bottom: 0;
+      top: 80px; /* Altezza della .price-bar + padding */
+      left: 50%;
+      transform: translateX(-50%);
+      width: 90%; /* Allargato */
+      max-width: 800px; /* Aumentato il max-width */
+      bottom: 20px; /* Aggiunto un po' di spazio in basso */
       padding: 20px;
       box-sizing: border-box;
       background: var(--background-color);
@@ -79,43 +83,43 @@
 
     .container h1 {
       color: var(--primary-color);
-      font-size: 2rem;
+      font-size: 2.5rem; /* Aumentato */
       margin-top: 0;
-      margin-bottom: 10px;
+      margin-bottom: 20px; /* Aumentato */
       font-weight: 700;
       text-align: center;
     }
 
     .container p {
       color: var(--text-color);
-      font-size: 1.1rem;
-      margin-bottom: 20px;
+      font-size: 1.2rem; /* Aumentato */
+      margin-bottom: 25px; /* Aumentato */
       text-align: center;
-      max-width: 400px;
+      max-width: 600px; /* Aumentato */
     }
 
     /* Sistemiamo i passaggi/step */
     .step {
       display: none;
       width: 100%;
-      max-width: 400px; /* Aumenta la larghezza per ospitare meglio il contenuto */
+      max-width: 600px; /* Aumentata la larghezza per ospitare meglio il contenuto */
       background: white;
-      padding: 20px;
-      border-radius: 15px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      margin-bottom: 20px;
+      padding: 25px; /* Aumentato il padding */
+      border-radius: 20px; /* Aumentato il border-radius */
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1); /* Aumentata l'ombra */
+      margin-bottom: 25px; /* Aumentato il margine */
     }
     .step.active {
       display: block;
       animation: fadeIn 0.4s ease-in-out;
     }
     .step-header {
-      margin-bottom: 15px;
+      margin-bottom: 20px; /* Aumentato */
     }
     .step-header h2 {
-      font-size: 1.2rem;
+      font-size: 1.4rem; /* Aumentato */
       color: var(--primary-color);
-      margin: 0 0 10px 0;
+      margin: 0 0 15px 0; /* Aumentato */
       font-weight: 700;
       text-align: center;
     }
@@ -124,15 +128,15 @@
     .options, .extras {
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      gap: 15px; /* Aumentato */
     }
 
     .option {
       display: flex;
       align-items: center;
-      padding: 12px;
+      padding: 14px; /* Aumentato */
       border: 1px solid var(--input-border-color);
-      border-radius: 10px;
+      border-radius: 12px; /* Aumentato */
       background: white;
       transition: background 0.3s ease, transform 0.3s ease;
       font-size: 1rem;
@@ -140,7 +144,7 @@
     }
     .option:hover {
       background: var(--option-hover-bg);
-      transform: translateY(-2px);
+      transform: translateY(-3px); /* Aumentato l'effetto */
     }
     .option label {
       display: flex;
@@ -151,8 +155,8 @@
       cursor: pointer;
     }
     .option input {
-      transform: scale(1.3);
-      margin-right: 15px;
+      transform: scale(1.5); /* Aumentata la dimensione */
+      margin-right: 20px; /* Aumentato */
       cursor: pointer;
     }
 
@@ -160,17 +164,17 @@
     .navigation-buttons {
       display: flex;
       justify-content: space-between;
-      margin-top: 20px;
+      margin-top: 30px; /* Aumentato */
       width: 100%;
-      max-width: 400px;
+      max-width: 600px;
     }
     .navigation-buttons button {
       background-color: var(--button-color);
       color: white;
-      padding: 10px 20px;
+      padding: 12px 25px; /* Aumentato */
       font-size: 1rem;
       border: none;
-      border-radius: 25px;
+      border-radius: 30px; /* Mantenuto */
       cursor: pointer;
       transition: background-color 0.3s ease, transform 0.2s ease;
     }
@@ -188,38 +192,38 @@
     /* Riduciamo i margini su schermi piccoli */
     @media (max-width: 600px) {
       .price-bar {
-        font-size: 1.2rem;
-        padding: 10px 20px;
+        font-size: 1.4rem; /* Aumentato */
+        padding: 12px 24px; /* Aumentato */
       }
       .container {
-        padding: 15px;
+        padding: 20px;
       }
       .container h1 {
-        font-size: 1.8rem;
+        font-size: 2rem; /* Aumentato */
       }
       .step-header h2 {
-        font-size: 1.1rem;
+        font-size: 1.3rem; /* Aumentato */
       }
       .navigation-buttons button {
-        padding: 8px 16px;
+        padding: 10px 20px; /* Aumentato */
         font-size: 0.9rem;
       }
       .step {
-        max-width: 320px; /* Riduci leggermente la larghezza per risparmiare spazio */
+        max-width: 500px; /* Aumentato */
       }
       .container p {
-        font-size: 1rem;
+        font-size: 1.1rem;
       }
     }
 
     /* Stili per il logo */
     .logo-container {
-      margin-top: 20px;
+      margin-top: 30px; /* Aumentato */
       text-align: center;
     }
 
     .logo {
-      max-width: 150px; /* Aumentato da 100px */
+      max-width: 200px; /* Aumentato da 150px */
       height: auto;
     }
 
@@ -232,31 +236,34 @@
     .modal {
       display: none; /* Hidden by default */
       position: fixed;
-      z-index: 2000; /* Sit on top */
+      z-index: 3000; /* Sit on top */
       left: 0;
       top: 0;
       width: 100%;
       height: 100%;
       overflow: auto; /* Enable scroll if needed */
-      background-color: rgba(0,0,0,0.5); /* Black w/ opacity */
+      background-color: var(--modal-bg); /* Black w/ opacity */
     }
 
     .modal-content {
       background-color: #fefefe;
-      margin: 15% auto; /* 15% from the top and centered */
-      padding: 20px;
+      margin: 10% auto; /* 10% from the top and centered */
+      padding: 30px;
       border: 1px solid #888;
       width: 80%;
-      max-width: 400px;
-      border-radius: 10px;
+      max-width: 500px;
+      border-radius: 15px;
       text-align: center;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+      position: relative;
     }
 
     .close-modal {
       color: #aaa;
-      float: right;
-      font-size: 1.5rem;
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      font-size: 2rem;
       font-weight: bold;
       cursor: pointer;
     }
@@ -270,7 +277,7 @@
 
     /* Stili per le immagini delle spa */
     .spa-image-container {
-      margin-top: 20px;
+      margin-top: 25px; /* Aumentato */
       text-align: center;
     }
 
@@ -278,8 +285,38 @@
       max-width: 100%;
       height: auto;
       border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
       display: none; /* Initially hidden */
+      margin-top: 15px;
+    }
+
+    /* Stili per l'overlay di caricamento */
+    .loading-overlay {
+      display: none; /* Hidden by default */
+      position: fixed;
+      z-index: 4000; /* Above modal */
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(255,255,255,0.8);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .spinner {
+      border: 8px solid #f3f3f3; /* Light grey */
+      border-top: 8px solid var(--spinner-color); /* Blue */
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
     }
 
   </style>
@@ -350,9 +387,9 @@
           </div>
           <!-- Container per le immagini delle spa -->
           <div class="spa-image-container">
-            <img src="https://via.placeholder.com/300x200?text=SPA+MAYA" alt="SPA MAYA" class="spa-image" id="spa-image-spa-maya" />
-            <img src="https://via.placeholder.com/300x200?text=SPA+MOON" alt="SPA MOON" class="spa-image" id="spa-image-spa-moon" />
-            <img src="https://via.placeholder.com/300x200?text=SPA+DOMUS" alt="SPA DOMUS" class="spa-image" id="spa-image-spa-domus" />
+            <img src="https://www.trilussapalacehotel.it/data/2560/Hotel-Trilussa-Palace-spa-maya-5456-HDR.jpg" alt="SPA MAYA" class="spa-image" id="spa-image-spa-maya" />
+            <img src="https://www.trilussapalacehotel.it/data/2560/Hotel-Trilussa-Palace-spa-moon-15.jpg" alt="SPA MOON" class="spa-image" id="spa-image-spa-moon" />
+            <img src="https://www.trilussapalacehotel.it/data/2560/Hotel-Trilussa-Palace-spa-domus-67.jpg" alt="SPA DOMUS" class="spa-image" id="spa-image-spa-domus" />
           </div>
           <div class="navigation-buttons">
             <div></div> <!-- Spazio vuoto per allineamento -->
@@ -446,7 +483,7 @@
             </div>
           </div>
           <!-- Numero di Persone -->
-          <div style="margin-top: 12px;">
+          <div style="margin-top: 20px;">
             <label for="persons" style="font-weight: bold;">Ospiti (Ospite aggiunto +30€):</label>
             <input
               type="number"
@@ -454,7 +491,7 @@
               id="persons"
               value="2"
               min="2"
-              style="width: 100%; padding: 8px; margin-top: 5px; border-radius: 5px; border: 1px solid var(--input-border-color);"
+              style="width: 100%; padding: 10px; margin-top: 10px; border-radius: 5px; border: 1px solid var(--input-border-color);"
             />
           </div>
           <div class="navigation-buttons">
@@ -537,7 +574,7 @@
               id="email"
               placeholder="La tua Email"
               required
-              style="width: 100%; padding: 10px; border-radius: 5px; border: 1px solid var(--input-border-color); margin-bottom: 15px;"
+              style="width: 100%; padding: 12px; border-radius: 5px; border: 1px solid var(--input-border-color); margin-bottom: 20px;"
             />
 
             <label style="font-weight:bold;">Telefono (opzionale)</label>
@@ -546,7 +583,7 @@
               name="phone"
               id="phone"
               placeholder="Il tuo Telefono"
-              style="width: 100%; padding: 10px; border-radius: 5px; border: 1px solid var(--input-border-color); margin-bottom: 15px;"
+              style="width: 100%; padding: 12px; border-radius: 5px; border: 1px solid var(--input-border-color); margin-bottom: 20px;"
             />
 
             <input type="hidden" name="total" id="total" />
@@ -574,6 +611,11 @@
           <p>Grazie! La tua richiesta è stata inviata con successo.</p>
           <button onclick="closeModal()">Chiudi</button>
         </div>
+      </div>
+
+      <!-- Overlay di caricamento -->
+      <div id="loadingOverlay" class="loading-overlay">
+        <div class="spinner"></div>
       </div>
 
     </div>
@@ -708,6 +750,7 @@
       window.addEventListener("message", function (event) {
         if (event.data === "formSubmitted") {
           openModal();
+          hideLoading();
           // Optionally hide the form
           // document.getElementById("wellnessForm").style.display = "none";
         }
@@ -730,6 +773,20 @@
         }
       }
 
+      // Funzioni per l'overlay di caricamento
+      function showLoading() {
+        document.getElementById("loadingOverlay").style.display = "flex";
+      }
+
+      function hideLoading() {
+        document.getElementById("loadingOverlay").style.display = "none";
+      }
+
+      // Mostra l'overlay di caricamento quando il form viene inviato
+      document.getElementById("wellnessForm").addEventListener("submit", function(event) {
+        showLoading();
+      });
+
       // Impedisce lo zoom quando si interagisce con gli input
       document.addEventListener('touchmove', function(event) {
         // Solo se non si sta interagendo con un input
@@ -741,4 +798,3 @@
     </script>
 </body>
 </html>
-
