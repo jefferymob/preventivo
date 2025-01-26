@@ -38,60 +38,54 @@
       height: 100%;
       font-family: 'Roboto', sans-serif;
       background: var(--background-color);
-      /* Rimosso overflow: hidden per permettere lo scorrimento */
-      /* overflow: hidden; */
+      overflow: hidden; /* Previene lo scorrimento complessivo */
     }
 
     /* Barra fissa con il totale */
     .price-bar {
-      position: fixed; /* Cambiato in fixed per mantenere sempre visibile */
+      position: fixed; /* Fissa la barra in alto */
       top: 0;
-      left: 50%;
-      transform: translateX(-50%);
+      left: 0;
+      width: 100%;
       background-color: var(--price-bar-color);
       color: white;
-      padding: 16px 32px;
-      border-radius: 0 0 20px 20px;
+      padding: 12px 16px; /* Ridotto per mobile */
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-      font-size: 1.6rem;
+      font-size: 1.4rem; /* Ridotto per mobile */
       z-index: 1000;
       font-weight: 700;
-      width: 100%;
-      max-width: 600px;
-      box-sizing: border-box;
       text-align: center;
     }
 
     /* Contenitore principale */
     .container {
-      margin: 100px auto 40px auto; /* Aggiustato per lasciare spazio per la price-bar */
-      width: 90%;
+      margin: 60px auto 20px auto; /* Ridotto per mobile */
+      width: 95%;
       max-width: 600px;
-      padding: 10px; /* Ridotto per adattarsi meglio su mobile */
+      padding: 10px; /* Ridotto per mobile */
       box-sizing: border-box;
       background: var(--background-color);
       display: flex;
       flex-direction: column;
-      align-items: stretch; /* Modificato da center a stretch */
-      overflow: hidden; /* Impedisce scorrimento interno */
-      height: calc(100vh - 100px); /* Adattato per riempire lo schermo meno la price-bar */
+      align-items: stretch; /* Allinea gli elementi per estensione */
+      height: calc(100vh - 80px); /* Adatta l'altezza per riempire lo schermo meno la price-bar */
+      overflow: hidden; /* Previene lo scorrimento interno */
     }
 
     .container h1 {
       color: var(--primary-color);
-      font-size: 1.8rem; /* Ridotto leggermente */
+      font-size: 1.6rem; /* Ridotto per mobile */
       margin-top: 0;
-      margin-bottom: 15px; /* Ridotto */
+      margin-bottom: 10px; /* Ridotto per mobile */
       font-weight: 700;
       text-align: center;
     }
 
     .container p {
       color: var(--text-color);
-      font-size: 1rem; /* Ridotto per adattarsi meglio */
-      margin-bottom: 20px; /* Ridotto */
+      font-size: 1rem; /* Ridotto per mobile */
+      margin-bottom: 15px; /* Ridotto per mobile */
       text-align: center;
-      max-width: 100%;
       word-wrap: break-word;
     }
 
@@ -100,26 +94,27 @@
       display: none;
       width: 100%;
       background: white;
-      padding: 15px; /* Ridotto per adattarsi meglio */
-      border-radius: 15px; /* Ridotto */
+      padding: 15px; /* Ridotto per mobile */
+      border-radius: 12px; /* Ridotto per mobile */
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-      margin-bottom: 15px; /* Ridotto */
+      margin-bottom: 15px; /* Ridotto per mobile */
       position: relative;
       flex: 1; /* Permette di riempire lo spazio disponibile */
       display: flex;
       flex-direction: column;
+      overflow: hidden; /* Previene lo scorrimento interno */
     }
     .step.active {
       display: flex;
-      animation: fadeIn 0.4s ease-in-out;
+      animation: fadeIn 0.3s ease-in-out; /* Ridotta la durata dell'animazione */
     }
     .step-header {
-      margin-bottom: 15px; /* Ridotto */
+      margin-bottom: 10px; /* Ridotto per mobile */
     }
     .step-header h2 {
-      font-size: 1.2rem; /* Ridotto */
+      font-size: 1.1rem; /* Ridotto per mobile */
       color: var(--primary-color);
-      margin: 0 0 10px 0; /* Ridotto */
+      margin: 0 0 10px 0; /* Ridotto per mobile */
       font-weight: 700;
       text-align: center;
     }
@@ -128,7 +123,7 @@
     .options, .extras {
       display: flex;
       flex-direction: column;
-      gap: 10px; /* Ridotto */
+      gap: 10px; /* Ridotto per mobile */
       flex: 1; /* Permette di riempire lo spazio disponibile */
       overflow-y: auto; /* Abilita lo scorrimento interno se necessario */
     }
@@ -136,40 +131,40 @@
     .option {
       display: flex;
       align-items: center;
-      padding: 10px; /* Ridotto */
+      padding: 10px; /* Ridotto per mobile */
       border: 1px solid var(--input-border-color);
-      border-radius: 10px; /* Ridotto */
+      border-radius: 10px; /* Ridotto per mobile */
       background: white;
       transition: background 0.3s ease, transform 0.3s ease;
-      font-size: 0.9rem; /* Ridotto */
+      font-size: 0.9rem; /* Ridotto per mobile */
       cursor: pointer;
     }
     .option:hover {
       background: var(--option-hover-bg);
-      transform: translateY(-2px); /* Ridotto */
+      transform: translateY(-2px); /* Ridotto per mobile */
     }
     .option label {
       display: flex;
       align-items: center;
       flex: 1;
-      font-size: 0.9rem; /* Ridotto */
+      font-size: 0.9rem; /* Ridotto per mobile */
       color: var(--text-color);
       cursor: pointer;
       word-wrap: break-word;
     }
     .option input {
-      transform: scale(1.2); /* Ridotto */
-      margin-right: 15px; /* Ridotto */
+      transform: scale(1.2); /* Ridotto per mobile */
+      margin-right: 10px; /* Ridotto per mobile */
       cursor: pointer;
     }
 
     /* Immagini delle Spa in Cerchio */
     .spa-image-small {
-      width: 30px; /* Ridotto per adattarsi meglio */
-      height: 30px; /* Ridotto per adattarsi meglio */
+      width: 25px; /* Ridotto per mobile */
+      height: 25px; /* Ridotto per mobile */
       border-radius: 50%;
       object-fit: cover;
-      margin-right: 10px; /* Ridotto */
+      margin-right: 8px; /* Ridotto per mobile */
       box-shadow: 0 2px 6px rgba(0,0,0,0.2);
     }
 
@@ -177,16 +172,16 @@
     .navigation-buttons {
       display: flex;
       justify-content: space-between;
-      margin-top: 15px; /* Ridotto */
+      margin-top: 15px; /* Ridotto per mobile */
       width: 100%;
     }
     .navigation-buttons button {
       background-color: var(--button-color);
       color: white;
-      padding: 10px 20px; /* Ridotto */
-      font-size: 0.9rem; /* Ridotto */
+      padding: 8px 16px; /* Ridotto per mobile */
+      font-size: 0.8rem; /* Ridotto per mobile */
       border: none;
-      border-radius: 25px; /* Ridotto */
+      border-radius: 20px; /* Ridotto per mobile */
       cursor: pointer;
       transition: background-color 0.3s ease, transform 0.2s ease;
       flex: 1; /* Permette ai pulsanti di espandersi uniformemente */
@@ -200,7 +195,7 @@
     }
     .navigation-buttons button:hover {
       background-color: var(--button-hover-color);
-      transform: scale(1.02); /* Ridotto */
+      transform: scale(1.02); /* Ridotto per mobile */
     }
 
     /* Piccola animazione di fadeIn */
@@ -217,14 +212,14 @@
       }
       .container {
         padding: 10px;
-        margin: 80px auto 20px auto; /* Ridotto per adattarsi meglio */
+        margin: 60px auto 20px auto; /* Ridotto per adattarsi meglio */
         height: calc(100vh - 80px); /* Adattato per riempire lo schermo meno la price-bar */
       }
       .container h1 {
         font-size: 1.6rem; /* Ridotto */
       }
       .container p {
-        font-size: 0.9rem; /* Ridotto */
+        font-size: 1rem; /* Ridotto */
       }
       .step-header h2 {
         font-size: 1.1rem; /* Ridotto */
@@ -251,9 +246,9 @@
         margin-right: 8px; /* Ridotto */
       }
       .spa-image-small {
-        width: 25px; /* Ridotto */
-        height: 25px; /* Ridotto */
-        margin-right: 8px; /* Ridotto */
+        width: 20px; /* Ulteriore riduzione */
+        height: 20px; /* Ulteriore riduzione */
+        margin-right: 6px; /* Ulteriore riduzione */
       }
       .loading-overlay .spinner {
         width: 40px; /* Ridotto */
@@ -262,8 +257,9 @@
       }
       .modal-content {
         margin: 20% auto; /* Ridotto */
-        padding: 20px; /* Ridotto */
+        padding: 15px; /* Ridotto */
         width: 90%; /* Aumentato per adattarsi meglio */
+        max-width: 300px; /* Ridotto */
       }
     }
 
@@ -292,17 +288,17 @@
       top: 0;
       width: 100%;
       height: 100%;
-      overflow: auto; /* Enable scroll if needed */
+      overflow: hidden; /* Disable scroll */
       background-color: var(--modal-bg); /* Black w/ opacity */
     }
 
     .modal-content {
       background-color: #fefefe;
-      margin: 10% auto; /* 10% from the top and centered */
-      padding: 20px; /* Ridotto */
+      margin: 20% auto; /* Ridotto */
+      padding: 15px; /* Ridotto */
       border: 1px solid #888;
-      width: 80%;
-      max-width: 400px; /* Ridotto */
+      width: 90%;
+      max-width: 300px; /* Ridotto */
       border-radius: 10px; /* Ridotto */
       text-align: center;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
@@ -312,9 +308,9 @@
     .close-modal {
       color: #aaa;
       position: absolute;
-      top: 10px; /* Ridotto */
-      right: 15px; /* Ridotto */
-      font-size: 1.5rem; /* Ridotto */
+      top: 8px; /* Ridotto */
+      right: 12px; /* Ridotto */
+      font-size: 1.2rem; /* Ridotto */
       font-weight: bold;
       cursor: pointer;
     }
@@ -443,8 +439,7 @@
               </label>
             </div>
           </div>
-          <!-- Container per le immagini delle spa (rimossa) -->
-          <!-- Le immagini sono ora accanto alle opzioni -->
+          <!-- Pulsanti di navigazione -->
           <div class="navigation-buttons">
             <div></div> <!-- Spazio vuoto per allineamento -->
             <button type="button" onclick="nextStep(1)">Avanti</button>
@@ -542,15 +537,15 @@
             </div>
           </div>
           <!-- Numero di Persone -->
-          <div style="margin-top: 15px;">
-            <label for="persons" style="font-weight: bold;">Ospiti (Ospite aggiunto +30€):</label>
+          <div style="margin-top: 10px;">
+            <label for="persons" style="font-weight: bold; font-size: 0.9rem;">Ospiti (Ospite aggiunto +30€):</label>
             <input
               type="number"
               name="persons"
               id="persons"
               value="2"
               min="2"
-              style="width: 100%; padding: 10px; margin-top: 10px; border-radius: 5px; border: 1px solid var(--input-border-color);"
+              style="width: 100%; padding: 8px; margin-top: 5px; border-radius: 5px; border: 1px solid var(--input-border-color); font-size: 0.9rem;"
             />
           </div>
           <div class="navigation-buttons">
@@ -630,23 +625,23 @@
             <h2>5. Conferma e Richiesta Preventivo</h2>
           </div>
           <div class="section">
-            <label for="email" style="font-weight:bold;">Email *</label>
+            <label for="email" style="font-weight:bold; font-size: 0.9rem;">Email *</label>
             <input
               type="email"
               name="email"
               id="email"
               placeholder="La tua Email"
               required
-              style="width: 100%; padding: 10px; border-radius: 5px; border: 1px solid var(--input-border-color); margin-bottom: 15px;"
+              style="width: 100%; padding: 8px; border-radius: 5px; border: 1px solid var(--input-border-color); margin-bottom: 10px; font-size: 0.9rem;"
             />
 
-            <label for="phone" style="font-weight:bold;">Telefono (opzionale)</label>
+            <label for="phone" style="font-weight:bold; font-size: 0.9rem;">Telefono (opzionale)</label>
             <input
               type="tel"
               name="phone"
               id="phone"
               placeholder="Il tuo Telefono"
-              style="width: 100%; padding: 10px; border-radius: 5px; border: 1px solid var(--input-border-color); margin-bottom: 15px;"
+              style="width: 100%; padding: 8px; border-radius: 5px; border: 1px solid var(--input-border-color); margin-bottom: 10px; font-size: 0.9rem;"
             />
 
             <input type="hidden" name="total" id="total" />
@@ -852,4 +847,3 @@
     </script>
 </body>
 </html>
-
