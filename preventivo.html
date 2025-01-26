@@ -2,7 +2,8 @@
 <html lang="it">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Impedisce lo zoom su mobile -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>Pacchetto Wellness - Trilussa Palace Hotel</title>
   <meta
     name="description"
@@ -43,7 +44,7 @@
     /* Contenitore a piena altezza (meno lo spazio della barra) */
     .container {
       position: absolute;
-      top: 50px; /* Altezza della .price-bar ~ 40px, lasciamo 50px di offset */
+      top: 50px; /* Altezza della .price-bar */
       left: 0;
       right: 0;
       bottom: 0;
@@ -51,12 +52,18 @@
       box-sizing: border-box;
       background: #e1d6ca;
 
-      /* Nascondiamo tutto ciò che va oltre (niente scrollbar) */
+      /* Utilizzo di Flexbox per distribuire lo spazio */
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+
+      /* Rimuovere l'overflow */
       overflow: hidden;
     }
 
     .container h1 {
-      color: #cac4b0;
+      color: #030302;
       font-size: 1.8rem;
       margin-top: 0;
       margin-bottom: 10px;
@@ -74,6 +81,8 @@
     /* Sistemiamo i passaggi/step */
     .step {
       display: none;
+      width: 100%;
+      max-width: 300px; /* Aumenta leggermente la larghezza per ospitare meglio il contenuto */
     }
     .step.active {
       display: block;
@@ -83,7 +92,7 @@
     }
     .step-header h2 {
       font-size: 1.1rem;
-      color: #cac4b0;
+      color: #030302;
       margin: 0 0 5px 0;
       font-weight: 700;
     }
@@ -103,6 +112,7 @@
       border-radius: 10px;
       background: #f9f9f9;
       transition: background 0.3s ease, transform 0.3s ease;
+      font-size: 0.9rem;
     }
     .option:hover {
       background: #2f4f4f;
@@ -127,6 +137,8 @@
       display: flex;
       justify-content: space-between;
       margin-top: 12px;
+      width: 100%;
+      max-width: 300px;
     }
     .navigation-buttons button {
       background-color: #d2b48c;
@@ -171,11 +183,25 @@
         padding: 6px 12px;
         font-size: 0.75rem;
       }
+      .step {
+        max-width: 280px; /* Riduci leggermente la larghezza per risparmiare spazio */
+      }
     }
 
-    /* Nascondiamo eventuale vecchio messaggio di conferma */
-    #confirmationMessage {
-      display: none;
+    /* Stili per il logo */
+    .logo-container {
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    .logo {
+      max-width: 100px; /* Regola la dimensione del logo secondo necessità */
+      height: auto;
+    }
+
+    /* Prevenzione dello zoom quando si interagisce con gli input */
+    input, textarea, select, button {
+      font-size: 16px; /* Imposta almeno 16px per prevenire lo zoom su mobile */
     }
   </style>
 </head>
@@ -187,388 +213,402 @@
   </div>
 
   <div class="container">
-    <h1>Pacchetto Wellness</h1>
-    <p>Scegli le opzioni per il tuo relax presso il Trilussa Palace Hotel:</p>
+    <div>
+      <h1>Pacchetto Wellness</h1>
+      <p>Scegli le opzioni per il tuo relax presso il Trilussa Palace Hotel:</p>
 
-    <form
-      id="wellnessForm"
-      action="TUO_URL_WEBSERVICE" 
-      method="POST"
-      target="hiddenFrame"
-    >
-      <!-- STEP 1: Scegli la Spa -->
-      <div class="step active" id="step-1">
-        <div class="step-header">
-          <h2>1. Scegli la Spa</h2>
-        </div>
-        <div class="options">
-          <div class="option">
-            <label>
-              <input
-                type="radio"
-                name="spa"
-                class="option-radio"
-                data-price="0"
-                value="SPA MAYA"
-                required
-              />
-              SPA MAYA
-            </label>
+      <form
+        id="wellnessForm"
+        action="https://script.google.com/macros/s/AKfycbxytaalqXiGvZr2ZneImOD1Os6llLJ-K4hssNHpVw4X_p15xD_rf7bogK2o5GVQcpYYkg/exec" 
+        method="POST"
+        target="hiddenFrame"
+      >
+        <!-- STEP 1: Scegli la Spa -->
+        <div class="step active" id="step-1">
+          <div class="step-header">
+            <h2>1. Scegli la Spa</h2>
           </div>
-          <div class="option">
-            <label>
-              <input
-                type="radio"
-                name="spa"
-                class="option-radio"
-                data-price="0"
-                value="SPA MOON"
-                required
-              />
-              SPA MOON
-            </label>
+          <div class="options">
+            <div class="option">
+              <label>
+                <input
+                  type="radio"
+                  name="spa"
+                  class="option-radio"
+                  data-price="0"
+                  value="SPA MAYA"
+                  required
+                />
+                SPA MAYA
+              </label>
+            </div>
+            <div class="option">
+              <label>
+                <input
+                  type="radio"
+                  name="spa"
+                  class="option-radio"
+                  data-price="0"
+                  value="SPA MOON"
+                  required
+                />
+                SPA MOON
+              </label>
+            </div>
+            <div class="option">
+              <label>
+                <input
+                  type="radio"
+                  name="spa"
+                  class="option-radio"
+                  data-price="0"
+                  value="SPA DOMUS"
+                  required
+                />
+                SPA DOMUS
+              </label>
+            </div>
           </div>
-          <div class="option">
-            <label>
-              <input
-                type="radio"
-                name="spa"
-                class="option-radio"
-                data-price="0"
-                value="SPA DOMUS"
-                required
-              />
-              SPA DOMUS
-            </label>
+          <div class="navigation-buttons">
+            <div></div> <!-- Spazio vuoto per allineamento -->
+            <button type="button" onclick="nextStep(1)">Avanti</button>
           </div>
         </div>
-        <div class="navigation-buttons">
-          <button type="button" onclick="nextStep(1)">Avanti</button>
+
+        <!-- STEP 2: Scegli la Fascia Oraria -->
+        <div class="step" id="step-2">
+          <div class="step-header">
+            <h2>2. Scegli la Fascia Oraria</h2>
+          </div>
+          <div class="options">
+            <div class="option">
+              <label>
+                <input
+                  type="radio"
+                  name="time"
+                  class="option-radio"
+                  data-price="0"
+                  value="MATTINA (08:00-16:00)"
+                  required
+                />
+                MATTINA (08:00-16:00)
+              </label>
+            </div>
+            <div class="option">
+              <label>
+                <input
+                  type="radio"
+                  name="time"
+                  class="option-radio"
+                  data-price="0"
+                  value="POMERIGGIO (16:00-23:00)"
+                  required
+                />
+                POMERIGGIO (16:00-23:00)
+              </label>
+            </div>
+            <div class="option">
+              <label>
+                <input
+                  type="radio"
+                  name="time"
+                  class="option-radio"
+                  data-price="0"
+                  value="NOTTE (23:00-08:00)"
+                  required
+                />
+                NOTTE (23:00-08:00)
+              </label>
+            </div>
+          </div>
+          <div class="navigation-buttons">
+            <button type="button" onclick="prevStep(2)">Indietro</button>
+            <button type="button" onclick="nextStep(2)">Avanti</button>
+          </div>
         </div>
+
+        <!-- STEP 3: Scegli la Durata e Numero di Persone -->
+        <div class="step" id="step-3">
+          <div class="step-header">
+            <h2>3. Scegli la Durata e il Numero di Persone</h2>
+          </div>
+          <div class="options">
+            <div class="option">
+              <label>
+                <input
+                  type="radio"
+                  name="duration"
+                  class="option-radio"
+                  data-price="0"
+                  value="1h"
+                  required
+                />
+                1 Ora
+              </label>
+            </div>
+            <div class="option">
+              <label>
+                <input
+                  type="radio"
+                  name="duration"
+                  class="option-radio"
+                  data-price="0"
+                  value="1.30h"
+                  required
+                />
+                1.30 Ore
+              </label>
+            </div>
+          </div>
+          <!-- Numero di Persone -->
+          <div style="margin-top: 8px;">
+            <label for="persons" style="font-weight: bold;">Persone (2 di default, +30€ ognuna in più):</label>
+            <input
+              type="number"
+              name="persons"
+              id="persons"
+              value="2"
+              min="2"
+              style="width: 100%; padding: 6px; margin-top: 5px; border-radius: 5px; border: 1px solid #708090;"
+            />
+          </div>
+          <div class="navigation-buttons">
+            <button type="button" onclick="prevStep(3)">Indietro</button>
+            <button type="button" onclick="nextStep(3)">Avanti</button>
+          </div>
+        </div>
+
+        <!-- STEP 4: Scegli gli Extra -->
+        <div class="step" id="step-4">
+          <div class="step-header">
+            <h2>4. Scegli gli Extra</h2>
+          </div>
+          <div class="extras">
+            <div class="option">
+              <label>
+                <input
+                  type="checkbox"
+                  class="option-checkbox"
+                  data-price="90"
+                  name="extras"
+                  value="Cena RAMO Bistrot"
+                />
+                Cena RAMO Bistrot - €90
+              </label>
+            </div>
+            <div class="option">
+              <label>
+                <input
+                  type="checkbox"
+                  class="option-checkbox"
+                  data-price="35"
+                  name="extras"
+                  value="Sushi Misto"
+                />
+                Sushi Misto - €35
+              </label>
+            </div>
+            <div class="option">
+              <label>
+                <input
+                  type="checkbox"
+                  class="option-checkbox"
+                  data-price="20"
+                  name="extras"
+                  value="Pinsa"
+                />
+                Pinsa - €20
+              </label>
+            </div>
+            <div class="option">
+              <label>
+                <input
+                  type="checkbox"
+                  class="option-checkbox"
+                  data-price="40"
+                  name="extras"
+                  value="Bottiglia di Prosecco"
+                />
+                Bottiglia di Prosecco - €40
+              </label>
+            </div>
+          </div>
+          <div class="navigation-buttons">
+            <button type="button" onclick="prevStep(4)">Indietro</button>
+            <button type="button" onclick="nextStep(4)">Avanti</button>
+          </div>
+        </div>
+
+        <!-- STEP 5: Conferma e invio -->
+        <div class="step" id="step-5">
+          <div class="step-header">
+            <h2>5. Conferma e Richiesta Preventivo</h2>
+          </div>
+          <div class="section">
+            <label style="font-weight:bold;">Email *</label>
+            <input
+              type="email"
+              name="email"
+              id="email"
+              placeholder="La tua Email"
+              required
+              style="width: 100%; padding: 8px; border-radius: 5px; border: 1px solid #708090; margin-bottom: 10px;"
+            />
+
+            <label style="font-weight:bold;">Telefono (opzionale)</label>
+            <input
+              type="tel"
+              name="phone"
+              id="phone"
+              placeholder="Il tuo Telefono"
+              style="width: 100%; padding: 8px; border-radius: 5px; border: 1px solid #708090; margin-bottom: 10px;"
+            />
+
+            <input type="hidden" name="total" id="total" />
+          </div>
+          <div class="navigation-buttons">
+            <button type="button" onclick="prevStep(5)">Indietro</button>
+            <button type="submit">Richiedi Conferma</button>
+          </div>
+        </div>
+      </form>
+
+      <!-- Logo -->
+      <div class="logo-container">
+        <img src="URL_DEL_TUO_LOGO" alt="Trilussa Palace Hotel Logo" class="logo" />
       </div>
 
-      <!-- STEP 2: Scegli la Fascia Oraria -->
-      <div class="step" id="step-2">
-        <div class="step-header">
-          <h2>2. Scegli la Fascia Oraria</h2>
-        </div>
-        <div class="options">
-          <div class="option">
-            <label>
-              <input
-                type="radio"
-                name="time"
-                class="option-radio"
-                data-price="0"
-                value="MATTINA (08:00-16:00)"
-                required
-              />
-              MATTINA (08:00-16:00)
-            </label>
-          </div>
-          <div class="option">
-            <label>
-              <input
-                type="radio"
-                name="time"
-                class="option-radio"
-                data-price="0"
-                value="POMERIGGIO (16:00-23:00)"
-                required
-              />
-              POMERIGGIO (16:00-23:00)
-            </label>
-          </div>
-          <div class="option">
-            <label>
-              <input
-                type="radio"
-                name="time"
-                class="option-radio"
-                data-price="0"
-                value="NOTTE (23:00-08:00)"
-                required
-              />
-              NOTTE (23:00-08:00)
-            </label>
-          </div>
-        </div>
-        <div class="navigation-buttons">
-          <button type="button" onclick="prevStep(2)">Indietro</button>
-          <button type="button" onclick="nextStep(2)">Avanti</button>
-        </div>
+      <!-- Iframe nascosto per l'invio del form -->
+      <iframe name="hiddenFrame" style="display:none;"></iframe>
+
+      <!-- Messaggio di conferma non usato (popup) -->
+      <div id="confirmationMessage">
+        <p>Grazie! La tua richiesta è stata inviata con successo.</p>
       </div>
-
-      <!-- STEP 3: Scegli la Durata e Numero di Persone -->
-      <div class="step" id="step-3">
-        <div class="step-header">
-          <h2>3. Scegli la Durata e il Numero di Persone</h2>
-        </div>
-        <div class="options">
-          <div class="option">
-            <label>
-              <input
-                type="radio"
-                name="duration"
-                class="option-radio"
-                data-price="0"
-                value="1h"
-                required
-              />
-              1 Ora
-            </label>
-          </div>
-          <div class="option">
-            <label>
-              <input
-                type="radio"
-                name="duration"
-                class="option-radio"
-                data-price="0"
-                value="1.30h"
-                required
-              />
-              1.30 Ore
-            </label>
-          </div>
-        </div>
-        <!-- Numero di Persone -->
-        <div style="margin-top: 8px;">
-          <label for="persons" style="font-weight: bold;"
-            >Persone (2 di default, +30€ ognuna in più):</label
-          >
-          <input
-            type="number"
-            name="persons"
-            id="persons"
-            value="2"
-            min="2"
-            style="width: 100%; padding: 6px; margin-top: 5px; border-radius: 5px; border: 1px solid #708090;"
-          />
-        </div>
-        <div class="navigation-buttons">
-          <button type="button" onclick="prevStep(3)">Indietro</button>
-          <button type="button" onclick="nextStep(3)">Avanti</button>
-        </div>
-      </div>
-
-      <!-- STEP 4: Scegli gli Extra -->
-      <div class="step" id="step-4">
-        <div class="step-header">
-          <h2>4. Scegli gli Extra</h2>
-        </div>
-        <div class="extras">
-          <div class="option">
-            <label>
-              <input
-                type="checkbox"
-                class="option-checkbox"
-                data-price="90"
-                name="extras"
-                value="Cena RAMO Bistrot"
-              />
-              Cena RAMO Bistrot - €90
-            </label>
-          </div>
-          <div class="option">
-            <label>
-              <input
-                type="checkbox"
-                class="option-checkbox"
-                data-price="35"
-                name="extras"
-                value="Sushi Misto"
-              />
-              Sushi Misto - €35
-            </label>
-          </div>
-          <div class="option">
-            <label>
-              <input
-                type="checkbox"
-                class="option-checkbox"
-                data-price="20"
-                name="extras"
-                value="Pinsa"
-              />
-              Pinsa - €20
-            </label>
-          </div>
-          <div class="option">
-            <label>
-              <input
-                type="checkbox"
-                class="option-checkbox"
-                data-price="40"
-                name="extras"
-                value="Bottiglia di Prosecco"
-              />
-              Bottiglia di Prosecco - €40
-            </label>
-          </div>
-        </div>
-        <div class="navigation-buttons">
-          <button type="button" onclick="prevStep(4)">Indietro</button>
-          <button type="button" onclick="nextStep(4)">Avanti</button>
-        </div>
-      </div>
-
-      <!-- STEP 5: Conferma e invio -->
-      <div class="step" id="step-5">
-        <div class="step-header">
-          <h2>5. Conferma e Richiesta Preventivo</h2>
-        </div>
-        <div class="section">
-          <label style="font-weight:bold;">Email *</label>
-          <input
-            type="email"
-            name="email"
-            id="email"
-            placeholder="La tua Email"
-            required
-            style="width: 100%; padding: 8px; border-radius: 5px; border: 1px solid #708090; margin-bottom: 10px;"
-          />
-
-          <label style="font-weight:bold;">Telefono (opzionale)</label>
-          <input
-            type="tel"
-            name="phone"
-            id="phone"
-            placeholder="Il tuo Telefono"
-            style="width: 100%; padding: 8px; border-radius: 5px; border: 1px solid #708090; margin-bottom: 10px;"
-          />
-
-          <input type="hidden" name="total" id="total" />
-        </div>
-        <div class="navigation-buttons">
-          <button type="button" onclick="prevStep(5)">Indietro</button>
-          <button type="submit">Richiedi Conferma</button>
-        </div>
-      </div>
-    </form>
-
-    <!-- Iframe nascosto per l'invio del form -->
-    <iframe name="hiddenFrame" style="display:none;"></iframe>
-
-    <!-- Messaggio di conferma non usato (popup) -->
-    <div id="confirmationMessage">
-      <p>Grazie! La tua richiesta è stata inviata con successo.</p>
     </div>
-  </div>
 
-  <script>
-    let currentStep = 1;
-    const totalSteps = 5;
+    <script>
+      let currentStep = 1;
+      const totalSteps = 5;
 
-    function showStep(step) {
-      for (let i = 1; i <= totalSteps; i++) {
-        document.getElementById(`step-${i}`).classList.remove("active");
+      function showStep(step) {
+        for (let i = 1; i <= totalSteps; i++) {
+          document.getElementById(`step-${i}`).classList.remove("active");
+        }
+        document.getElementById(`step-${step}`).classList.add("active");
       }
-      document.getElementById(`step-${step}`).classList.add("active");
-    }
 
-    function nextStep(step) {
-      if (!validateStep(step)) return;
-      if (step < totalSteps) {
-        currentStep = step + 1;
-        showStep(currentStep);
-        updateTotal();
-      }
-    }
-
-    function prevStep(step) {
-      if (step > 1) {
-        currentStep = step - 1;
-        showStep(currentStep);
-      }
-    }
-
-    // Convalida radio obbligatori negli step 1,2,3
-    function validateStep(step) {
-      let valid = true;
-      const stepElement = document.getElementById(`step-${step}`);
-
-      if (step === 1 || step === 2 || step === 3) {
-        const required = stepElement.querySelectorAll('input[type="radio"]:checked');
-        if (required.length === 0) {
-          alert("Per favore, completa tutte le scelte obbligatorie.");
-          valid = false;
+      function nextStep(step) {
+        if (!validateStep(step)) return;
+        if (step < totalSteps) {
+          currentStep = step + 1;
+          showStep(currentStep);
+          updateTotal();
         }
       }
-      return valid;
-    }
 
-    // Calcolo totale
-    function updateTotal() {
-      let totalPrice = 0;
+      function prevStep(step) {
+        if (step > 1) {
+          currentStep = step - 1;
+          showStep(currentStep);
+        }
+      }
 
-      const spaSelected = document.querySelector('input[name="spa"]:checked');
-      const timeSelected = document.querySelector('input[name="time"]:checked');
-      const durationSelected = document.querySelector('input[name="duration"]:checked');
+      // Convalida radio obbligatori negli step 1,2,3
+      function validateStep(step) {
+        let valid = true;
+        const stepElement = document.getElementById(`step-${step}`);
+
+        if (step === 1 || step === 2 || step === 3) {
+          const required = stepElement.querySelectorAll('input[type="radio"]:checked');
+          if (required.length === 0) {
+            alert("Per favore, completa tutte le scelte obbligatorie.");
+            valid = false;
+          }
+        }
+        return valid;
+      }
+
+      // Calcolo totale
+      function updateTotal() {
+        let totalPrice = 0;
+
+        const spaSelected = document.querySelector('input[name="spa"]:checked');
+        const timeSelected = document.querySelector('input[name="time"]:checked');
+        const durationSelected = document.querySelector('input[name="duration"]:checked');
+        const personsInput = document.getElementById("persons");
+        let persons = 2;
+        if (personsInput) {
+          persons = parseInt(personsInput.value) || 2;
+        }
+
+        if (spaSelected && timeSelected && durationSelected) {
+          const spaPrices = {
+            "SPA MAYA": {
+              "MATTINA (08:00-16:00)": { "1h": 110, "1.30h": 160 },
+              "POMERIGGIO (16:00-23:00)": { "1h": 170, "1.30h": 360 },
+              "NOTTE (23:00-08:00)": { "1h": 250, "1.30h": 360 },
+            },
+            "SPA MOON": {
+              "MATTINA (08:00-16:00)": { "1h": 90, "1.30h": 130 },
+              "POMERIGGIO (16:00-23:00)": { "1h": 140, "1.30h": 290 },
+              "NOTTE (23:00-08:00)": { "1h": 200, "1.30h": 290 },
+            },
+            "SPA DOMUS": {
+              "MATTINA (08:00-16:00)": { "1h": 75, "1.30h": 110 },
+              "POMERIGGIO (16:00-23:00)": { "1h": 110, "1.30h": 220 },
+              "NOTTE (23:00-08:00)": { "1h": 160, "1.30h": 220 },
+            },
+          };
+
+          const spaPrice = spaPrices[spaSelected.value][timeSelected.value][durationSelected.value];
+          totalPrice += spaPrice;
+        }
+
+        if (persons > 2) {
+          totalPrice += (persons - 2) * 30;
+        }
+
+        const checkboxes = document.querySelectorAll(".option-checkbox:checked");
+        checkboxes.forEach((checkbox) => {
+          totalPrice += parseFloat(checkbox.dataset.price);
+        });
+
+        document.getElementById("totalPrice").textContent = totalPrice.toFixed(2);
+        document.getElementById("total").value = totalPrice.toFixed(2);
+      }
+
+      const radioButtons = document.querySelectorAll(".option-radio");
+      const checkboxes = document.querySelectorAll(".option-checkbox");
       const personsInput = document.getElementById("persons");
-      let persons = 2;
-      if (personsInput) {
-        persons = parseInt(personsInput.value) || 2;
-      }
 
-      if (spaSelected && timeSelected && durationSelected) {
-        const spaPrices = {
-          "SPA MAYA": {
-            "MATTINA (08:00-16:00)": { "1h": 110, "1.30h": 160 },
-            "POMERIGGIO (16:00-23:00)": { "1h": 170, "1.30h": 360 },
-            "NOTTE (23:00-08:00)": { "1h": 250, "1.30h": 360 },
-          },
-          "SPA MOON": {
-            "MATTINA (08:00-16:00)": { "1h": 90, "1.30h": 130 },
-            "POMERIGGIO (16:00-23:00)": { "1h": 140, "1.30h": 290 },
-            "NOTTE (23:00-08:00)": { "1h": 200, "1.30h": 290 },
-          },
-          "SPA DOMUS": {
-            "MATTINA (08:00-16:00)": { "1h": 75, "1.30h": 110 },
-            "POMERIGGIO (16:00-23:00)": { "1h": 110, "1.30h": 220 },
-            "NOTTE (23:00-08:00)": { "1h": 160, "1.30h": 220 },
-          },
-        };
-
-        const spaPrice = spaPrices[spaSelected.value][timeSelected.value][durationSelected.value];
-        totalPrice += spaPrice;
-      }
-
-      if (persons > 2) {
-        totalPrice += (persons - 2) * 30;
-      }
-
-      const checkboxes = document.querySelectorAll(".option-checkbox:checked");
+      radioButtons.forEach((radio) => {
+        radio.addEventListener("change", updateTotal);
+      });
       checkboxes.forEach((checkbox) => {
-        totalPrice += parseFloat(checkbox.dataset.price);
+        checkbox.addEventListener("change", updateTotal);
+      });
+      if (personsInput) {
+        personsInput.addEventListener("change", updateTotal);
+      }
+
+      // Popup di conferma al termine dell'invio
+      window.addEventListener("message", function (event) {
+        if (event.data === "formSubmitted") {
+          alert("Grazie! La tua richiesta è stata inviata con successo.");
+          // Nascondi il form, se vuoi
+          document.getElementById("wellnessForm").style.display = "none";
+        }
       });
 
-      document.getElementById("totalPrice").textContent = totalPrice.toFixed(2);
-      document.getElementById("total").value = totalPrice.toFixed(2);
-    }
-
-    const radioButtons = document.querySelectorAll(".option-radio");
-    const checkboxes = document.querySelectorAll(".option-checkbox");
-    const personsInput = document.getElementById("persons");
-
-    radioButtons.forEach((radio) => {
-      radio.addEventListener("change", updateTotal);
-    });
-    checkboxes.forEach((checkbox) => {
-      checkbox.addEventListener("change", updateTotal);
-    });
-    if (personsInput) {
-      personsInput.addEventListener("change", updateTotal);
-    }
-
-    // Popup di conferma al termine dell'invio
-    window.addEventListener("message", function (event) {
-      if (event.data === "formSubmitted") {
-        alert("Grazie! La tua richiesta è stata inviata con successo.");
-        // Nascondi il form, se vuoi
-        document.getElementById("wellnessForm").style.display = "none";
-      }
-    });
-  </script>
+      // Impedisce lo zoom quando si interagisce con gli input
+      document.addEventListener('touchmove', function(event) {
+        // Solo se non si sta interagendo con un input
+        const activeElement = document.activeElement;
+        if (activeElement.tagName !== 'INPUT' && activeElement.tagName !== 'TEXTAREA') {
+          event.preventDefault();
+        }
+      }, { passive: false });
+    </script>
 </body>
 </html>
