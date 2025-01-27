@@ -208,20 +208,90 @@
 
     /* Responsive Design */
     @media (max-width: 600px) {
-      /* Rimossi gli stili specifici per la griglia, ora gestiti globalmente */
-      .time-slots {
-        /* Nessuna modifica specifica per mobile */
+      .price-bar {
+        font-size: 1.4rem;
+        padding: 12px 16px; /* Ridotto */
       }
-      /* Rimangono gli altri stili già definiti */
+      .container {
+        padding: 10px;
+        margin: 60px auto 20px auto; /* Ridotto per adattarsi meglio */
+        height: calc(100vh - 80px); /* Adattato per riempire lo schermo meno la price-bar */
+      }
+      .container h1 {
+        font-size: 1.6rem; /* Ridotto */
+      }
+      .container p {
+        font-size: 1rem; /* Ridotto */
+      }
+      .step-header h2 {
+        font-size: 1.1rem; /* Ridotto */
+      }
+      .navigation-buttons button {
+        padding: 8px 16px; /* Ridotto */
+        font-size: 0.8rem; /* Ridotto */
+      }
+      .step {
+        padding: 10px; /* Ridotto */
+        border-radius: 10px; /* Ridotto */
+        margin-bottom: 10px; /* Ridotto */
+      }
+      .options, .extras, .time-slots {
+        gap: 8px; /* Ridotto */
+      }
+      .option {
+        padding: 8px; /* Ridotto */
+        border-radius: 8px; /* Ridotto */
+        font-size: 0.8rem; /* Ridotto */
+      }
+      .option input {
+        transform: scale(1); /* Ripristinato */
+        margin-right: 8px; /* Ridotto */
+      }
+      .spa-image-small {
+        width: 20px; /* Ulteriore riduzione */
+        height: 20px; /* Ulteriore riduzione */
+        margin-right: 6px; /* Ulteriore riduzione */
+      }
+      .loading-overlay .spinner {
+        width: 40px; /* Ridotto */
+        height: 40px; /* Ridotto */
+        border-width: 6px; /* Ridotto */
+      }
+      .modal-content {
+        margin: 20% auto; /* Ridotto */
+        padding: 15px; /* Ridotto */
+        width: 90%; /* Aumentato per adattarsi meglio */
+        max-width: 300px; /* Ridotto */
+      }
+      /* Disposizione a due colonne per le mini fasce orarie */
+      .time-slots {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+      }
+      .time-slot-button {
+        width: 100%;
+      }
+
+      /* Disposizione a due colonne per gli Extra */
+      .extras {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+      }
+      .extra-checkbox {
+        width: 100%;
+        box-sizing: border-box;
+      }
     }
 
-    /* Disposizione a due colonne per le mini fasce orarie */
-    .time-slots {
+    /* Disposizione a due colonne per le mini fasce orarie e gli Extra */
+    .time-slots, .extras {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 10px;
     }
-    .time-slot-button {
+    .time-slot-button, .extra-checkbox {
       width: 100%;
       box-sizing: border-box;
     }
@@ -354,7 +424,7 @@
     }
 
     /* Stili per le mini fasce orarie */
-    .time-slot-button {
+    .time-slot-button, .extra-checkbox {
       padding: 10px;
       background-color: var(--button-color);
       color: white;
@@ -367,7 +437,9 @@
       box-sizing: border-box;
     }
     .time-slot-button.selected,
-    .time-slot-button:hover {
+    .time-slot-button:hover,
+    .extra-checkbox.selected,
+    .extra-checkbox:hover {
       background-color: var(--button-hover-color);
       transform: scale(1.05);
     }
@@ -570,7 +642,7 @@
         <!-- STEP 5: Scegli le Mini Fasce Orarie -->
         <div class="step" id="step-5">
           <div class="step-header">
-            <h2>5. Scegli le Mini Fasce Orarie</h2>
+            <h2>5. Scegli l'orario</h2>
           </div>
           <div class="time-slots" id="timeSlotsContainer">
             <!-- Le opzioni verranno generate dinamicamente tramite JavaScript -->
@@ -587,8 +659,8 @@
           <div class="step-header">
             <h2>6. Scegli gli Extra</h2>
           </div>
-          <div class="extras">
-            <div class="option">
+          <div class="extras" id="extrasContainer">
+            <div class="option extra-checkbox">
               <label for="extra-cena">
                 <input
                   type="checkbox"
@@ -601,7 +673,7 @@
                 Cena RAMO Bistrot - €90
               </label>
             </div>
-            <div class="option">
+            <div class="option extra-checkbox">
               <label for="extra-sushi">
                 <input
                   type="checkbox"
@@ -614,7 +686,7 @@
                 Sushi Misto - €35
               </label>
             </div>
-            <div class="option">
+            <div class="option extra-checkbox">
               <label for="extra-pinsa">
                 <input
                   type="checkbox"
@@ -627,7 +699,7 @@
                 Pinsa - €20
               </label>
             </div>
-            <div class="option">
+            <div class="option extra-checkbox">
               <label for="extra-prosecco">
                 <input
                   type="checkbox"
@@ -641,6 +713,7 @@
               </label>
             </div>
           </div>
+          <!-- Pulsanti di navigazione -->
           <div class="navigation-buttons">
             <button type="button" onclick="showPreviousStep(6)">Indietro</button>
             <button type="button" onclick="showNextStep(6)">Avanti</button>
@@ -751,7 +824,7 @@
           if (step === 5) {
             const timeSlotSelected = stepElement.querySelectorAll('input[name="timeSlot"]:checked');
             if (timeSlotSelected.length === 0) {
-              alert("Per favore, seleziona una mini fascia oraria.");
+              alert("Per favore, seleziona un orario.");
               valid = false;
             }
           } else {
@@ -993,3 +1066,4 @@
     </script>
 </body>
 </html>
+
