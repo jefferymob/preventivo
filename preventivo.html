@@ -832,17 +832,13 @@
         const timeSelected = document.querySelector('input[name="time"]:checked');
         const durationSelected = document.querySelector('input[name="duration"]:checked');
         const timeSlotSelected = document.querySelector('input[name="timeSlot"]:checked');
-        const personsSelected = document.querySelector('input[name="persons"]:checked') || document.getElementById('selectedPersons').value;
+        const personsSelected = document.getElementById('selectedPersons').value;
         let persons = 2;
         if (personsSelected) {
-          if (typeof personsSelected === 'string') {
-            persons = parseInt(personsSelected) || 2;
-          } else {
-            persons = parseInt(personsSelected.value) || 2;
-          }
+          persons = parseInt(personsSelected) || 2;
         }
 
-        if (spaSelected && timeSelected && durationSelected && timeSlotSelected && personsSelected) {
+        if (spaSelected && timeSelected && durationSelected && timeSlotSelected) {
           const spaPrices = {
             "SPA MAYA": {
               "MATTINA (08:00-16:00)": { "1h": 110, "1.30h": 160 },
@@ -909,24 +905,6 @@
           updateTotal();
         });
       });
-
-      // Funzione per aggiornare l'immagine della spa selezionata
-      function updateSpaImage() {
-        const spaSelected = document.querySelector('input[name="spa"]:checked');
-        const spaImages = document.querySelectorAll('.spa-image');
-
-        spaImages.forEach((img) => {
-          img.style.display = 'none';
-        });
-
-        if (spaSelected) {
-          const spaValue = spaSelected.value.toLowerCase().replace(/\s/g, '-');
-          const selectedImage = document.getElementById(`spa-image-spa-${spaValue}`);
-          if (selectedImage) {
-            selectedImage.style.display = 'block';
-          }
-        }
-      }
 
       // Popup di conferma al termine dell'invio
       function onFormLoad() {
@@ -1016,7 +994,7 @@
           optionDiv.classList.add('option');
 
           const label = document.createElement('label');
-          label.setAttribute('for', `time-slot-${slot.replace('.', '')}`); // Remove dot for ID
+          label.setAttribute('for', `time-slot-${slot.replace('.', '')}`); // Rimuove il punto per l'ID
 
           const input = document.createElement('input');
           input.type = 'radio';
@@ -1030,6 +1008,12 @@
 
           optionDiv.appendChild(label);
           container.appendChild(optionDiv);
+        });
+
+        // Aggiungi listener ai nuovi radio button per aggiornare il totale al cambio
+        const newRadioButtons = container.querySelectorAll('input[name="timeSlot"]');
+        newRadioButtons.forEach(radio => {
+          radio.addEventListener('change', updateTotal);
         });
       }
 
@@ -1051,5 +1035,4 @@
     </script>
 </body>
 </html>
-
 
