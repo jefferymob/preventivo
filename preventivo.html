@@ -544,10 +544,29 @@
           </div>
         </div>
 
-        <!-- STEP 3: Scegli la Durata -->
+        <!-- STEP 3: Scegli il Numero di Persone -->
         <div class="step" id="step-3">
           <div class="step-header">
-            <h2>3. Scegli la Durata</h2>
+            <h2>3. Scegli il Numero di Persone</h2>
+          </div>
+          <div class="person-selection">
+            <button type="button" class="person-button" data-value="2">2 Persone</button>
+            <button type="button" class="person-button" data-value="3">3 Persone</button>
+            <button type="button" class="person-button" data-value="4">4 Persone</button>
+          </div>
+          <!-- Campo nascosto per il numero di persone -->
+          <input type="hidden" name="persons" id="selectedPersons" value="2" />
+          <!-- Pulsanti di navigazione -->
+          <div class="navigation-buttons">
+            <button type="button" onclick="showPreviousStep(3)">Indietro</button>
+            <button type="button" onclick="showNextStep(3)">Avanti</button>
+          </div>
+        </div>
+
+        <!-- STEP 4: Scegli la Durata -->
+        <div class="step" id="step-4">
+          <div class="step-header">
+            <h2>4. Scegli la Durata</h2>
           </div>
           <div class="options">
             <div class="option">
@@ -581,29 +600,29 @@
           </div>
           <!-- Pulsanti di navigazione -->
           <div class="navigation-buttons">
-            <button type="button" onclick="showPreviousStep(3)">Indietro</button>
-            <button type="button" onclick="showNextStep(3)">Avanti</button>
-          </div>
-        </div>
-
-        <!-- STEP 4: Scegli le Mini Fasce Orarie -->
-        <div class="step" id="step-4">
-          <div class="step-header">
-            <h2>4. Scegli le Mini Fasce Orarie</h2>
-          </div>
-          <div class="time-slots" id="timeSlotsContainer">
-            <!-- Le opzioni verranno generate dinamicamente tramite JavaScript -->
-          </div>
-          <div class="navigation-buttons">
             <button type="button" onclick="showPreviousStep(4)">Indietro</button>
             <button type="button" onclick="showNextStep(4)">Avanti</button>
           </div>
         </div>
 
-        <!-- STEP 5: Scegli gli Extra -->
+        <!-- STEP 5: Scegli le Mini Fasce Orarie -->
         <div class="step" id="step-5">
           <div class="step-header">
-            <h2>5. Scegli gli Extra</h2>
+            <h2>5. Scegli le Mini Fasce Orarie</h2>
+          </div>
+          <div class="time-slots" id="timeSlotsContainer">
+            <!-- Le opzioni verranno generate dinamicamente tramite JavaScript -->
+          </div>
+          <div class="navigation-buttons">
+            <button type="button" onclick="showPreviousStep(5)">Indietro</button>
+            <button type="button" onclick="showNextStep(5)">Avanti</button>
+          </div>
+        </div>
+
+        <!-- STEP 6: Scegli gli Extra -->
+        <div class="step" id="step-6">
+          <div class="step-header">
+            <h2>6. Scegli gli Extra</h2>
           </div>
           <div class="extras">
             <div class="option">
@@ -660,15 +679,15 @@
             </div>
           </div>
           <div class="navigation-buttons">
-            <button type="button" onclick="showPreviousStep(5)">Indietro</button>
-            <button type="button" onclick="showNextStep(5)">Avanti</button>
+            <button type="button" onclick="showPreviousStep(6)">Indietro</button>
+            <button type="button" onclick="showNextStep(6)">Avanti</button>
           </div>
         </div>
 
-        <!-- STEP 6: Conferma e invio -->
-        <div class="step" id="step-6">
+        <!-- STEP 7: Conferma e invio -->
+        <div class="step" id="step-7">
           <div class="step-header">
-            <h2>6. Conferma e Richiesta Preventivo</h2>
+            <h2>7. Conferma e Richiesta Preventivo</h2>
           </div>
           <div class="section">
             <label for="email" style="font-weight:bold; font-size: 0.9rem;">Email *</label>
@@ -700,7 +719,7 @@
             <div class="spinner"></div>
           </div>
           <div class="navigation-buttons">
-            <button type="button" onclick="showPreviousStep(6)">Indietro</button>
+            <button type="button" onclick="showPreviousStep(7)">Indietro</button>
             <button type="submit">Richiedi Conferma</button>
           </div>
         </div>
@@ -728,7 +747,7 @@
 
     <script>
       let currentStep = 1;
-      const totalSteps = 6;
+      const totalSteps = 7;
 
       function showStep(step) {
         for (let i = 1; i <= totalSteps; i++) {
@@ -747,7 +766,7 @@
           currentStep = step + 1;
           showStep(currentStep);
           updateTotal();
-          if (currentStep === 4) {
+          if (currentStep === 5) {
             generateTimeSlots();
           }
         }
@@ -760,13 +779,13 @@
         }
       }
 
-      // Convalida radio obbligatori negli step 1,2,3 e time slots in step 4
+      // Convalida radio obbligatori negli step 1,2,4 e time slots in step 5
       function validateStep(step) {
         let valid = true;
         const stepElement = document.getElementById(`step-${step}`);
 
-        if (step === 1 || step === 2 || step === 3 || step === 4) {
-          if (step === 4) {
+        if (step === 1 || step === 2 || step === 4 || step === 5) {
+          if (step === 5) {
             const timeSlotSelected = stepElement.querySelectorAll('input[name="timeSlot"]:checked');
             if (timeSlotSelected.length === 0) {
               alert("Per favore, seleziona una mini fascia oraria.");
@@ -781,8 +800,8 @@
           }
         }
 
-        // Per lo step 6, controlla se telefono è inserito (già obbligatorio tramite HTML)
-        if (step === 6) {
+        // Per lo step 7, controlla se telefono è inserito (già obbligatorio tramite HTML)
+        if (step === 7) {
           const phoneInput = document.getElementById('phone');
           const phoneValue = phoneInput.value.trim();
           const phonePattern = /^[0-9]{10,15}$/;
@@ -856,10 +875,9 @@
       radioButtons.forEach((radio) => {
         radio.addEventListener("change", () => {
           updateTotal();
-          // Se la selezione cambia la fascia oraria, resetta le mini fasce orarie
-          if (currentStep > 4) {
-            showPreviousStep(currentStep);
-            currentStep = 4;
+          // Se la selezione cambia la fascia oraria o durata, resetta le mini fasce orarie
+          if (currentStep >= 5) {
+            currentStep = 5;
             showStep(currentStep);
             generateTimeSlots();
           }
@@ -1001,40 +1019,10 @@
 
       // Funzione per aggiungere i pulsanti per selezionare il numero di persone
       window.addEventListener('DOMContentLoaded', (event) => {
-        const step3 = document.getElementById('step-3');
-        const optionsDiv = step3.querySelector('.options');
-        optionsDiv.style.display = 'none'; // Nasconde le opzioni originali
-
-        // Aggiungi i pulsanti
-        const personSelectionDiv = document.createElement('div');
-        personSelectionDiv.classList.add('person-selection');
-
-        [2, 3, 4].forEach(num => {
-          const button = document.createElement('button');
-          button.type = 'button';
-          button.classList.add('person-button');
-          button.setAttribute('data-value', num);
-          button.textContent = num;
-          personSelectionDiv.appendChild(button);
-        });
-
-        // Campo nascosto per il numero di persone
-        const hiddenInput = document.createElement('input');
-        hiddenInput.type = 'hidden';
-        hiddenInput.name = 'persons';
-        hiddenInput.id = 'selectedPersons';
-        hiddenInput.value = '2'; // Valore predefinito
-
-        step3.appendChild(personSelectionDiv);
-        step3.appendChild(hiddenInput);
-
-        // Seleziona di default il pulsante con 2 persone
-        const defaultButton = step3.querySelector('.person-button[data-value="2"]');
-        if (defaultButton) {
-          defaultButton.classList.add('selected');
-        }
+        // Non necessario qui poiché i pulsanti sono già nel HTML
       });
     </script>
 </body>
 </html>
+
 
