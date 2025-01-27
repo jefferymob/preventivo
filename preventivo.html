@@ -208,70 +208,22 @@
 
     /* Responsive Design */
     @media (max-width: 600px) {
-      .price-bar {
-        font-size: 1.4rem;
-        padding: 12px 16px; /* Ridotto */
-      }
-      .container {
-        padding: 10px;
-        margin: 60px auto 20px auto; /* Ridotto per adattarsi meglio */
-        height: calc(100vh - 80px); /* Adattato per riempire lo schermo meno la price-bar */
-      }
-      .container h1 {
-        font-size: 1.6rem; /* Ridotto */
-      }
-      .container p {
-        font-size: 1rem; /* Ridotto */
-      }
-      .step-header h2 {
-        font-size: 1.1rem; /* Ridotto */
-      }
-      .navigation-buttons button {
-        padding: 8px 16px; /* Ridotto */
-        font-size: 0.8rem; /* Ridotto */
-      }
-      .step {
-        padding: 10px; /* Ridotto */
-        border-radius: 10px; /* Ridotto */
-        margin-bottom: 10px; /* Ridotto */
-      }
-      .options, .extras, .time-slots {
-        gap: 8px; /* Ridotto */
-      }
-      .option {
-        padding: 8px; /* Ridotto */
-        border-radius: 8px; /* Ridotto */
-        font-size: 0.8rem; /* Ridotto */
-      }
-      .option input {
-        transform: scale(1); /* Ripristinato */
-        margin-right: 8px; /* Ridotto */
-      }
-      .spa-image-small {
-        width: 20px; /* Ulteriore riduzione */
-        height: 20px; /* Ulteriore riduzione */
-        margin-right: 6px; /* Ulteriore riduzione */
-      }
-      .loading-overlay .spinner {
-        width: 40px; /* Ridotto */
-        height: 40px; /* Ridotto */
-        border-width: 6px; /* Ridotto */
-      }
-      .modal-content {
-        margin: 20% auto; /* Ridotto */
-        padding: 15px; /* Ridotto */
-        width: 90%; /* Aumentato per adattarsi meglio */
-        max-width: 300px; /* Ridotto */
-      }
-      /* Disposizione a due colonne per le mini fasce orarie */
+      /* Rimossi gli stili specifici per la griglia, ora gestiti globalmente */
       .time-slots {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 10px;
+        /* Nessuna modifica specifica per mobile */
       }
-      .time-slot-button {
-        width: 100%;
-      }
+      /* Rimangono gli altri stili già definiti */
+    }
+
+    /* Disposizione a due colonne per le mini fasce orarie */
+    .time-slots {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    .time-slot-button {
+      width: 100%;
+      box-sizing: border-box;
     }
 
     /* Stili per il logo */
@@ -623,6 +575,7 @@
           <div class="time-slots" id="timeSlotsContainer">
             <!-- Le opzioni verranno generate dinamicamente tramite JavaScript -->
           </div>
+          <!-- Pulsanti di navigazione -->
           <div class="navigation-buttons">
             <button type="button" onclick="showPreviousStep(5)">Indietro</button>
             <button type="button" onclick="showNextStep(5)">Avanti</button>
@@ -1023,9 +976,14 @@
         // Formatta con due cifre per ore e minuti
         const formatTime = (time) => {
           const [hour, minute] = time.split('.');
-          return `${parseInt(hour, 10)}:${minute ? minute.padStart(2, '0') : '00'}`;
+          return `${padZero(parseInt(hour, 10))}:${minute ? minute.padStart(2, '0') : '00'}`;
         };
         return `${formatTime(start)} - ${formatTime(end)}`;
+      }
+
+      // Funzione per aggiungere zero davanti ai numeri minori di 10
+      function padZero(number) {
+        return number < 10 ? '0' + number : number;
       }
 
       // Funzione per aggiungere i pulsanti per selezionare il numero di persone
@@ -1035,4 +993,3 @@
     </script>
 </body>
 </html>
-
