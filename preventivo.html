@@ -19,10 +19,10 @@
       --primary-color: #6D4C41; /* Marrone scuro */
       --secondary-color: #8D6E63; /* Marrone chiaro */
       --accent-color: #FFA726; /* Arancione */
-      --background-color: #f2efed; /* Aggiornato */
+      --background-color: #f2efed; /* Beige chiaro */
       --text-color: #333333; /* Grigio scuro */
       --price-bar-color: #8D6E63; /* Marrone chiaro */
-      --button-color: #ede8d0; /* Marrone scuro */
+      --button-color: #ede8d0; /* Beige chiaro */
       --button-hover-color: #8D6E63; /* Marrone chiaro */
       --input-border-color: #cccccc;
       --option-hover-bg: #e0e0e0;
@@ -36,7 +36,7 @@
       padding: 0;
       width: 100%;
       height: 100%;
-      font-family: 'Times', sans-serif;
+      font-family: 'Roboto', sans-serif;
       background: var(--background-color);
       overflow: hidden; /* Previene lo scorrimento complessivo */
     }
@@ -444,36 +444,35 @@
       transform: scale(1.05);
     }
     .additional-info {
-  background-color: white;
-  padding: 15px;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  margin-bottom: 20px;
-}
+      background-color: white;
+      padding: 15px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      margin-bottom: 20px;
+    }
 
-.additional-info h2 {
-  color: var(--primary-color);
-  font-size: 1.2rem;
-  margin-bottom: 10px;
-}
+    .additional-info h2 {
+      color: var(--primary-color);
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+    }
 
-.additional-info ul {
-  list-style-type: disc;
-  padding-left: 20px;
-  margin-bottom: 15px;
-}
+    .additional-info ul {
+      list-style-type: disc;
+      padding-left: 20px;
+      margin-bottom: 15px;
+    }
 
-.additional-info li {
-  margin-bottom: 5px;
-  color: var(--text-color);
-  font-size: 1rem;
-}
+    .additional-info li {
+      margin-bottom: 5px;
+      color: var(--text-color);
+      font-size: 1rem;
+    }
 
-.additional-info p {
-  color: var(--text-color);
-  font-size: 1rem;
-}
-
+    .additional-info p {
+      color: var(--text-color);
+      font-size: 1rem;
+    }
 
   </style>
 </head>
@@ -568,24 +567,24 @@
                   name="time"
                   class="option-radio"
                   data-price="0"
-                  value="MATTINA (08:00-16:00)"
+                  value="MATTINA (07:00-16:00)"
                   required
                 />
-                MATTINA (08:00-16:00)
+                MATTINA (07:00-16:00)
               </label>
             </div>
             <div class="option">
-              <label for="time-pomeriggio">
+              <label for="time-sera">
                 <input
                   type="radio"
-                  id="time-pomeriggio"
+                  id="time-sera"
                   name="time"
                   class="option-radio"
                   data-price="0"
-                  value="POMERIGGIO (16:00-23:00)"
+                  value="SERA (16:00-23:00)"
                   required
                 />
-                POMERIGGIO (16:00-23:00)
+                SERA (16:00-23:00)
               </label>
             </div>
             <div class="option">
@@ -596,10 +595,10 @@
                   name="time"
                   class="option-radio"
                   data-price="0"
-                  value="NOTTE (23:00-08:00)"
+                  value="NOTTE (23:00-07:00)"
                   required
                 />
-                NOTTE (23:00-08:00)
+                NOTTE (23:00-07:00)
               </label>
             </div>
           </div>
@@ -662,6 +661,20 @@
                 1.30 Ore
               </label>
             </div>
+            <div class="option">
+              <label for="duration-2h">
+                <input
+                  type="radio"
+                  id="duration-2h"
+                  name="duration"
+                  class="option-radio"
+                  data-price="0"
+                  value="2h"
+                  required
+                />
+                2 Ore
+              </label>
+            </div>
           </div>
           <!-- Pulsanti di navigazione -->
           <div class="navigation-buttons">
@@ -692,54 +705,54 @@
           </div>
           <div class="extras" id="extrasContainer">
             <div class="option extra-checkbox">
+              <input
+                type="checkbox"
+                id="extra-cena"
+                class="option-checkbox"
+                data-price="90"
+                name="extras"
+                value="Cena RAMO Bistrot"
+              />
               <label for="extra-cena">
-                <input
-                  type="checkbox"
-                  id="extra-cena"
-                  class="option-checkbox"
-                  data-price="90"
-                  name="extras"
-                  value="Cena RAMO Bistrot"
-                />
                 Cena RAMO Bistrot - €90
               </label>
             </div>
             <div class="option extra-checkbox">
+              <input
+                type="checkbox"
+                id="extra-sushi"
+                class="option-checkbox"
+                data-price="35"
+                name="extras"
+                value="Sushi Misto"
+              />
               <label for="extra-sushi">
-                <input
-                  type="checkbox"
-                  id="extra-sushi"
-                  class="option-checkbox"
-                  data-price="35"
-                  name="extras"
-                  value="Sushi Misto"
-                />
                 Sushi Misto (18pz) - €35
               </label>
             </div>
             <div class="option extra-checkbox">
+              <input
+                type="checkbox"
+                id="extra-pinsa"
+                class="option-checkbox"
+                data-price="20"
+                name="extras"
+                value="Pinsa"
+              />
               <label for="extra-pinsa">
-                <input
-                  type="checkbox"
-                  id="extra-pinsa"
-                  class="option-checkbox"
-                  data-price="20"
-                  name="extras"
-                  value="Pinsa"
-                />
                 Pinsa - €20
               </label>
             </div>
             <div class="option extra-checkbox">
+              <input
+                type="checkbox"
+                id="extra-prosecco"
+                class="option-checkbox"
+                data-price="40"
+                name="extras"
+                value="Bottiglia di Prosecco"
+              />
               <label for="extra-prosecco">
-                <input
-                  type="checkbox"
-                  id="extra-prosecco"
-                  class="option-checkbox"
-                  data-price="40"
-                  name="extras"
-                  value="Bottiglia di Prosecco"
-                />
                 Bottiglia di Prosecco - €40
               </label>
             </div>
@@ -796,22 +809,21 @@
       <div class="logo-container">
         <img src="https://www.trilussasparoma.com/data/png/logo_global.png" alt="Trilussa Palace Hotel Logo" class="logo" />
       </div>
-       <!-- Sezione Informazioni Aggiuntive -->
-<div class="additional-info">
-  <h2>GLI ACCESSI SPA INCLUDONO SEMPRE PER VOI:</h2>
-  <ul>
-    <li>Garage coperto free fino a 3 ore</li>
-    <li>Kit Spa (accappatoio, telo e ciabatte)</li>
-    <li>Soft drink (Angolo tisaneria, succhi di frutta, acqua)</li>
-    <li>Prosecco 20 cl con taralli</li>
-  </ul>
-  
-  <h2>SPECIALE EVENTI</h2>
-  <p>
-    Organizza il tuo evento speciale (team building, eventi aziendali, compleanni, addio al Nubilato / Celibato, Feste di Laurea) nelle nostre Spa ad uso esclusivo fino a un massimo di 15 persone. Contattaci per conoscere i dettagli.
-  </p>
-</div>
-
+      <!-- Sezione Informazioni Aggiuntive -->
+      <div class="additional-info">
+        <h2>GLI ACCESSI SPA INCLUDONO SEMPRE PER VOI:</h2>
+        <ul>
+          <li>Garage coperto free fino a 3 ore</li>
+          <li>Kit Spa (accappatoio, telo e ciabattine)</li>
+          <li>Soft drink (Angolo tisaneria, succhi di frutta, acqua)</li>
+          <li>Prosecco 20 cl con taralli</li>
+        </ul>
+        
+        <h2>SPECIALE EVENTI</h2>
+        <p>
+          Organizza il tuo evento speciale (team building, eventi aziendali, compleanni, addio al Nubilato / Celibato, Feste di Laurea) nelle nostre Spa ad uso esclusivo fino a un massimo di 15 persone. Contattaci per conoscere i dettagli.
+        </p>
+      </div>
 
       <!-- Iframe nascosto per l'invio del form con onload -->
       <iframe name="hiddenFrame" style="display:none;" onload="onFormLoad()"></iframe>
@@ -825,9 +837,7 @@
           <button onclick="closeModal()">Chiudi</button>
         </div>
       </div>
-
     </div>
-   
 
     <script>
       let currentStep = 1;
@@ -912,31 +922,77 @@
           persons = parseInt(personsSelected) || 2;
         }
 
-        if (spaSelected && timeSelected && durationSelected && timeSlotSelected) {
-          const spaPrices = {
-            "SPA MAYA": {
-              "MATTINA (08:00-16:00)": { "1h": 110, "1.30h": 160 },
-              "POMERIGGIO (16:00-23:00)": { "1h": 170, "1.30h": 360 },
-              "NOTTE (23:00-08:00)": { "1h": 250, "1.30h": 360 },
+        // Mappa delle tariffe delle Spa
+        const spaPrices = {
+          "SPA MAYA": {
+            "MATTINA (07:00-16:00)": { 
+              "1h": 130, 
+              "1.30h": 180,
+              "2h": 260 
             },
-            "SPA MOON": {
-              "MATTINA (08:00-16:00)": { "1h": 90, "1.30h": 130 },
-              "POMERIGGIO (16:00-23:00)": { "1h": 140, "1.30h": 290 },
-              "NOTTE (23:00-08:00)": { "1h": 200, "1.30h": 290 },
+            "SERA (16:00-23:00)": { 
+              "1h": 190, 
+              "1.30h": 260,
+              "2h": 380 
             },
-            "SPA DOMUS": {
-              "MATTINA (08:00-16:00)": { "1h": 75, "1.30h": 110 },
-              "POMERIGGIO (16:00-23:00)": { "1h": 110, "1.30h": 220 },
-              "NOTTE (23:00-08:00)": { "1h": 160, "1.30h": 220 },
+            "NOTTE (23:00-07:00)": { 
+              "1h": 298, 
+              "1.30h": 427,
+              "2h": 548 
             },
-          };
+          },
+          "SPA MOON": {
+            "MATTINA (07:00-16:00)": { 
+              "1h": 110, 
+              "1.30h": 150,
+              "2h": 220 
+            },
+            "SERA (16:00-23:00)": { 
+              "1h": 160, 
+              "1.30h": 210,
+              "2h": 320 
+            },
+            "NOTTE (23:00-07:00)": { 
+              "1h": 238, 
+              "1.30h": 337,
+              "2h": 428 
+            },
+          },
+          "SPA DOMUS": {
+            "MATTINA (07:00-16:00)": { 
+              "1h": 95, 
+              "1.30h": 130,
+              "2h": 180 
+            },
+            "SERA (16:00-23:00)": { 
+              "1h": 130, 
+              "1.30h": 180,
+              "2h": 260 
+            },
+            "NOTTE (23:00-07:00)": { 
+              "1h": 188, 
+              "1.30h": 258,
+              "2h": 328 
+            },
+          },
+        };
 
+        // Tariffe per persone aggiuntive basate sulla durata
+        const additionalPersonPrice = {
+          "1h": 40,
+          "1.30h": 50,
+          "2h": 60
+        };
+
+        if (spaSelected && timeSelected && durationSelected && timeSlotSelected) {
           const spaPrice = spaPrices[spaSelected.value][timeSelected.value][durationSelected.value];
           totalPrice += spaPrice;
         }
 
         if (persons > 2) {
-          totalPrice += (persons - 2) * 45;
+          const duration = durationSelected.value;
+          const additionalPrice = additionalPersonPrice[duration] || 45; // Fallback a 45 se durata non trovata
+          totalPrice += (persons - 2) * additionalPrice;
         }
 
         const checkboxes = document.querySelectorAll(".option-checkbox:checked");
@@ -1045,21 +1101,27 @@
 
         if (time.startsWith('MATTINA')) {
           if (duration === '1h') {
-            slots = ["8-9", "10-11", "12-13", "13-14", "15-16"];
+            slots = ["7-8", "8-9", "10-11", "12-13", "14-15"];
           } else if (duration === '1.30h') {
-            slots = ["8-9.30", "10-11.30", "12-13.30", "13-14.30", "15-16.30"];
+            slots = ["7-8.30", "8-9.30", "10-11.30", "12-13.30", "14-15.30"];
+          } else if (duration === '2h') {
+            slots = ["7-9", "8-10", "10-12", "12-14", "14-16"];
           }
-        } else if (time.startsWith('POMERIGGIO')) {
+        } else if (time.startsWith('SERA')) {
           if (duration === '1h') {
             slots = ["16-17", "17-18", "19-20", "20-21", "21-22"];
           } else if (duration === '1.30h') {
             slots = ["16-17.30", "17-18.30", "19-20.30", "20-21.30", "21-22.30"];
+          } else if (duration === '2h') {
+            slots = ["16-18", "17-19", "19-21", "20-22", "21-23"];
           }
         } else if (time.startsWith('NOTTE')) {
           if (duration === '1h') {
-            slots = ["23-24", "24-01", "02-03", "03-04", "05-06", "07-08"];
+            slots = ["23-24", "00-01", "02-03", "03-04", "04-05", "05-06", "06-07"];
           } else if (duration === '1.30h') {
-            slots = ["23-00.30", "00-01.30", "02-03.30", "03-04.30", "05-06.30", "07-08.30"];
+            slots = ["23-00.30", "00-01.30", "02-03.30", "03-04.30", "04-05.30", "05-06.30", "06-07.30"];
+          } else if (duration === '2h') {
+            slots = ["23-01", "00-02", "02-04", "03-05", "04-06", "05-07", "06-08"];
           }
         }
 
