@@ -443,6 +443,37 @@
       background-color: var(--button-hover-color);
       transform: scale(1.05);
     }
+    .additional-info {
+  background-color: white;
+  padding: 15px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+.additional-info h2 {
+  color: var(--primary-color);
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+
+.additional-info ul {
+  list-style-type: disc;
+  padding-left: 20px;
+  margin-bottom: 15px;
+}
+
+.additional-info li {
+  margin-bottom: 5px;
+  color: var(--text-color);
+  font-size: 1rem;
+}
+
+.additional-info p {
+  color: var(--text-color);
+  font-size: 1rem;
+}
+
 
   </style>
 </head>
@@ -765,6 +796,22 @@
       <div class="logo-container">
         <img src="https://www.trilussasparoma.com/data/png/logo_global.png" alt="Trilussa Palace Hotel Logo" class="logo" />
       </div>
+       <!-- Sezione Informazioni Aggiuntive -->
+<div class="additional-info">
+  <h2>GLI ACCESSI SPA INCLUDONO SEMPRE PER VOI:</h2>
+  <ul>
+    <li>Garage coperto free fino a 3 ore</li>
+    <li>Kit Spa (accappatoio, telo e ciabatte)</li>
+    <li>Soft drink (Angolo tisaneria, succhi di frutta, acqua)</li>
+    <li>Prosecco 20 cl con taralli</li>
+  </ul>
+  
+  <h2>SPECIALE EVENTI</h2>
+  <p>
+    Organizza il tuo evento speciale (team building, eventi aziendali, compleanni, addio al Nubilato / Celibato, Feste di Laurea) nelle nostre Spa ad uso esclusivo fino a un massimo di 15 persone. Contattaci per conoscere i dettagli.
+  </p>
+</div>
+
 
       <!-- Iframe nascosto per l'invio del form con onload -->
       <iframe name="hiddenFrame" style="display:none;" onload="onFormLoad()"></iframe>
@@ -780,6 +827,7 @@
       </div>
 
     </div>
+   
 
     <script>
       let currentStep = 1;
