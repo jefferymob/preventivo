@@ -263,6 +263,15 @@
         width: 90%; /* Aumentato per adattarsi meglio */
         max-width: 300px; /* Ridotto */
       }
+      /* Disposizione a due colonne per le mini fasce orarie */
+      .time-slots {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+      }
+      .time-slot-button {
+        width: 100%;
+      }
     }
 
     /* Stili per il logo */
@@ -402,7 +411,8 @@
       cursor: pointer;
       transition: background-color 0.3s ease, transform 0.2s ease;
       font-size: 0.9rem;
-      margin-bottom: 10px;
+      width: 100%;
+      box-sizing: border-box;
     }
     .time-slot-button.selected,
     .time-slot-button:hover {
@@ -550,7 +560,7 @@
             <h2>3. Scegli il Numero di Persone</h2>
           </div>
           <div class="person-selection">
-            <button type="button" class="person-button" data-value="2">2 Persone</button>
+            <button type="button" class="person-button selected" data-value="2">2 Persone</button>
             <button type="button" class="person-button" data-value="3">3 Persone</button>
             <button type="button" class="person-button" data-value="4">4 Persone</button>
           </div>
@@ -766,7 +776,7 @@
           currentStep = step + 1;
           showStep(currentStep);
           updateTotal();
-          if (currentStep === 5) {
+          if (currentStep === 5) { // Step 5: Scegli le Mini Fasce Orarie
             generateTimeSlots();
           }
         }
@@ -779,7 +789,7 @@
         }
       }
 
-      // Convalida radio obbligatori negli step 1,2,4 e time slots in step 5
+      // Convalida radio obbligatori negli step 1,2,4,5 e time slots in step 5
       function validateStep(step) {
         let valid = true;
         const stepElement = document.getElementById(`step-${step}`);
@@ -982,11 +992,23 @@
         let slots = [];
 
         if (time.startsWith('MATTINA')) {
-          slots = ["8-9", "10-11", "12-13", "13-14", "15-16"];
+          if (duration === '1h') {
+            slots = ["8-9", "10-11", "12-13", "13-14", "15-16"];
+          } else if (duration === '1.30h') {
+            slots = ["8-9.30", "10-11.30", "12-13.30", "13-14.30", "15-16.30"];
+          }
         } else if (time.startsWith('POMERIGGIO')) {
-          slots = ["17-18", "19-20", "21-22"];
+          if (duration === '1h') {
+            slots = ["16-17", "17-18", "19-20", "20-21", "21-22"];
+          } else if (duration === '1.30h') {
+            slots = ["16-17.30", "17-18.30", "19-20.30", "20-21.30", "21-22.30"];
+          }
         } else if (time.startsWith('NOTTE')) {
-          slots = ["23-24", "24-01", "02-03", "03-04", "05-06", "07-08"];
+          if (duration === '1h') {
+            slots = ["23-24", "24-01", "02-03", "03-04", "05-06", "07-08"];
+          } else if (duration === '1.30h') {
+            slots = ["23-00.30", "00-01.30", "02-03.30", "03-04.30", "05-06.30", "07-08.30"];
+          }
         }
 
         slots.forEach(slot => {
@@ -994,11 +1016,11 @@
           optionDiv.classList.add('option');
 
           const label = document.createElement('label');
-          label.setAttribute('for', `time-slot-${slot}`);
+          label.setAttribute('for', `time-slot-${slot.replace('.', '')}`); // Remove dot for ID
 
           const input = document.createElement('input');
           input.type = 'radio';
-          input.id = `time-slot-${slot}`;
+          input.id = `time-slot-${slot.replace('.', '')}`;
           input.name = 'timeSlot';
           input.value = slot;
           input.required = true;
@@ -1014,12 +1036,17 @@
       // Funzione per formattare gli slot
       function formatSlot(slot) {
         const [start, end] = slot.split('-');
-        return `${start}:00 - ${end}:00`;
+        // Formatta con due cifre per ore e minuti
+        const formatTime = (time) => {
+          const [hour, minute] = time.split('.');
+          return `${parseInt(hour, 10)}:${minute ? minute.padStart(2, '0') : '00'}`;
+        };
+        return `${formatTime(start)} - ${formatTime(end)}`;
       }
 
       // Funzione per aggiungere i pulsanti per selezionare il numero di persone
       window.addEventListener('DOMContentLoaded', (event) => {
-        // Non necessario qui poiché i pulsanti sono già nel HTML
+        // Pulsanti già presenti nel HTML
       });
     </script>
 </body>
